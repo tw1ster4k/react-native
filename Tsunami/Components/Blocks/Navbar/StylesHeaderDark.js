@@ -1,6 +1,6 @@
-export const stylesHeaderBlack = {
-  title:{
-    marginTop:24,
+export const stylesHeaderDark = {
+  container:{
+    backgroundColor:"#151515"
   },
     text:{
         color:"#ffffff",

@@ -1,25 +1,22 @@
 import React from 'react'
-import { View, Text, TextInput, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, TextInput, StyleSheet } from 'react-native'
 import Title from '../../Svg/Title/Title'
-import TitleWhite from '../../Svg/Title/TitleWhite'
 import { useSelector} from 'react-redux'
-import { stylesHeaderBlack } from './StylesHeaderBlack'
+import { stylesHeaderDark } from './StylesHeaderDark'
 import { stylesHeaderWhite } from './StylesHeaderWhite'
-import { stylesHeader } from './StylesHeader'
 import Search from '../../Svg/Search/Search'
 
 const Header = () => {
   const theme = useSelector((state) => state.theme)
   
-  const styles = StyleSheet.create(stylesHeader)
+  const styles = StyleSheet.create( theme ? stylesHeaderWhite : stylesHeaderDark)
   
   return (
-    <View style={{width:393,overflow:'scroll', height:224, flex:1}}>
-        <Title style={styles.title} />   
-        <Text style={styles.text}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
-        <TextInput style={styles.input} placeholder='Поиск' theme={theme}   />
-        <Search theme={theme} style={styles.icon} /> 
-        <StatusBar style="auto" />
+    <View style={[styles.container,{width:393,overflow:'scroll', height:244 ,flexDirection:'column', alignItems:'center'}]}>
+        <Title />   
+        <Text style={[styles.text,{textAlign:"center",width:380,marginTop:16,fontSize:14,fontWeight:400,lineHeight:16.8}]}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
+        <TextInput style={[styles.input, {width:368,height:40,borderRadius:10,marginTop:16,borderWidth:2,paddingLeft:24}]} placeholder='Поиск' />
+        <Search /> 
     </View>
   )
 }

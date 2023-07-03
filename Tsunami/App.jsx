@@ -5,7 +5,7 @@ import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './Components/Home/Home';
-import Header from './Components/Blocks/Navbar/Header';
+import Salads from "./Components/Salads/Salads";
 
 
 
@@ -13,10 +13,10 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
       <Provider store={store}>
-        <Header />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, animationEnabled:false}} />
+          <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false, animationEnabled:false}} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>

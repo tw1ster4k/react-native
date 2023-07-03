@@ -1,10 +1,15 @@
 import React from 'react'
 import { Svg, Path } from 'react-native-svg'
+import { useSelector } from 'react-redux'
+import { StyleSheet } from 'react-native'
+import { searchStyles } from './searchStyles'
 
-const Search = (theme) => {
+const Search = () => {
+  const theme = useSelector((state) => state.theme)
+  const styles = StyleSheet.create(searchStyles)
     return (
         theme ?
-        <Svg
+        <Svg style={styles.icon}
         width={22}
         height={22}
         viewBox="0 0 22 22"
@@ -19,7 +24,7 @@ const Search = (theme) => {
         />
       </Svg>
         :
-        <Svg
+        <Svg style={styles.icon}
         xmlns="http://www.w3.org/2000/svg"
         width={22}
         height={22}
