@@ -108,11 +108,11 @@ const Card = ({data, index}) => {
                 <View style={quantity >= 1 ? bigImg === index ? [styles.button, {width:w, position:"absolute", zIndex:3, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:w, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : bigImg === index ? [styles.button, {position:'absolute', zIndex:3,width:114 ,height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:114, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] }>
                     {quantity > 0 ? 
                         <Pressable style={{height:"100%", width:55.5, alignItems:"center", marginTop:11}} onPress={() => quantity === 1 ? handleMinOnPress("DEL_FOOD", data, quantity) : delFood()}>
-                        <Text style={[styles.minus, {fontWeight:400, fontSize:20}]}>-</Text>
+                        <Text style={[styles.minus, {fontWeight:400, fontSize:20, marginLeft:-10}]}>-</Text>
                     </Pressable>
                     : ''
                     }
-                    <Text style={quantity >= 1 ? [styles.cost, {fontWeight:400, fontSize:16}] : [styles.cost, {marginLeft:16, fontWeight:400, fontSize:16}]}>{data.price}</Text>
+                    <Text style={quantity >= 1 ? [styles.cost, {fontWeight:400, fontSize:16}] : [styles.cost, {marginLeft:16, fontWeight:400, fontSize:16}]}>{data.price} руб</Text>
                     <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => quantity === 0 ? handleMaxOnPress("ADD_FOOD", data) : addFood()}>
                         <Text style={[styles.plus, {fontWeight:400, fontSize:20, marginLeft:10}]}>+</Text>
                     </Pressable>
