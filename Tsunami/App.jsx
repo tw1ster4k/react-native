@@ -30,13 +30,13 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           gestureEnabled: true,
+          gestureDirection:"vertical",
           transitionSpec:{
             open:config,
             close:config
           },
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
-        animation="fade"
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
           <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false,}} />
