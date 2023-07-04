@@ -30,7 +30,6 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           gestureEnabled: true,
-          gestureDirection:"vertical",
           transitionSpec:{
             open:config,
             close:config
