@@ -5,6 +5,7 @@ import { homeStylesDark } from './homeStylesDark'
 import { homeStylesWhite } from './homeStylesWhite'
 import Header from '../Blocks/Navbar/Header'
 import Footer from '../Blocks/Footer/Footer'
+import True from '../Svg/True/True'
 
 
 const Home = ({navigation}) => {
@@ -27,6 +28,7 @@ const Home = ({navigation}) => {
               }
         </View>
         <Text style={[styles.warning,{width:368,marginTop:34,marginLeft:10,fontWeight:400,fontSize:14,lineHeight:22}]}>Уважаемые гости, если у Вас есть аллергия на какой-либо продукт, пожалуйста, предупредите об этом Вашего официанта. Меню является рекламной продукцией нашего ресторана. Утвержденное контрольное меню с выходами блюд и сведениями о пищевой ценности готовой продукции: калорийности, содержании белков, жиров, углеводов находится в уголке потребителя и предоставляется по первому Вашему требованию.</Text>
+        <True />
     </ScrollView>
     <Footer navigation={navigation} />
   </View>

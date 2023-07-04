@@ -1,0 +1,31 @@
+export const stylesBasketWhite = {
+    container:{
+        backgroundColor:"#fff"
+    },
+    tab:{
+        color:"#1c1c1c"
+    },
+    sum:{
+        color:"#1c1c1c"
+    },
+    call:{
+        backgroundColor:"#fff"
+    },
+    callText:{
+        color:"#1c1c1c"
+    },
+    infoText:{
+        color:"#1c1c1c"        
+    },
+    infoInput:{
+        borderColor:"#bbb",
+        backgroundColor:"#fff",
+        color:"#1c1c1c"        
+    },
+    submit:{
+        backgroundColor:"#fff",        
+    },
+    submitText:{
+        color:"#1c1c1c"
+    }
+}

@@ -5,6 +5,7 @@ import Footer from '../Blocks/Footer/Footer'
 import { stylesSaladsDark } from './stylesSaladsDark'
 import { stylesSaladsWhite } from './stylesSaladsWhite'
 import { useSelector } from 'react-redux'
+import True from '../Svg/True/True'
 import Card from '../Blocks/Card/Card'
 
 const Salads = ({navigation}) => {
@@ -21,7 +22,7 @@ const Salads = ({navigation}) => {
             )
 
             }
-
+        <True />
         </ScrollView>
         <Footer navigation={navigation} />
     </View>
