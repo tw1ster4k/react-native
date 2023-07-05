@@ -34,10 +34,8 @@ const Basket = ({navigation}) => {
             <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10}]}>Корзина</Text>
             <Text style={[styles.sum, {fontWeight:400, fontSize:16, marginLeft:10}]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
-            basket.filter((el) => el.title === elem.title).length > 0 ?
             <Card data={elem} key={index} index={index} />
-            : 
-            ""
+            
             
             )}
             <Pressable style={[styles.call, {width:210, height:48, borderRadius:10, borderWidth:2,borderColor:"#ff7a00", marginTop:24,marginLeft:10,justifyContent:'center',alignItems:'center'}]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
