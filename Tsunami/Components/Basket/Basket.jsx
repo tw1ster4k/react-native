@@ -9,7 +9,7 @@ import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 
-const Basket = ({navigation}) => {
+const Basket = () => {
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
     const params = ["Имя","Количество гостей","Время", "Телефон", "Дата"]
