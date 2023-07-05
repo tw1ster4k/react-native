@@ -5,8 +5,10 @@ import HomeIcon from '../../Svg/HomeIcon/HomeIcon'
 import Theme from '../../Svg/Theme/Theme'
 import { stylesFooterDark } from './stylesFooterDark'
 import { stylesFooterWhite } from './stylesFooterWhite'
+import { useNavigation } from '@react-navigation/native'
 
-const Footer = ({navigation}) => {
+const Footer = () => {
+  const navigation = useNavigation()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
     const price = useSelector((state) => state.price)

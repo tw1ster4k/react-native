@@ -7,6 +7,9 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 import Home from './Components/Home/Home';
 import Salads from "./Components/Salads/Salads";
 import Basket from "./Components/Basket/Basket";
+import Footer from "./Components/Blocks/Footer/Footer";
+import Header from "./Components/Blocks/Navbar/Header";
+import { ScrollView, View } from "react-native";
 
 
 
@@ -26,10 +29,11 @@ const App = () => {
 
 
   return (
-      <Provider store={store}>
+    
+    <Provider store={store}>
       <NavigationContainer>
+        <Header />
         <Stack.Navigator screenOptions={{
-          gestureEnabled: true,
           transitionSpec:{
             open:config,
             close:config
@@ -38,11 +42,13 @@ const App = () => {
         }}
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
-          <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false,}} />
+          <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false}} />
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
         </Stack.Navigator>
+      <Footer />
       </NavigationContainer>
       </Provider>
+
   );
 }
 

@@ -31,7 +31,6 @@ const Basket = ({navigation}) => {
   return (
     <View>
         <ScrollView style={[styles.container, {width:"100%", height:"100%", overflow:"scroll"}]}>
-            <Header />
             <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10}]}>Корзина</Text>
             <Text style={[styles.sum, {fontWeight:400, fontSize:16, marginLeft:10}]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
@@ -60,7 +59,6 @@ const Basket = ({navigation}) => {
             </View>
             <True />
         </ScrollView>
-        <Footer navigation={navigation} />
     </View>
   )
 }

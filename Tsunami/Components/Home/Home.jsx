@@ -16,7 +16,7 @@ const Home = ({navigation}) => {
     <View>
 
     <ScrollView style={[styles.container, {width:"100%", height:"auto", overflow:"scroll"}]}> 
-    <Header />
+
       <Text style={[styles.tab,{fontWeight:600, fontSize:24, lineHeight:29.4, marginLeft:10}]}>Меню</Text>
         <View style={{width:393,height:350,display:"flex",flexDirection:"column",flexWrap:"wrap",alignContent:"space-around",justifyContent:"space-between",marginTop:18,}}>
                 {category.map((el, index) => 
@@ -30,7 +30,6 @@ const Home = ({navigation}) => {
         <Text style={[styles.warning,{width:368,marginTop:34,marginLeft:10,fontWeight:400,fontSize:14,lineHeight:22}]}>Уважаемые гости, если у Вас есть аллергия на какой-либо продукт, пожалуйста, предупредите об этом Вашего официанта. Меню является рекламной продукцией нашего ресторана. Утвержденное контрольное меню с выходами блюд и сведениями о пищевой ценности готовой продукции: калорийности, содержании белков, жиров, углеводов находится в уголке потребителя и предоставляется по первому Вашему требованию.</Text>
         <True />
     </ScrollView>
-    <Footer navigation={navigation} />
   </View>
   )
 }
