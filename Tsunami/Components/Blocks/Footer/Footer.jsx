@@ -6,6 +6,7 @@ import Theme from '../../Svg/Theme/Theme'
 import { stylesFooterDark } from './stylesFooterDark'
 import { stylesFooterWhite } from './stylesFooterWhite'
 import { useNavigation } from '@react-navigation/native'
+import SearchButton from '../../Svg/SearchButton/SearchButton'
 
 const Footer = () => {
   const navigation = useNavigation()
@@ -19,10 +20,13 @@ const Footer = () => {
           <Pressable style={{marginLeft:10}} onPress={() => navigation.navigate("Меню")}>
                 <HomeIcon />
           </Pressable>
+          <Pressable style={{marginLeft:8}} onPress={() => navigation.navigate("Поиск")}>
+            <SearchButton />
+          </Pressable>
           <Pressable style={{marginLeft:8}} onPress={() =>  dispatch({type:"ADD_THEME", payload:!theme})}>
                 <Theme />
           </Pressable>
-          <Pressable style={basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:152,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:152,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
+          <Pressable style={basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:96,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:96,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
             <Text style={[styles.price, {fontWeight:600, fontSize:14,lineHeight:17.15}]}>{price ? `${price} руб` : "Корзина"}</Text>
             <Text style={[styles.quantity, {fontWeight:400, fontSize:10,lineHeight:14}]}>{basket.length ? `${basket.length} товаров` : "пусто"}</Text>
           </Pressable>

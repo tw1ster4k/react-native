@@ -8,7 +8,7 @@ import Home from './Components/Home/Home';
 import Salads from "./Components/Salads/Salads";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
-import Header from "./Components/Blocks/Navbar/Header";
+import Search from "./Components/Search/Search";
 
 
 
@@ -42,6 +42,7 @@ const App = () => {
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
           <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false}} />
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
+          <Stack.Screen name="Поиск" component={Search} options={{headerShown:false}} />
         </Stack.Navigator>
       <Footer />
       </NavigationContainer>

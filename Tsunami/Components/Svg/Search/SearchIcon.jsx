@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { StyleSheet } from 'react-native'
 import { searchStyles } from './searchStyles'
 
-const Search = () => {
+const SearchIcon = () => {
   const theme = useSelector((state) => state.theme)
   const styles = StyleSheet.create(searchStyles)
     return (
@@ -39,4 +39,4 @@ const Search = () => {
       )
 }
 
-export default Search
+export default SearchIcon

@@ -106,7 +106,7 @@ const Card = ({data, index}) => {
             }
             <Animated.View style={bigImg === index ? {position:'absolute', zIndex:3, marginTop:294} : ''}>
                 <View style={quantity >= 1 ? bigImg === index ? [styles.button, {width:w, position:"absolute", zIndex:3, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:w, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : bigImg === index ? [styles.button, {position:'absolute', zIndex:3,width:114 ,height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:114, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] }>
-                    {quantity > 0 ? 
+                    {quantity ? 
                         <Pressable style={{height:"100%", width:55.5, alignItems:"center", marginTop:11}} onPress={() => quantity === 1 ? handleMinOnPress("DEL_FOOD", data, quantity) : delFood()}>
                         <Text style={[styles.minus, {fontWeight:400, fontSize:20, marginLeft:-10}]}>-</Text>
                     </Pressable>
@@ -118,7 +118,7 @@ const Card = ({data, index}) => {
                     </Pressable>
                 </View>
             </Animated.View>
-            {quantity > 0 ?
+            {quantity ?
                 <View style={bigImg === index ? [styles.amount, {position:"absolute", zIndex:3,marginTop:310 ,marginLeft:167,justifyContent:'center', alignItems:'center',borderRadius:10,borderWidth:2, borderColor:"#ff7a00", width:38, height:40, marginBottom:16}] : [styles.amount, {justifyContent:'center', alignItems:'center',borderRadius:10,borderWidth:2,borderColor:"#ff7a00",width:38,height:40,marginLeft:167, marginTop:-56, marginBottom:16}]}>
                 <Text style={[styles.amountText, {fontWeight:600, fontSize:16}]}>{quantity}</Text>
             </View>
