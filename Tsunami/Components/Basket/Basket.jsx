@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
+import { stylesBasket } from './stylesBasket'
 
 const Basket = () => {
     const basket = useSelector((state) => state.basket)
@@ -26,30 +27,31 @@ const Basket = () => {
     });
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
+    const styles2 = StyleSheet.create(stylesBasket)
   return (
-        <ScrollView style={[styles.container, {width:"100%", height:"100%", overflow:"scroll"}]}>
-            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10, marginTop:32}]}>Корзина</Text>
-            <Text style={[styles.sum, {fontWeight:400, fontSize:16, marginLeft:10}]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
+        <ScrollView style={[styles.container, styles2.container]}>
+            <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
+            <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
             <Card data={elem} key={index} index={index} />
             
             
             )}
-            <Pressable style={[styles.call, {width:210, height:48, borderRadius:10, borderWidth:2,borderColor:"#ff7a00", marginTop:24,marginLeft:10,justifyContent:'center',alignItems:'center'}]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
-                <Text style={[styles.callText, {fontWeight:600, fontSize:14}]}>Вызвать официанта</Text>
+            <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
+                <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             <LineSvg />
             <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10}]}>Разместить предзаказ</Text>
             <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:10}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
-            <View style={{width:368,height:218,marginTop:16,marginLeft:10,display:"flex",flexDirection:"column",flexWrap:"wrap",alignContent:"space-around",justifyContent:"space-between",alignItems:'center'}}> 
+            <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el === "Дата" ? {width:176,height:67, marginTop:-19} : {width:176,height:67}}>
-                    <Text style={[styles.infoText,{fontWeight:400, fontSize:14}]}>{el}</Text>
-                    <TextInput style={[styles.infoInput, {width:176,marginTop:2,height:48,borderRadius:10,borderWidth:2,paddingLeft:16}]} />
+                    <Text style={[styles.infoText,styles2.infoText]}>{el}</Text>
+                    <TextInput style={[styles.infoInput, styles2.infoInput]} />
                 </View>
                 )}
-                <Pressable style={[styles.submit, {height:48,width:176,borderRadius:10,borderWidth:2,borderColor:"#ff7a00",display:"flex",alignItems:"center",justifyContent:"center"}]}>
-                    <Text style={[styles.submitText, {fontWeight:600, fontSize:14}]}>Разместить</Text>
+                <Pressable style={[styles.submit, styles2.submit]}>
+                    <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>
             <True />
