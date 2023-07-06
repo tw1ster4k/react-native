@@ -1,7 +1,5 @@
 import React from 'react'
 import { View, ScrollView, Text, TextInput, StyleSheet, Pressable } from 'react-native'
-import Header from '../Blocks/Navbar/Header'
-import Footer from '../Blocks/Footer/Footer'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -29,9 +27,8 @@ const Basket = () => {
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
   return (
-    <View>
         <ScrollView style={[styles.container, {width:"100%", height:"100%", overflow:"scroll"}]}>
-            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10}]}>Корзина</Text>
+            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10, marginTop:32}]}>Корзина</Text>
             <Text style={[styles.sum, {fontWeight:400, fontSize:16, marginLeft:10}]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
             <Card data={elem} key={index} index={index} />
@@ -57,7 +54,6 @@ const Basket = () => {
             </View>
             <True />
         </ScrollView>
-    </View>
   )
 }
 

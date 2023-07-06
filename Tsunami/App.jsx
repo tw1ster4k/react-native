@@ -9,7 +9,6 @@ import Salads from "./Components/Salads/Salads";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import Header from "./Components/Blocks/Navbar/Header";
-import { ScrollView, View } from "react-native";
 
 
 
@@ -32,7 +31,6 @@ const App = () => {
     
     <Provider store={store}>
       <NavigationContainer>
-        <Header />
         <Stack.Navigator screenOptions={{
           transitionSpec:{
             open:config,

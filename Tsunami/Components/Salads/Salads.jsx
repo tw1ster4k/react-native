@@ -1,7 +1,5 @@
 import React from 'react'
 import { ScrollView, View, StyleSheet, Text } from 'react-native'
-import Header from '../Blocks/Navbar/Header'
-import Footer from '../Blocks/Footer/Footer'
 import { stylesSaladsDark } from './stylesSaladsDark'
 import { stylesSaladsWhite } from './stylesSaladsWhite'
 import { useSelector } from 'react-redux'
@@ -13,9 +11,8 @@ const Salads = () => {
     const salads = useSelector((state) => state.salads)
     const styles = StyleSheet.create(theme ? stylesSaladsWhite : stylesSaladsDark)
   return (
-    <View >
         <ScrollView style={[styles.container, {width:"100%", height:'100%', overflow:"scroll"}]}>
-            <Text style={[styles.tab, {fontWeight:600, fontSize:24,lineHeight:29.4, marginLeft:10}]}>Салаты</Text>
+            <Text style={[styles.tab, {fontWeight:600, fontSize:24,lineHeight:29.4, marginLeft:10, marginTop:32}]}>Салаты</Text>
             {  salads.map((el,index) =>
             <Card data={el} key={index} index={index} />
             )
@@ -23,8 +20,6 @@ const Salads = () => {
             }
         <True />
         </ScrollView>
-
-    </View>
   )
 }
 
