@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { stylesCardDark } from './stylesCardDark'
 import { stylesCardWhite } from './stylesCardWhite'
+import { stylesCard } from './stylesCard'
 
 
 const {UIManager} = NativeModules
@@ -43,6 +44,7 @@ const Card = ({data, index}) => {
         }
     }
     const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark)
+    const styles2 = StyleSheet.create(stylesCard)
 
 
     const addFood = () => {
@@ -95,32 +97,32 @@ const Card = ({data, index}) => {
       }
 
   return (
-    <Pressable style={data.img ? more===index ? bigImg === index ? [styles.card, {height:368, width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}] : [styles.card, {height:"auto",  width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}] : bigImg === index ? [styles.card, {height:368,  width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}] : [styles.card, {height:144,  width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}] : more === index ? [styles.card, {height:'auto',  width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}] : [styles.card, {width:368, marginTop:18, marginLeft:10, borderRadius:10, borderWidth:2}]} onPress={() => moreFunction(index)}>
-            <Text style={data.img ? more === index ? [styles.title, {width:192,fontWeight:600, fontSize:14, lineHeight:17.15, marginTop:16, marginLeft:16}] : [styles.title, {width:192,fontWeight:600, fontSize:14, marginTop:16, marginLeft:16}] : more === index ? [styles.title, {fontWeight:600, fontSize:14, lineHeight:17.15, marginTop:16, marginLeft:16}] : [styles.title, {fontWeight:600, fontSize:14, marginTop:16, marginLeft:16}]}>{data.title}</Text>
+    <Pressable style={data.img ? more===index ? bigImg === index ? [styles.card, styles2.card, {height:368}] : [styles.card, {height:"auto",}, styles2.card] : bigImg === index ? [styles.card, {height:368}, styles2.card] : [styles.card, {height:144,}, styles2.card] : more === index ? [styles.card, {height:'auto',}, styles2.card] : [styles.card, styles2.card]} onPress={() => moreFunction(index)}>
+            <Text style={data.img ? more === index ? [styles.title, {width:192}, styles2.title] : [styles.title, styles2.title] : more === index ? [styles.title, styles2.title] : [styles.title, styles2.title]}>{data.title}</Text>
             {more === index ? 
             <View>
-                <Text style={data.img ? [styles.description, {width:192, fontWeight:400, fontSize:14, marginTop:16, marginLeft:16}] : [styles.description, {fontWeight:400, fontSize:14, marginTop:16, marginLeft:16}]}>{data.description}</Text>
-                <Text style={[styles.description,{fontWeight:400, fontSize:14, marginTop:16, marginLeft:16}]}>{data.compound}</Text>
+                <Text style={data.img ? [styles.description, {width:192}, styles2.description] : [styles.description, styles2.description]}>{data.description}</Text>
+                <Text style={[styles.description,styles2.description]}>{data.compound}</Text>
             </View>
             : ''
             }
             <Animated.View style={bigImg === index ? {position:'absolute', zIndex:3, marginTop:294} : ''}>
-                <View style={quantity >= 1 ? bigImg === index ? [styles.button, {width:w, position:"absolute", zIndex:3, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:w, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : bigImg === index ? [styles.button, {position:'absolute', zIndex:3,width:114 ,height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] : [styles.button, {width:114, height:40, borderRadius:10, display:"flex", alignItems:"center", flexDirection:"row", justifyContent:"space-around", margin:16}] }>
+                <View style={quantity >= 1 ? bigImg === index ? [styles.button, {width:w, position:"absolute", zIndex:3}, styles2.button] : [styles.button, {width:w}, styles2.button] : bigImg === index ? [styles.button, {position:'absolute', zIndex:3,width:114}, styles2.button] : [styles.button, {width:114}, styles2.button] }>
                     {quantity ? 
-                        <Pressable style={{height:"100%", width:55.5, alignItems:"center", marginTop:11}} onPress={() => quantity === 1 ? handleMinOnPress("DEL_FOOD", data, quantity) : delFood()}>
-                        <Text style={[styles.minus, {fontWeight:400, fontSize:20, marginLeft:-10}]}>-</Text>
+                        <Pressable style={styles2.buttonContent} onPress={() => quantity === 1 ? handleMinOnPress("DEL_FOOD", data, quantity) : delFood()}>
+                        <Text style={[styles.minus, {marginLeft:-10}, styles2.buttonText]}>-</Text>
                     </Pressable>
                     : ''
                     }
-                    <Text style={quantity >= 1 ? [styles.cost, {fontWeight:400, fontSize:16}] : [styles.cost, {marginLeft:16, fontWeight:400, fontSize:16}]}>{data.price} руб</Text>
-                    <Pressable style={{height:"100%",width:55.5, alignItems:'center', marginTop:11}} onPress={() => quantity === 0 ? handleMaxOnPress("ADD_FOOD", data) : addFood()}>
-                        <Text style={[styles.plus, {fontWeight:400, fontSize:20, marginLeft:10}]}>+</Text>
+                    <Text style={quantity >= 1 ? [styles.cost, styles2.cost] : [styles.cost, {marginLeft:16}, styles2.cost]}>{data.price} руб</Text>
+                    <Pressable style={styles2.buttonContent} onPress={() => quantity === 0 ? handleMaxOnPress("ADD_FOOD", data) : addFood()}>
+                        <Text style={[styles.plus, {marginLeft:10}, styles2.buttonText]}>+</Text>
                     </Pressable>
                 </View>
             </Animated.View>
             {quantity ?
-                <View style={bigImg === index ? [styles.amount, {position:"absolute", zIndex:3,marginTop:310 ,marginLeft:167,justifyContent:'center', alignItems:'center',borderRadius:10,borderWidth:2, borderColor:"#ff7a00", width:38, height:40, marginBottom:16}] : [styles.amount, {justifyContent:'center', alignItems:'center',borderRadius:10,borderWidth:2,borderColor:"#ff7a00",width:38,height:40,marginLeft:167, marginTop:-56, marginBottom:16}]}>
-                <Text style={[styles.amountText, {fontWeight:600, fontSize:16}]}>{quantity}</Text>
+                <View style={bigImg === index ? [styles.amount, {position:"absolute", zIndex:3,marginTop:310 ,marginLeft:167}, styles2.amount] : [styles.amount, styles2.amount]}>
+                <Text style={[styles.amountText, styles2.amountText]}>{quantity}</Text>
             </View>
             : ""
             }
