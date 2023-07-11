@@ -11,7 +11,7 @@ const Header = () => {
   const styles = StyleSheet.create( theme ? stylesHeaderWhite : stylesHeaderDark)
   
   return (
-    <View style={[styles.container,{width:393,overflow:'scroll', height:244 ,flexDirection:'column', alignItems:'center',}]}>
+    <View style={[styles.container,{width:393,overflow:'scroll', height:192 ,flexDirection:'column', alignItems:'center',}]}>
         <Title />   
         <Text style={[styles.text,{textAlign:"center",width:380,marginTop:16,fontSize:14,fontWeight:400,lineHeight:16.8}]}>Онлайн-меню японо-перуанской кухни ресторана Tsunami</Text>
     </View>
