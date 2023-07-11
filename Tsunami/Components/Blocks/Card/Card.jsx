@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { stylesCardDark } from './stylesCardDark'
 import { stylesCardWhite } from './stylesCardWhite'
 import { stylesCard } from './stylesCard'
-/*  import SkeletonContent from 'react-native-skeleton-content'  */
+/* import SkeletonContent from 'react-native-skeleton-content-nonexpo' */
 
 
 const {UIManager} = NativeModules
@@ -97,8 +97,8 @@ const Card = ({data, index}) => {
         }
       }
 
-  return (
-/*   <SkeletonContent isLoading={true} containerStyle={{height:114, width:368}}>  */
+  return (/* 
+   <SkeletonContent isLoading={true} >  */
     <Pressable style={data.img ? more===index ? bigImg === index ? [styles.card, styles2.card, {height:368}] : [styles.card, {height:"auto",}, styles2.card] : bigImg === index ? [styles.card, {height:368}, styles2.card] : [styles.card, {height:144,}, styles2.card] : more === index ? [styles.card, {height:'auto',}, styles2.card] : [styles.card, styles2.card]} onPress={() => moreFunction(index)}>
             <Text style={data.img ? more === index ? [styles.title, {width:192}, styles2.title] : [styles.title, styles2.title] : more === index ? [styles.title, styles2.title] : [styles.title, styles2.title]}>{data.title}</Text>
             {more === index ? 
@@ -135,7 +135,7 @@ const Card = ({data, index}) => {
             : ''
             }
     </Pressable>
-/*   </SkeletonContent>  */
+/*    </SkeletonContent>   */
   )
 }
 
