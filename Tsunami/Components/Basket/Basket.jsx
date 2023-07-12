@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { View, ScrollView, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'

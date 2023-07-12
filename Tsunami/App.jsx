@@ -9,6 +9,8 @@ import Salads from "./Components/Salads/Salads";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import Search from "./Components/Search/Search";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 
 
 
@@ -28,8 +30,8 @@ const App = () => {
 
 
   return (
-    
     <Provider store={store}>
+      <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           transitionSpec:{
@@ -46,6 +48,7 @@ const App = () => {
         </Stack.Navigator>
       <Footer />
       </NavigationContainer>
+    </ErrorBoundary>
       </Provider>
 
   );

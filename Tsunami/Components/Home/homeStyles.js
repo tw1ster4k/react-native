@@ -1,45 +1,45 @@
 export const homeStyles = {
-    container:{
-        width:"100%", 
-        height:"auto", 
-        overflow:"scroll"
-    },
-    tab:{
-        fontWeight:600, 
-        fontSize:24, 
-        lineHeight:29.4, 
-        marginLeft:10
-    },
-    categories:{
-        width:393,
-        height:350,
-        display:"flex",
-        flexDirection:"column",
-        flexWrap:"wrap",
-        alignContent:"space-around",
-        justifyContent:"space-between",
-        marginTop:18,
-    },
-    category:{
-        width:176, 
-        height:48, 
-        borderRadius:10, 
-        borderWidth:2, 
-        marginTop:16
-    },
-    title:{
-        fontWeight:400, 
-        fontSize:14, 
-        marginTop:15, 
-        marginLeft:16, 
-        lineHeight:16.8
-    },
-    warning:{
-        width:368,
-        marginTop:34,
-        marginLeft:10,
-        fontWeight:400,
-        fontSize:14,
-        lineHeight:22
-    }
-}
+  container: {
+    width: '100%',
+    height: 'auto',
+    overflow: 'scroll',
+  },
+  tab: {
+    fontWeight: 600,
+    fontSize: 24,
+    lineHeight: 29.4,
+    marginLeft: 10,
+  },
+  categories: {
+    width: 393,
+    height: 350,
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignContent: 'space-around',
+    justifyContent: 'space-between',
+    marginTop: 18,
+  },
+  category: {
+    width: 176,
+    height: 48,
+    borderRadius: 10,
+    borderWidth: 2,
+    marginTop: 16,
+  },
+  title: {
+    fontWeight: 400,
+    fontSize: 14,
+    marginTop: 15,
+    marginLeft: 16,
+    lineHeight: 16.8,
+  },
+  warning: {
+    width: 368,
+    marginTop: 34,
+    marginLeft: 10,
+    fontWeight: 400,
+    fontSize: 14,
+    lineHeight: 22,
+  },
+};
