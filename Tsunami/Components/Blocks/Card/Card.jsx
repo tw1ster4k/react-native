@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import React from 'react';
 import {
   Pressable,
@@ -216,7 +216,7 @@ const Card = ({data, index}) => {
                   },
                   styles2.amount,
                 ]
-              : [styles.amount, styles2.amount]
+              : [styles.amount, styles2.amount, {marginTop:-56}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
             {quantity}

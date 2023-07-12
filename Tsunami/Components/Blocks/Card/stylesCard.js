@@ -51,8 +51,7 @@ export const stylesCard = {
         width:38,
         height:40,
         marginLeft:167, 
-        marginTop:-56, 
-        marginBottom:16
+        marginBottom:16,
     },
     amountText:{
         fontWeight:600, 
