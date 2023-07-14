@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import { ScrollView,  StyleSheet, Text } from 'react-native'
+import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules } from 'react-native'
 import { stylesSaladsDark } from './stylesSaladsDark'
 import { stylesSaladsWhite } from './stylesSaladsWhite'
 import { useSelector } from 'react-redux'
@@ -9,6 +9,11 @@ import Card from '../Blocks/Card/Card'
 import { stylesSalads } from './stylesSalads'
 import { useState } from 'react'
 import CardSvg from '../Svg/CardSvg/CardSvg'
+
+const {UIManager} = NativeModules;
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+UIManager.setLayoutAnimationEnabledExperimental(true);
 
 
 const Salads = () => {
@@ -19,6 +24,7 @@ const Salads = () => {
     const styles2 = StyleSheet.create(stylesSalads)
 
     setTimeout(() => {
+      LayoutAnimation.easeInEaseOut();
       setLoading(false)
     }, 1000);
 
@@ -27,9 +33,13 @@ const Salads = () => {
             <Text style={[styles.tab, styles2.tab]}>Салаты</Text>
             {  salads.map((el,index) =>
             loading ?
-            <CardSvg key={index} />
+            <Animated.View key={index}>
+              <CardSvg key={index} />
+            </Animated.View>
             :
+            <Animated.View key={index}>
               <Card data={el} key={index} index={index} />
+            </Animated.View>
             )
 
             }

@@ -20,7 +20,7 @@ import {stylesCard} from './stylesCard';
 const {UIManager} = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&
-  UIManager.setLayoutAnimationEnabledExperimental(true);
+UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Card = ({data, index}) => {
   const dispatch = useDispatch();

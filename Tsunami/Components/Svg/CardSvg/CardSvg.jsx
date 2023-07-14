@@ -10,7 +10,7 @@ const CardSvg = () => {
     style={{marginTop:18,marginLeft:10,}}
     xmlns="http://www.w3.org/2000/svg"
     width={368}
-    height={118}
+    height={110}
     viewBox="0 0 368 118"
     fill="none"
   >
@@ -30,7 +30,7 @@ const CardSvg = () => {
     style={{marginTop:18,marginLeft:10,}}
     xmlns="http://www.w3.org/2000/svg"
     width={368}
-    height={118}
+    height={110}
     viewBox="0 0 368 118"
     fill="none"
   >

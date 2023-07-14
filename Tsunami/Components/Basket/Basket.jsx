@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -9,6 +9,11 @@ import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
 import CardSvg from '../Svg/CardSvg/CardSvg'
+
+const {UIManager} = NativeModules;
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Basket = () => {
     const basket = useSelector((state) => state.basket)
@@ -31,6 +36,7 @@ const Basket = () => {
     });
     
     setTimeout(() => {
+      LayoutAnimation.easeInEaseOut();
       setLoading(false)
     }, 1000);
 
@@ -42,9 +48,13 @@ const Basket = () => {
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
             loading ?
+            <Animated.View key={index}>
               <CardSvg key={index} />
+            </Animated.View>
             :
-            <Card data={elem} key={index} index={index} />
+            <Animated.View key={index}>
+              <Card data={elem} key={index} index={index} />
+            </Animated.View>
             
             
             )}
