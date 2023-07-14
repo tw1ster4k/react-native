@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, Text, TextInput, StyleSheet, Pressable } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
@@ -12,8 +12,9 @@ import { stylesBasket } from './stylesBasket'
 const Basket = () => {
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
-    const params = ["Имя","Количество гостей","Время", "Телефон", "Дата"]
+    const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
+    const [date, setDate] = useState(new Date())
 
 
     const unique = []
@@ -46,9 +47,9 @@ const Basket = () => {
             <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:10}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
-                <View key={index} style={el === "Дата" ? {width:176,height:67, marginTop:-19} : {width:176,height:67}}>
-                    <Text style={[styles.infoText,styles2.infoText]}>{el}</Text>
-                    <TextInput style={[styles.infoInput, styles2.infoInput]} />
+                <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19} : {width:176,height:67}}>
+                    <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
+                      <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
                 </View>
                 )}
                 <Pressable style={[styles.submit, styles2.submit]}>
