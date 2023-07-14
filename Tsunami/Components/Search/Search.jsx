@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {ScrollView, Text, TextInput, StyleSheet} from 'react-native';
+import {ScrollView, Text, TextInput, StyleSheet, } from 'react-native';
 import {useSelector} from 'react-redux';
 import True from '../Svg/True/True';
 import Card from '../Blocks/Card/Card';
@@ -9,11 +9,14 @@ import {styleSearchWhite} from './styleSearchWhite';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import {useState} from 'react';
 
+
+
 const Search = () => {
   const [goods, setGoods] = useState([]);
   const theme = useSelector(state => state.theme);
   const salads = useSelector(state => state.salads);
   const styles = StyleSheet.create(theme ? styleSearchWhite : styleSearchDark);
+
 
   const searchFunction = event => {
     if (event === '') {
@@ -25,6 +28,8 @@ const Search = () => {
       setGoods(arr);
     }
   };
+
+
   return (
     <ScrollView style={styles.container}>
       <Text
@@ -73,7 +78,7 @@ const Search = () => {
           : 'Начните вводить поисковый запрос'}
       </Text>
       {goods.map((el, index) => (
-        <Card data={el} key={index} index={index} />
+          <Card data={el} key={index} index={index} />
       ))}
       <True />
     </ScrollView>

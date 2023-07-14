@@ -55,8 +55,6 @@ const Basket = () => {
             <Animated.View key={index}>
               <Card data={elem} key={index} index={index} />
             </Animated.View>
-            
-            
             )}
             <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>

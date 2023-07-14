@@ -26,7 +26,6 @@ const Card = ({data, index}) => {
   const dispatch = useDispatch();
   const [more, setMore] = useState(null);
   const [bigImg, setBigImg] = useState(null);
-  const [w, setW] = useState(143);
   const basket = useSelector(state => state.basket);
   const [quantity, setQuantity] = useState(
     basket.filter(el => el.title === data.title).length,
@@ -35,18 +34,11 @@ const Card = ({data, index}) => {
 
   const maxOnPress = () => {
     LayoutAnimation.spring();
-    if (w === 117) {
-      setW(w + 26);
-    } else {
-    }
   };
 
-  const minOnPress = x => {
+  const minOnPress = () => {
     LayoutAnimation.spring();
-    if (w === 143 && x === 1) {
-      setW(w - 26);
-    } else {
-    }
+
   };
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
   const styles2 = StyleSheet.create(stylesCard);
@@ -151,14 +143,14 @@ const Card = ({data, index}) => {
         }>
         <View
           style={
-            quantity >= 1
+            quantity > 0
               ? bigImg === index
                 ? [
                     styles.button,
-                    {width: w, position: 'absolute', zIndex: 3},
+                    {width: 143, position: 'absolute', zIndex: 3},
                     styles2.button,
                   ]
-                : [styles.button, {width: w}, styles2.button]
+                : [styles.button, {width: 143}, styles2.button]
               : bigImg === index
               ? [
                   styles.button,
