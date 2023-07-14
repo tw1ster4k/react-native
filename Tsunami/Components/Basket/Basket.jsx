@@ -8,6 +8,7 @@ import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
+import CardSvg from '../Svg/CardSvg/CardSvg'
 
 const Basket = () => {
     const basket = useSelector((state) => state.basket)
@@ -15,6 +16,7 @@ const Basket = () => {
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
     const [date, setDate] = useState(new Date())
+    const [loading, setLoading] = useState(true)
 
 
     const unique = []
@@ -27,6 +29,10 @@ const Basket = () => {
         unique.push(item);
       }
     });
+    
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
     const styles2 = StyleSheet.create(stylesBasket)
@@ -35,6 +41,9 @@ const Basket = () => {
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => 
+            loading ?
+              <CardSvg key={index} />
+            :
             <Card data={elem} key={index} index={index} />
             
             
