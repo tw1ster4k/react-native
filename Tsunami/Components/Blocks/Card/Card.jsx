@@ -22,14 +22,12 @@ const {UIManager} = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
-const Card = ({data, index}) => {
+const Card = ({data, index, quantity}) => {
   const dispatch = useDispatch();
   const [more, setMore] = useState(null);
   const [bigImg, setBigImg] = useState(null);
   const basket = useSelector(state => state.basket);
-  const [quantity, setQuantity] = useState(
-    basket.filter(el => el.title === data.title).length,
-  );
+/*   const [quantity, setQuantity] = useState(basket.filter((el) => el.title === data.title).length); */
   const theme = useSelector(state => state.theme);
 
   const maxOnPress = () => {
@@ -45,24 +43,24 @@ const Card = ({data, index}) => {
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
-    setQuantity(quantity + 1);
+   /*  setQuantity(quantity + 1); */
   };
 
   const delFood = () => {
     dispatch({type: 'DEL_FOOD', payload: data});
-    setQuantity(quantity - 1);
+/*     setQuantity(quantity - 1); */
   };
 
   const handleMinOnPress = (type, data, x) => {
-    minOnPress(x);
+    minOnPress();
     dispatch({type: type, payload: data});
-    setQuantity(0);
+/*     setQuantity(quantity-1); */
   };
 
   const handleMaxOnPress = (type, data) => {
     maxOnPress();
     dispatch({type: type, payload: data});
-    setQuantity(quantity + 1);
+/*     setQuantity(quantity + 1); */
   };
 
   const moreFunction = index => {
@@ -159,7 +157,7 @@ const Card = ({data, index}) => {
                 ]
               : [styles.button, {width: 114}, styles2.button]
           }>
-          {quantity ? (
+          {quantity ? 
             <Pressable
               style={styles2.buttonContent}
               onPress={() =>
@@ -172,9 +170,9 @@ const Card = ({data, index}) => {
                 -
               </Text>
             </Pressable>
-          ) : (
+           : 
             ''
-          )}
+          }
           <Text
             style={
               quantity >= 1

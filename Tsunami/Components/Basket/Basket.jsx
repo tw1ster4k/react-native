@@ -20,7 +20,6 @@ const Basket = () => {
     const theme = useSelector((state) => state.theme)
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
-    const [date, setDate] = useState(new Date())
     const [loading, setLoading] = useState(true)
 
 
@@ -46,15 +45,19 @@ const Basket = () => {
         <ScrollView style={[styles.container, styles2.container]}>
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
-            {unique.map((elem, index) => 
-            loading ?
-            <Animated.View key={index}>
+            {unique.map((elem, index) => {
+              const quantity = basket.filter((el) => el.title === elem.title).length
+              return(
+                loading ?
+                <Animated.View key={index}>
               <CardSvg key={index} />
             </Animated.View>
             :
-            <Animated.View key={index}>
-              <Card data={elem} key={index} index={index} />
-            </Animated.View>
+            <Animated.View key={index}> 
+            <Card data={elem} key={index} index={index} quantity={quantity}/>
+            </Animated.View> 
+            )
+          }
             )}
             <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
