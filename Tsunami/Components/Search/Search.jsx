@@ -77,9 +77,12 @@ const Search = () => {
           ? `Найдено ${goods.length} товара`
           : 'Начните вводить поисковый запрос'}
       </Text>
-      {goods.map((el, index) => (
-          <Card data={el} key={index} index={index} />
-      ))}
+      {goods.map((el, index) => {
+          return(
+            <Card data={el} key={index} index={index} />
+            )
+        }
+      )}
       <True />
     </ScrollView>
   );

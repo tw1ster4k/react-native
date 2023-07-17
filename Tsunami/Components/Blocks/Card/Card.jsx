@@ -26,41 +26,42 @@ const Card = ({data, index, quantity}) => {
   const dispatch = useDispatch();
   const [more, setMore] = useState(null);
   const [bigImg, setBigImg] = useState(null);
-  const basket = useSelector(state => state.basket);
-/*   const [quantity, setQuantity] = useState(basket.filter((el) => el.title === data.title).length); */
   const theme = useSelector(state => state.theme);
+  const basket = useSelector((state) => state.basket)
 
+  const [amount, setAmount] = useState(quantity ? quantity : basket.filter((el) => el.title === data.title).length)
+ 
   const maxOnPress = () => {
     LayoutAnimation.spring();
   };
 
   const minOnPress = () => {
     LayoutAnimation.spring();
-
   };
+
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
   const styles2 = StyleSheet.create(stylesCard);
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
-   /*  setQuantity(quantity + 1); */
+    quantity ? "" : setAmount(amount + 1)
   };
 
   const delFood = () => {
     dispatch({type: 'DEL_FOOD', payload: data});
-/*     setQuantity(quantity - 1); */
+    quantity ? "" : setAmount(amount - 1)
   };
 
-  const handleMinOnPress = (type, data, x) => {
+  const handleMinOnPress = (type, data, ) => {
     minOnPress();
     dispatch({type: type, payload: data});
-/*     setQuantity(quantity-1); */
+    quantity ? "" :  setAmount(0)
   };
 
   const handleMaxOnPress = (type, data) => {
     maxOnPress();
     dispatch({type: type, payload: data});
-/*     setQuantity(quantity + 1); */
+    quantity ? "" : setAmount(amount + 1)
   };
 
   const moreFunction = index => {
@@ -141,7 +142,7 @@ const Card = ({data, index, quantity}) => {
         }>
         <View
           style={
-            quantity > 0
+            amount > 0
               ? bigImg === index
                 ? [
                     styles.button,
@@ -157,11 +158,11 @@ const Card = ({data, index, quantity}) => {
                 ]
               : [styles.button, {width: 114}, styles2.button]
           }>
-          {quantity ? 
+          {amount ?
             <Pressable
-              style={styles2.buttonContent}
+            style={styles2.buttonContent}
               onPress={() =>
-                quantity === 1
+                amount === 1
                   ? handleMinOnPress('DEL_FOOD', data, quantity)
                   : delFood()
               }>
@@ -170,12 +171,13 @@ const Card = ({data, index, quantity}) => {
                 -
               </Text>
             </Pressable>
-           : 
-            ''
+           
+           :
+           ""
           }
           <Text
             style={
-              quantity >= 1
+              amount >= 1
                 ? [styles.cost, styles2.cost]
                 : [styles.cost, {marginLeft: 16}, styles2.cost]
             }>
@@ -184,7 +186,7 @@ const Card = ({data, index, quantity}) => {
           <Pressable
             style={styles2.buttonContent}
             onPress={() =>
-              quantity === 0 ? handleMaxOnPress('ADD_FOOD', data) : addFood()
+              amount === 0 ? handleMaxOnPress('ADD_FOOD', data) : addFood()
             }>
             <Text style={[styles.plus, {marginLeft: 10}, styles2.buttonText]}>
               +
@@ -192,7 +194,7 @@ const Card = ({data, index, quantity}) => {
           </Pressable>
         </View>
       </Animated.View>
-      {quantity ? (
+      {amount ? (
         <View
           style={
             bigImg === index
@@ -209,7 +211,7 @@ const Card = ({data, index, quantity}) => {
               : [styles.amount, styles2.amount, {marginTop:-56}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
-            {quantity}
+            {quantity ? quantity : amount}
           </Text>
         </View>
       ) : (

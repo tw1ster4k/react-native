@@ -32,7 +32,9 @@ export const reducers = (state = initState, actions) => {
             case "DEL_FOOD":
                 const arr = state.basket
                 const z = state.basket.findIndex((el) => el.title === actions.payload.title)
-                z >= 0 ? arr.splice(z, 1) : arr.splice(z,0)
+                if(z >= 0) {
+                    arr.splice(z, 1)
+                } 
                      return {...state, basket: arr, price: state.price > 0 ? state.price -= actions.payload.price : 0}
                 default :
                 return state

@@ -19,7 +19,6 @@ UIManager.setLayoutAnimationEnabledExperimental(true);
 const Salads = () => {
     const theme = useSelector((state) => state.theme)
     const salads = useSelector((state) => state.salads)
-    const basket = useSelector((state) => state.basket)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesSaladsWhite : stylesSaladsDark)
     const styles2 = StyleSheet.create(stylesSalads)
@@ -32,23 +31,19 @@ const Salads = () => {
   return (
         <ScrollView style={[styles.container, styles2.container]}>
             <Text style={[styles.tab, styles2.tab]}>Салаты</Text>
-            {  salads.map((elem,index) => {
-              const quantity = basket.filter((el) => el.title === elem.title ).length
+            {salads.map((elem, index) => {
               return(
                 loading ?
                 <Animated.View key={index}>
               <CardSvg key={index} />
             </Animated.View>
             :
-            <Animated.View key={index}>
-            <Card data={elem} key={index} index={index} quantity={quantity} />
-            </Animated.View>
+            <Animated.View key={index}> 
+            <Card data={elem} key={index} index={index} />
+            </Animated.View> 
             )
-          
-        }
-            )
-            
-        }
+          }
+            )}
         <True />
         </ScrollView>
   )
