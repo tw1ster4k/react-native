@@ -1,4 +1,4 @@
-export const stylesColdAppetizersWhite = {
+export const stylesCategoryWhite = {
     container:{
         backgroundColor:"#fff"
     },

@@ -1,4 +1,4 @@
-export const stylesSoups = {
+export const stylesCategory = {
     container:{
         width:"100%", 
         height:'100%', 

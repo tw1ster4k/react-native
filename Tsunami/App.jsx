@@ -4,21 +4,12 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-// импорт компонентов для навигации ;)
+// import components navigation
 import Home from './Components/Home/Home';
-import Salads from "./Components/Salads/Salads";
+import Category from "./Components/Category/Category";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import Search from "./Components/Search/Search";
-import Hotter from "./Components/Hotter/Hotter";
-import ColdAppetizers from "./Components/ColdAppetizers/ColdAppetizers";
-import DoughAndStuffing from "./Components/DoughAndStuffing/DoughAndStuffing";
-import CerealsAndPasta from "./Components/ CerealsAndPasta/CerealsAndPasta";
-import HotAppetizers from "./Components/ HotAppetizers/HotAppetizers";
-import Brazier from "./Components/Brazier/Brazier";
-import CaviarBar from "./Components/ CaviarBar/CaviarBar";
-import SeaFood from "./Components/Seafood/SeaFood";
-import Soups from "./Components/Soups/Soups";
 
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
@@ -39,6 +30,18 @@ const config = {
 };
 const App = () => {
 
+  const category = [
+    'Салаты',
+    'Холодные закуски',
+    'Горячие закуски',
+    'Икорный бар',
+    'Морепродукты',
+    'Супы',
+    'Крупа и паста',
+    'Горячее',
+    'Мангал',
+    'Тесто и начинка',
+  ];
 
   return (
     <Provider store={store}>
@@ -53,18 +56,14 @@ const App = () => {
         }}
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
-          <Stack.Screen name="Салаты" component={Salads} options={{headerShown:false}} />
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
-          <Stack.Screen name="Холодные закуски" component={ColdAppetizers} options={{headerShown:false}} />
-          <Stack.Screen name='Горячие закуски' component={HotAppetizers} options={{headerShown:false, }} />
-          <Stack.Screen name="Икорный бар" component={CaviarBar} options={{headerShown:false}} />
-          <Stack.Screen name="Морепродукты" component={SeaFood} options={{headerShown:false,}} />
-          <Stack.Screen name="Крупа и паста" component={CerealsAndPasta} options={{headerShown:false}} />
-          <Stack.Screen name='Мангал' component={Brazier} options={{headerShown:false, }} />
-          <Stack.Screen name="Тесто и начинка" component={DoughAndStuffing} options={{headerShown:false}} />
-          <Stack.Screen name="Супы" component={Soups} options={{headerShown:false,}} />
-          <Stack.Screen name="Горячее" component={Hotter} options={{headerShown:false}} />
+          {category.map((el, index) => 
+            
+            <Stack.Screen name={el} key={index} component={Category} options={{headerShown:false}} />
+          
+          )
+          }
         </Stack.Navigator>
       <Footer />
       </NavigationContainer>

@@ -1,4 +1,4 @@
-export const stylesBrazierDark = {
+export const stylesCategoryDark = {
     container:{
         backgroundColor:"#151515"
     },
