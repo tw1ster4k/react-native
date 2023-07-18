@@ -63,8 +63,8 @@ const Basket = () => {
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             <LineSvg />
-            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:10}]}>Разместить предзаказ</Text>
-            <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:10}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
+            <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19} : {width:176,height:67}}>

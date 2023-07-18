@@ -37,7 +37,7 @@ const Search = () => {
           styles.tab,
           {
             marginTop: 48,
-            marginLeft: 10,
+            marginLeft: 15,
             fontWeight: 600,
             fontSize: 24,
             lineHeight: 29.4,
@@ -55,7 +55,7 @@ const Search = () => {
             marginTop: 16,
             borderWidth: 2,
             paddingLeft: 24,
-            marginLeft: 10,
+            marginLeft: 12.5,
           },
         ]}
         placeholder="Поиск"
@@ -66,7 +66,7 @@ const Search = () => {
         style={[
           styles.tab,
           {
-            marginLeft: 9,
+            marginLeft: 15,
             marginTop: 16,
             fontWeight: 400,
             fontSize: 16,

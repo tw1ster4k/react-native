@@ -108,9 +108,12 @@ const Card = ({data, index, quantity}) => {
       <Text
         style={
           data.img
-            ? more === index
+            ?
+            bigImg === index ?
+            [styles.title, {width: 192, position:'absolute',zIndex:3, color:"#fff"}, styles2.title]
+            :more === index
               ? [styles.title, {width: 192}, styles2.title]
-              : [styles.title, styles2.title]
+              : [styles.title, styles2.title, {width:192}]
             : more === index
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]

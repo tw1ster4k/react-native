@@ -7,19 +7,19 @@ const CardSvg = () => {
   return (
     theme ?
     <Svg
-    style={{marginTop:18,marginLeft:10,}}
+    style={{marginTop:18,marginLeft:15,}}
     xmlns="http://www.w3.org/2000/svg"
     width={368}
-    height={110}
+    height={144}
     viewBox="0 0 368 118"
     fill="none"
   >
-    <Rect x={1} y={1} width={366} height={116} rx={7} fill="white" />
+    <Rect x={1} y={1} width={366} height={120} rx={7} fill="white" />
     <Rect
       x={1}
       y={1}
       width={366}
-      height={116}
+      height={120}
       rx={7}
       stroke="#BBBBBB"
       strokeWidth={2}
@@ -27,19 +27,19 @@ const CardSvg = () => {
   </Svg>
     :
     <Svg
-    style={{marginTop:18,marginLeft:10,}}
+    style={{marginTop:18,marginLeft:15,}}
     xmlns="http://www.w3.org/2000/svg"
     width={368}
-    height={110}
+    height={144}
     viewBox="0 0 368 118"
     fill="none"
   >
-    <Rect x={1} y={1} width={366} height={116} rx={7} fill="#222222" />
+    <Rect x={1} y={1} width={366} height={120} rx={7} fill="#222222" />
     <Rect
       x={1}
       y={1}
       width={366}
-      height={116}
+      height={120}
       rx={7}
       stroke="#555555"
       strokeWidth={2}

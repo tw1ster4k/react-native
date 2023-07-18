@@ -7,13 +7,13 @@ export const stylesBasket = {
     tab:{
         fontWeight:600, 
         fontSize:24, 
-        marginLeft:10, 
+        marginLeft:15, 
         marginTop:32
     },
     sum:{
         fontWeight:400, 
         fontSize:16, 
-        marginLeft:10
+        marginLeft:15
     },
     call:{
         width:210, 
@@ -22,7 +22,7 @@ export const stylesBasket = {
         borderWidth:2,
         borderColor:"#ff7a00", 
         marginTop:24,
-        marginLeft:10,
+        marginLeft:15,
         justifyContent:'center',
         alignItems:'center'
     },

@@ -8,7 +8,7 @@ export const homeStyles = {
     fontWeight: 600,
     fontSize: 24,
     lineHeight: 29.4,
-    marginLeft: 10,
+    marginLeft: 15,
   },
   categories: {
     width: 393,
@@ -19,6 +19,7 @@ export const homeStyles = {
     alignContent: 'space-around',
     justifyContent: 'space-between',
     marginTop: 18,
+    marginLeft:2.5,
   },
   category: {
     width: 176,
@@ -37,7 +38,7 @@ export const homeStyles = {
   warning: {
     width: 368,
     marginTop: 34,
-    marginLeft: 10,
+    marginLeft: 15,
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 22,

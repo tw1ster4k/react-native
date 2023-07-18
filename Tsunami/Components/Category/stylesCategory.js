@@ -8,7 +8,7 @@ export const stylesCategory = {
         fontWeight:600, 
         fontSize:24,
         lineHeight:29.4, 
-        marginLeft:10, 
+        marginLeft:15, 
         marginTop:32
     }
 }

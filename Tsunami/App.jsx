@@ -59,9 +59,7 @@ const App = () => {
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
           {category.map((el, index) => 
-            
             <Stack.Screen name={el} key={index} component={Category} options={{headerShown:false}} />
-          
           )
           }
         </Stack.Navigator>

@@ -2,7 +2,7 @@ export const stylesCard = {
     card:{
         width:368,
         marginTop:18,
-        marginLeft:10,
+        marginLeft:15,
         borderRadius:10,
         borderWidth:2
     },
@@ -26,7 +26,7 @@ export const stylesCard = {
         alignItems:"center", 
         flexDirection:"row", 
         justifyContent:"space-around", 
-        margin:16
+        margin:16,
     },
     buttonContent:{
         height:"100%", 
