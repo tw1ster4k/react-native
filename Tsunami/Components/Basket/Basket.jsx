@@ -67,12 +67,12 @@ const Basket = () => {
             <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
-                <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19} : {width:176,height:67}}>
+                <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit]}>
+                <Pressable style={[styles.submit, styles2.submit,{top:2}]}>
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>
