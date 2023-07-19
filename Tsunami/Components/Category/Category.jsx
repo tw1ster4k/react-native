@@ -10,6 +10,7 @@ import { stylesCategory } from './stylesCategory'
 import { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import CardSvg from '../Svg/CardSvg/CardSvg'
+import Footer from '../Blocks/Footer/Footer'
 
 const {UIManager} = NativeModules;
 
@@ -65,7 +66,8 @@ const Category = () => {
             )
           }
             )}
-        <True />
+      {/*   <True /> */}
+      <Footer />
         </ScrollView>
   )
 }

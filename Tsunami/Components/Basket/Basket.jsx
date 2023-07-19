@@ -9,6 +9,7 @@ import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
 import CardSvg from '../Svg/CardSvg/CardSvg'
+import Footer from '../Blocks/Footer/Footer'
 
 const {UIManager} = NativeModules;
 
@@ -62,7 +63,7 @@ const Basket = () => {
             <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
-            <LineSvg />
+           {/*  <LineSvg /> */}
             <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
             <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
@@ -76,7 +77,8 @@ const Basket = () => {
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>
-            <True />
+         {/*    <True /> */}
+         <Footer />
         </ScrollView>
   )
 }

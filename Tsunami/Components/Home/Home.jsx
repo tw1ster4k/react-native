@@ -4,8 +4,9 @@ import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
 import {homeStyles} from './homeStyles';
-import Header from '../Blocks/Navbar/Header';
+import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
+import Footer from '../Blocks/Footer/Footer';
 
 const Home = ({navigation}) => {
   const category = [
@@ -45,7 +46,8 @@ const Home = ({navigation}) => {
           калорийности, содержании белков, жиров, углеводов находится в уголке
           потребителя и предоставляется по первому Вашему требованию.
         </Text>
-        <True />
+     {/*    <True />  */}
+     <Footer />
       </ScrollView>
   );
 };

@@ -38,12 +38,12 @@ const Header = () => {
           alignItems: 'center',
         },
       ]}>
-      {/* <Title />  */}
-      {theme ?
+       <Title />  
+{/*       {theme ?
       <SvgCssUri style={{marginTop:48}} uri={uriWhite} />
         :
       <SvgCssUri style={{marginTop:48}} uri={uriBlack} />
-      }
+      } */}
       <Text
         style={[
           styles.text,

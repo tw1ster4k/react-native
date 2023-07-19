@@ -8,6 +8,7 @@ import {styleSearchDark} from './styleSearchDark';
 import {styleSearchWhite} from './styleSearchWhite';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import {useState} from 'react';
+import Footer from '../Blocks/Footer/Footer';
 
 
 
@@ -31,7 +32,7 @@ const Search = () => {
 
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container]}>
       <Text
         style={[
           styles.tab,
@@ -83,7 +84,8 @@ const Search = () => {
             )
         }
       )}
-      <True />
+      {/* <True /> */}
+        <Footer />
     </ScrollView>
   );
 };
