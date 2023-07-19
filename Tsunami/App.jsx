@@ -31,16 +31,16 @@ const config = {
 const App = () => {
 
   const category = [
-    'Салаты',
-    'Холодные закуски',
-    'Горячие закуски',
-    'Икорный бар',
-    'Морепродукты',
-    'Супы',
-    'Крупа и паста',
-    'Горячее',
-    'Мангал',
-    'Тесто и начинка',
+    {title:'Салаты', uri:"salads"},
+    {title:'Холодные закуски', uri:"coldSnacks"},
+    {title:'Горячие закуски', uri:"hotSnacks"},
+    {title:'Икорный бар', uri:"caviarBar"},
+    {title:'Морепродукты', uri:"seafood"},
+    {title:'Супы', uri:"soups"},
+    {title:'Крупа и паста', uri:"cerealsAndPasta"},
+    {title:'Горячее', uri:'hotter'},
+    {title:'Мангал', uri:"brazier"},
+    {title:'Тесто и начинка', uri:"doughAndStuffing"},
   ];
 
   return (
@@ -59,7 +59,7 @@ const App = () => {
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
           {category.map((el, index) => 
-            <Stack.Screen name={el} key={index} component={Category}  options={{headerShown:false}} />
+            <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false}} initialParams={{category:el.uri}} />
           )
           }
         </Stack.Navigator>

@@ -46,6 +46,7 @@ const Category = () => {
        })()
             }, []) */
           
+            console.log(route.params.category)
             
 
   return (
