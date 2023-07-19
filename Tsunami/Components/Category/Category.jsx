@@ -8,6 +8,7 @@ import True from '../Svg/True/True'
 import Card from '../Blocks/Card/Card'
 import { stylesCategory } from './stylesCategory'
 import { useState } from 'react'
+import { useRoute } from '@react-navigation/native'
 import CardSvg from '../Svg/CardSvg/CardSvg'
 
 const {UIManager} = NativeModules;
@@ -17,11 +18,14 @@ UIManager.setLayoutAnimationEnabledExperimental(true);
 
 
 const Category = () => {
+    const route = useRoute()
     const theme = useSelector((state) => state.theme)
     const salads = useSelector((state) => state.salads)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
     const styles2 = StyleSheet.create(stylesCategory)
+
+     const category = route.name
 
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
@@ -41,10 +45,12 @@ const Category = () => {
         setState(data)
        })()
             }, []) */
+          
+            
 
   return (
         <ScrollView style={[styles.container, styles2.container]}>
-            <Text style={[styles.tab, styles2.tab]}>Салаты</Text>
+            <Text style={[styles.tab, styles2.tab]}>{category}</Text>
             {salads.map((elem, index) => {
               return(
                 loading ?
