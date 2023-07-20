@@ -1,5 +1,5 @@
 import React from 'react'
-import { Svg, Path } from 'react-native-svg'
+import { Svg, Path, SvgCssUri } from 'react-native-svg'
 import { StyleSheet } from 'react-native'
 import { titleStyles } from './titleStyles'
 import { useSelector } from 'react-redux'

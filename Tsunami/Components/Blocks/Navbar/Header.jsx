@@ -32,7 +32,6 @@ const Header = () => {
         styles.container,
         {
           width: 393,
-          overflow: 'scroll',
           height: 192,
           flexDirection: 'column',
           alignItems: 'center',

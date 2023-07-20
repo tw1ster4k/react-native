@@ -67,7 +67,6 @@ const Category = () => {
           }
             )}
       {/*   <True /> */}
-      <Footer />
         </ScrollView>
   )
 }

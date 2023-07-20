@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Pressable, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
@@ -24,6 +24,7 @@ const Home = ({navigation}) => {
   const theme = useSelector(state => state.theme);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(homeStyles);
+  const windowWidth = Dimensions.get("window").width
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <Header />
@@ -47,7 +48,6 @@ const Home = ({navigation}) => {
           потребителя и предоставляется по первому Вашему требованию.
         </Text>
      {/*    <True />  */}
-     <Footer />
       </ScrollView>
   );
 };

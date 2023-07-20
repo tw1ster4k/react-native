@@ -78,7 +78,6 @@ const Basket = () => {
                 </Pressable>
             </View>
          {/*    <True /> */}
-         <Footer />
         </ScrollView>
   )
 }

@@ -10,9 +10,9 @@ import Category from "./Components/Category/Category";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import Search from "./Components/Search/Search";
-
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
+import { View, Dimensions } from "react-native";
 
 
 
@@ -30,6 +30,11 @@ const config = {
 };
 const App = () => {
 
+  const windowHeight = Dimensions.get("window").height
+  const windowWidth = Dimensions.get('window').width
+
+
+
   const category = [
     {title:'Салаты', uri:"salads"},
     {title:'Холодные закуски', uri:"coldSnacks"},
@@ -44,6 +49,7 @@ const App = () => {
   ];
 
   return (
+      <View style={{width:400, height:windowHeight,}}>
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
@@ -60,14 +66,14 @@ const App = () => {
           <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
           {category.map((el, index) => 
             <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false}} initialParams={{category:el.uri}} />
-          )
+            )
           }
         </Stack.Navigator>
       <Footer />
       </NavigationContainer>
     </ErrorBoundary>
-      </Provider>
-
+    </Provider>
+  </View>
   );
 }
 
