@@ -5,7 +5,7 @@ import Title from '../../Svg/Title/Title';
 import {useSelector} from 'react-redux';
 import {stylesHeaderDark} from './StylesHeaderDark';
 import {stylesHeaderWhite} from './StylesHeaderWhite';
-import { SvgCssUri } from 'react-native-svg';
+import { SvgUri } from 'react-native-svg';
 import LogoSkeleton from '../../Svg/LogoSkeleton/LogoSkeleton';
 
 
@@ -37,12 +37,12 @@ const Header = () => {
           alignItems: 'center',
         },
       ]}>
-       <Title />  
-{/*       {theme ?
-      <SvgCssUri style={{marginTop:48}} uri={uriWhite} />
+      <Title />  
+ {/*       {theme ?
+      <SvgUri style={{marginTop:48}} uri={uriWhite} />
         :
-      <SvgCssUri style={{marginTop:48}} uri={uriBlack} />
-      } */}
+      <SvgUri style={{marginTop:48}} uri={uriBlack} />
+      }  */}
       <Text
         style={[
           styles.text,

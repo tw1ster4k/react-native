@@ -1,17 +1,14 @@
 import React from 'react'
 import Svg, { Path, G, Defs, LinearGradient, Stop } from "react-native-svg";
 import { useSelector } from 'react-redux';
-import { StyleSheet } from 'react-native';
-import { styleTrue } from './styleTrue';
 
 
 const True = () => {
     const theme = useSelector((state) => state.theme)
-    const styles = StyleSheet.create(styleTrue)
   return (
     theme ?
     <Svg
-    style={styles}
+    style={{marginTop:34,marginBottom:120,marginLeft:10}}
     width={368}
     height={102}
     viewBox="0 0 368 102"
@@ -96,7 +93,7 @@ const True = () => {
   </Svg>
   :
   <Svg
-  style={styles}
+  style={{marginTop:34,marginBottom:120,marginLeft:10}}
   width={368}
   height={102}
   viewBox="0 0 368 102"

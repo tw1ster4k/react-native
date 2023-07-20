@@ -77,7 +77,7 @@ const Basket = () => {
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>
-         {/*    <True /> */}
+          <True />
         </ScrollView>
   )
 }

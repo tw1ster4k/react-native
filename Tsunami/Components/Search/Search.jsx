@@ -84,7 +84,7 @@ const Search = () => {
             )
         }
       )}
-      {/* <True /> */}
+     <True /> 
     </ScrollView>
   );
 };
