@@ -7,6 +7,7 @@ import {homeStyles} from './homeStyles';
 import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
 import Footer from '../Blocks/Footer/Footer';
+import { homeStylesWeb } from './homeStylesWeb';
 
 const Home = ({navigation}) => {
   const category = [
@@ -21,10 +22,10 @@ const Home = ({navigation}) => {
     'Мангал',
     'Тесто и начинка',
   ];
+  const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
-  const styles2 = StyleSheet.create(homeStyles);
-  const windowWidth = Dimensions.get("window").width
+  const styles2 = StyleSheet.create(windowWidth > 1440 ? homeStylesWeb : homeStyles);
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <Header />
@@ -47,7 +48,7 @@ const Home = ({navigation}) => {
           калорийности, содержании белков, жиров, углеводов находится в уголке
           потребителя и предоставляется по первому Вашему требованию.
         </Text>
-      <True /> 
+      <True />     
       </ScrollView>
   );
 };

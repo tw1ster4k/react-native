@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import Title from '../../Svg/Title/Title';
 import {useSelector} from 'react-redux';
 import {stylesHeaderDark} from './StylesHeaderDark';
@@ -17,6 +17,7 @@ const Header = () => {
   const [loading,  setLoading] = useState(true)
   const uriBlack = "https://vk.com/doc346636180_666069486?hash=ggbwihP82kAjBTjhZ6He3nz6miZrJd2pwOd6xn7i7WL&dl=swGiTL5EDS1q2Wm7uH4WVtzKRznHLABRzQj7Znn7G20"
   const uriWhite = "https://vk.com/doc346636180_666069690?hash=YjTfjPZMTqHmogE7W9JauQ4afGpqB0oBwu1QHdZvd4X&dl=3jsZGKc4rojIhPnuaKQVOicGPtEJzFRbG347tLlDyVP"
+  const windowWidth = Dimensions.get("window").width
 
   const styles = StyleSheet.create(
     theme ? stylesHeaderWhite : stylesHeaderDark,
@@ -28,7 +29,16 @@ const Header = () => {
 
   return (
     <View
-      style={[
+      style={windowWidth > 1440 ? [
+        styles.container,
+        {
+          width: 393,
+          height: 192,
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginLeft:"37.5%"
+        },
+      ] :[
         styles.container,
         {
           width: 393,

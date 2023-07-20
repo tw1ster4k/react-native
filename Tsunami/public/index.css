@@ -1,8 +1,12 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #151515;
+    background-color: #f2f2f2;
     display: flex;
     justify-content: center;
+    flex-direction: row;
 }
 
+#root{
+    background-color:#151515;
+}

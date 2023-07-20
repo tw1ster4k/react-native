@@ -49,7 +49,7 @@ const App = () => {
   ];
 
   return (
-      <View style={{width:400, height:windowHeight,}}>
+      <View style={windowWidth > 1440 ? {width:1920, height:windowHeight, backgroundColor:"#fff"}  : {width:400, height:windowHeight,backgroundColor:'#151515'}}>
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>

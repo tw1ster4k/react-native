@@ -1,14 +1,16 @@
 import React from 'react'
 import Svg, { Path, G, Defs, LinearGradient, Stop } from "react-native-svg";
+import { Dimensions } from 'react-native';
 import { useSelector } from 'react-redux';
 
 
 const True = () => {
     const theme = useSelector((state) => state.theme)
+    const windowWidth = Dimensions.get("window").width
   return (
     theme ?
     <Svg
-    style={{marginTop:34,marginBottom:120,marginLeft:10}}
+    style={windowWidth > 1440 ? {marginTop:34,marginBottom:120,marginLeft:"45%"} : {marginTop:34,marginBottom:120,marginLeft:10}}
     width={368}
     height={102}
     viewBox="0 0 368 102"
@@ -93,7 +95,7 @@ const True = () => {
   </Svg>
   :
   <Svg
-  style={{marginTop:34,marginBottom:120,marginLeft:10}}
+  style={windowWidth > 1440 ? {marginTop:34,marginBottom:120,marginLeft:"38%"} : {marginTop:34,marginBottom:120,marginLeft:10}}
   width={368}
   height={102}
   viewBox="0 0 368 102"

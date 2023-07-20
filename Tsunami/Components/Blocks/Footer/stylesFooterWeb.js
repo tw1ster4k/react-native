@@ -1,0 +1,21 @@
+export const stylesFooterWeb = {
+    footer:{
+        position:"absolute", 
+        left:0, 
+        right:0, 
+        bottom:10, 
+        width:1387, 
+        flexDirection:"row",
+        marginLeft:"37.5%"
+    },
+    price:{
+        fontWeight:600, 
+        fontSize:14,
+        lineHeight:17.15
+    },
+    quantity:{
+        fontWeight:400, 
+        fontSize:10,
+        lineHeight:14
+    }
+}
