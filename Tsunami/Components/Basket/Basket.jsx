@@ -76,7 +76,7 @@ const Basket = () => {
               <LineSvg /> 
             }
             <Text style={[styles.tab, windowWidth > 1440 ? {fontWeight:600, fontSize:24, marginLeft:"33%", marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
-            <Text style={[styles.tab, windowWidth > 1440 ? {width:368, marginTop:8, marginLeft:"33%"} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+            <Text style={[styles.tab, windowWidth > 1440 ? {width:531, marginTop:8, marginLeft:"33%"} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
@@ -84,7 +84,7 @@ const Basket = () => {
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,{top:2}]}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth > 1440 ? {marginLeft:80} : {top:2}]}>
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>

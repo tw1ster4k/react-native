@@ -32,7 +32,7 @@ export const stylesBasketWeb = {
         fontSize:14
     },
     params:{
-        width:368,
+        width:533,
         height:218,
         marginTop:16,
         marginLeft:"33%",
@@ -48,7 +48,7 @@ export const stylesBasketWeb = {
         fontSize:14
     },
     infoInput:{
-        width:176,
+        width:256,
         marginTop:2,
         height:48,
         borderRadius:10,
@@ -57,7 +57,7 @@ export const stylesBasketWeb = {
     },
     submit:{
         height:48,
-        width:176,
+        width:256,
         borderRadius:10,
         borderWidth:2,
         borderColor:"#ff7a00",
