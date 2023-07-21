@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules, Dimensions } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -10,6 +10,8 @@ import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
 import CardSvg from '../Svg/CardSvg/CardSvg'
 import Footer from '../Blocks/Footer/Footer'
+import { stylesBasketWeb } from './stylesBasketWeb'
+import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
 
 const {UIManager} = NativeModules;
 
@@ -17,6 +19,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Basket = () => {
+  const windowWidth = Dimensions.get('window').width
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
@@ -41,7 +44,7 @@ const Basket = () => {
     }, 1000);
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
-    const styles2 = StyleSheet.create(stylesBasket)
+    const styles2 = StyleSheet.create(windowWidth > 1440 ? stylesBasketWeb : stylesBasket)
   return (
         <ScrollView style={[styles.container, styles2.container]}>
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
@@ -51,11 +54,15 @@ const Basket = () => {
               return(
                 loading ?
                 <Animated.View key={index}>
-              <CardSvg key={index} />
+                  {windowWidth > 1440 ?
+                  <CardSvgWeb  />
+                    :
+                    <CardSvg  />
+                  }
             </Animated.View>
             :
             <Animated.View key={index}> 
-            <Card data={elem} key={index} index={index} quantity={quantity}/>
+            <Card data={elem} index={index} quantity={quantity}/>
             </Animated.View> 
             )
           }
@@ -63,9 +70,13 @@ const Basket = () => {
             <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
-           {/*  <LineSvg /> */}
-            <Text style={[styles.tab, {fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
-            <Text style={[styles.tab, {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+            { windowWidth > 1440 ?
+            ""
+            :
+              <LineSvg /> 
+            }
+            <Text style={[styles.tab, windowWidth > 1440 ? {fontWeight:600, fontSize:24, marginLeft:"33%", marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
+            <Text style={[styles.tab, windowWidth > 1440 ? {width:368, marginTop:8, marginLeft:"33%"} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>

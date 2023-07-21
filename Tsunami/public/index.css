@@ -5,8 +5,11 @@ body{
     display: flex;
     justify-content: center;
     flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #root{
     background-color:#151515;
+    
 }

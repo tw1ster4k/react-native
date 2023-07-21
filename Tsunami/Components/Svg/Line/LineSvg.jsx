@@ -1,13 +1,10 @@
 import React from 'react'
 import { Svg, Line } from 'react-native-svg'
-import { stylesLineSvg } from './stylesLineSvg'
-import { StyleSheet } from 'react-native'
 
 const LineSvg = () => {
-  const styles = StyleSheet.create(stylesLineSvg)
   return (
     <Svg
-    style={styles}
+    style={{marginTop:32,marginBottom:32}}
     width={393}
     height={2}
     viewBox="0 0 393 2"

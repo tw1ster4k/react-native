@@ -61,14 +61,14 @@ const Category = () => {
                 loading ?
                 <Animated.View key={index}>
                   {windowWidth > 1440 ?
-                  <CardSvgWeb key={index} />
+                  <CardSvgWeb  />
                   :
-                    <CardSvg key={index} />
+                    <CardSvg  />
                   }
             </Animated.View>
             :
             <Animated.View key={index}> 
-            <Card data={elem} key={index} index={index} />
+            <Card data={elem} index={index} />
             </Animated.View> 
             )
           }
