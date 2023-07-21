@@ -1,12 +1,14 @@
 import React from 'react'
 import { Svg, Path } from 'react-native-svg'
 import { useSelector } from 'react-redux'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { searchStyles } from './searchStyles'
+import { searchStylesWeb } from './searchStylesWeb'
 
 const SearchIcon = () => {
+  const windowWidth = Dimensions.get("window").width
   const theme = useSelector((state) => state.theme)
-  const styles = StyleSheet.create(searchStyles)
+  const styles = StyleSheet.create( windowWidth ? searchStylesWeb : searchStyles)
     return (
         theme ?
         <Svg style={styles.icon}
