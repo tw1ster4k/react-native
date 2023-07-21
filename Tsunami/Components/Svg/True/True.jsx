@@ -10,7 +10,7 @@ const True = () => {
   return (
     theme ?
     <Svg
-    style={windowWidth > 1440 ? {marginTop:34,marginBottom:120,marginLeft:"45%"} : {marginTop:34,marginBottom:120,marginLeft:10}}
+    style={windowWidth > 1440 ? {marginTop:34,marginBottom:120,marginLeft:"38%"} : {marginTop:34,marginBottom:120,marginLeft:10}}
     width={368}
     height={102}
     viewBox="0 0 368 102"

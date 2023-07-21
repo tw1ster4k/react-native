@@ -9,6 +9,7 @@ import {
   NativeModules,
   Text,
   View,
+  Dimensions
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -16,6 +17,7 @@ import {useState} from 'react';
 import {stylesCardDark} from './stylesCardDark';
 import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
+import { stylesCardWeb } from './stylesCardWeb';
 
 const {UIManager} = NativeModules;
 
@@ -23,6 +25,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Card = ({data, index, quantity}) => {
+  const windowWidth = Dimensions.get("window").width
   const dispatch = useDispatch();
   const [more, setMore] = useState(null);
   const [bigImg, setBigImg] = useState(null);
@@ -40,7 +43,7 @@ const Card = ({data, index, quantity}) => {
   };
 
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
-  const styles2 = StyleSheet.create(stylesCard);
+  const styles2 = StyleSheet.create(windowWidth > 1440 ? stylesCardWeb :stylesCard);
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
@@ -95,10 +98,10 @@ const Card = ({data, index, quantity}) => {
         data.img
           ? more === index
             ? bigImg === index
-              ? [styles.card, styles2.card, {height: 368}]
+              ? [styles.card, styles2.card, windowWidth > 1440 ? {height:532}  : {height: 368}]
               : [styles.card, {height: 'auto'}, styles2.card]
             : bigImg === index
-            ? [styles.card, {height: 368}, styles2.card]
+            ? [styles.card, windowWidth > 1440 ? {height:532} : {height: 368}, styles2.card]
             : [styles.card, {height: 144}, styles2.card]
           : more === index
           ? [styles.card, {height: 'auto'}, styles2.card]
@@ -149,6 +152,9 @@ const Card = ({data, index, quantity}) => {
               ? bigImg === index
                 ? [
                     styles.button,
+                    windowWidth > 1440 ?
+                    {width: 143, position: 'absolute', zIndex: 3, marginTop:180}
+                    :
                     {width: 143, position: 'absolute', zIndex: 3},
                     styles2.button,
                   ]
@@ -156,6 +162,9 @@ const Card = ({data, index, quantity}) => {
               : bigImg === index
               ? [
                   styles.button,
+                  windowWidth > 1440 ?
+                  {width: 114, position: 'absolute', zIndex: 3, marginTop:180}
+                  :
                   {position: 'absolute', zIndex: 3, width: 114},
                   styles2.button,
                 ]
@@ -203,6 +212,14 @@ const Card = ({data, index, quantity}) => {
             bigImg === index
               ? [
                   styles.amount,
+                  windowWidth > 1440 ?
+                  {
+                    position: 'absolute',
+                    zIndex: 3,
+                    marginTop: 475,
+                    marginLeft: 167,
+                  }
+                  :
                   {
                     position: 'absolute',
                     zIndex: 3,
@@ -228,8 +245,23 @@ const Card = ({data, index, quantity}) => {
             source={data.img}
             style={
               bigImg === index
-                ? {height: 364, width: 364, borderRadius: 10, zIndex: 1}
-                : {
+                ? 
+                windowWidth > 1440 ?
+                {height: 528, width: 528, borderRadius: 10, zIndex: 1}
+                :
+                {height: 364, width: 364, borderRadius: 10, zIndex: 1}
+                : 
+                windowWidth > 1440 ?
+                {
+                  position: 'absolute',
+                  width: 140,
+                  height: 140,
+                  marginLeft: 387.5,
+                  borderBottomRightRadius: 10,
+                  borderTopRightRadius: 10,
+                }
+                :
+                {
                     position: 'absolute',
                     width: 140,
                     height: 140,

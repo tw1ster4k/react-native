@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules } from 'react-native'
+import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions } from 'react-native'
 import { stylesCategoryDark } from './stylesCategoryDark'
 import { stylesCategoryWhite } from './stylesCategoryWhite'
 import { useSelector } from 'react-redux'
@@ -11,6 +11,8 @@ import { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import CardSvg from '../Svg/CardSvg/CardSvg'
 import Footer from '../Blocks/Footer/Footer'
+import { stylesCategoryWeb } from './stylesCategoryWeb'
+import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
 
 const {UIManager} = NativeModules;
 
@@ -19,12 +21,13 @@ UIManager.setLayoutAnimationEnabledExperimental(true);
 
 
 const Category = () => {
+  const windowWidth = Dimensions.get('window').width
     const route = useRoute()
     const theme = useSelector((state) => state.theme)
     const salads = useSelector((state) => state.salads)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
-    const styles2 = StyleSheet.create(stylesCategory)
+    const styles2 = StyleSheet.create(windowWidth > 1440 ? stylesCategoryWeb : stylesCategory)
 
      const category = route.name
 
@@ -57,7 +60,11 @@ const Category = () => {
               return(
                 loading ?
                 <Animated.View key={index}>
-              <CardSvg key={index} />
+                  {windowWidth > 1440 ?
+                  <CardSvgWeb key={index} />
+                  :
+                    <CardSvg key={index} />
+                  }
             </Animated.View>
             :
             <Animated.View key={index}> 

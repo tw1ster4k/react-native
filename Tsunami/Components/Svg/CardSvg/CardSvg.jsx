@@ -9,7 +9,7 @@ const CardSvg = () => {
     <Svg
     style={{marginTop:18,marginLeft:15,}}
     xmlns="http://www.w3.org/2000/svg"
-    width={368}
+    width={366}
     height={144}
     viewBox="0 0 368 118"
     fill="none"
@@ -29,7 +29,7 @@ const CardSvg = () => {
     <Svg
     style={{marginTop:18,marginLeft:15,}}
     xmlns="http://www.w3.org/2000/svg"
-    width={368}
+    width={366}
     height={144}
     viewBox="0 0 368 118"
     fill="none"
