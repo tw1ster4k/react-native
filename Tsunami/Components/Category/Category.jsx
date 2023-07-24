@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react'
-import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions } from 'react-native'
+import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions, StatusBar } from 'react-native'
 import { stylesCategoryDark } from './stylesCategoryDark'
 import { stylesCategoryWhite } from './stylesCategoryWhite'
 import { useSelector } from 'react-redux'
@@ -55,6 +55,7 @@ const Category = () => {
 
   return (
         <ScrollView style={[styles.container, styles2.container]}>
+          <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
             <Text style={[styles.tab, styles2.tab]}>{category}</Text>
             {
                 loading ?

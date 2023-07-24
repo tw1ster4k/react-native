@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions} from 'react-native';
+import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
@@ -28,6 +28,7 @@ const Home = ({navigation}) => {
   const styles2 = StyleSheet.create(windowWidth > 1080 ? homeStylesWeb : homeStyles);
   return (
       <ScrollView style={[styles.container, styles2.container]}>
+        <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
         <Header />
         <Text style={[styles.tab, styles2.tab]}>Меню</Text>
         <View style={styles2.categories}>

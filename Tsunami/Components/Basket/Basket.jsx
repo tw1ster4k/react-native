@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules, Dimensions } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules, Dimensions, StatusBar } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -47,6 +47,7 @@ const Basket = () => {
     const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesBasketWeb : stylesBasket)
   return (
         <ScrollView style={[styles.container, styles2.container]}>
+          <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => {
