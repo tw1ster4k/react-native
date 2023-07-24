@@ -256,7 +256,7 @@ const Card = ({data, index, quantity}) => {
                   position:'absolute',
                   width: 140,
                   height: 140,
-                  marginLeft: 387.5,
+                  marginLeft: 388,
                   borderBottomRightRadius: 10,
                   borderTopRightRadius: 10,
                 }
