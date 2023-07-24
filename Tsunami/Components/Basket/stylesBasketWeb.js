@@ -1,20 +1,21 @@
 export const stylesBasketWeb = {
     container:{
-        width:1387, 
+        width:"100%", 
         height:"100%", 
         overflow:"scroll",
-        marginLeft:"14%"
     },
     tab:{
         fontWeight:600, 
         fontSize:24, 
-        marginLeft:"33%", 
+        marginLeft:'auto',
+        marginRight:'auto',
         marginTop:32
     },
     sum:{
         fontWeight:400, 
         fontSize:16, 
-        marginLeft:"33%"
+        marginLeft:'auto',
+        marginRight:'auto',
     },
     call:{
         width:210, 
@@ -23,7 +24,8 @@ export const stylesBasketWeb = {
         borderWidth:2,
         borderColor:"#ff7a00", 
         marginTop:24,
-        marginLeft:"33%",
+        marginLeft:'auto',
+        marginRight:'auto',
         justifyContent:'center',
         alignItems:'center'
     },
@@ -35,7 +37,9 @@ export const stylesBasketWeb = {
         width:533,
         height:218,
         marginTop:16,
-        marginLeft:"33%",
+        marginLeft:'auto',
+        marginRight:'auto',
+        
         display:"flex",
         flexDirection:"column",
         flexWrap:"wrap",

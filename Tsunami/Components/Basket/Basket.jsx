@@ -67,8 +67,8 @@ const Basket = () => {
             :
               <LineSvg /> 
             }
-            <Text style={[styles.tab, windowWidth > 1080 ? {fontWeight:600, fontSize:24, marginLeft:"33%", marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
-            <Text style={[styles.tab, windowWidth > 1080 ? {width:531, marginTop:8, marginLeft:"33%"} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+            <Text style={[styles.tab, windowWidth > 1080 ? {fontWeight:600, fontSize:24,marginLeft:'auto',marginRight:'auto', left:-128, marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
+            <Text style={[styles.tab, windowWidth > 1080 ? {width:531, marginTop:8,marginLeft:'auto',marginRight:'auto', left:5} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>

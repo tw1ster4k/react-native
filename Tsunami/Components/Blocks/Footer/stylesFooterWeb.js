@@ -6,7 +6,10 @@ export const stylesFooterWeb = {
         bottom:10, 
         width:1387, 
         flexDirection:"row",
-        marginLeft:"37.5%"
+        justifyContent:'center',
+        marginLeft: "auto",
+        marginRight:'auto',
+        left:-20
     },
     price:{
         fontWeight:600, 

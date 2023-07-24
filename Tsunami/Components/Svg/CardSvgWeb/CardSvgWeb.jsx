@@ -7,7 +7,7 @@ const CardSvgWeb = () => {
   return (
     theme ?
     <Svg
-      style={{marginLeft:'33%', marginTop:-865}}
+      style={{marginLeft:'auto',marginRight:'auto', marginTop:-865}}
       xmlns="http://www.w3.org/2000/svg"
       width={532}
       height={2000}
@@ -27,7 +27,7 @@ const CardSvgWeb = () => {
     </Svg>
     :
     <Svg
-    style={{marginLeft:'33%', marginTop:-865}}
+    style={{marginLeft:'auto',marginRight:'auto', marginTop:-865}}
     xmlns="http://www.w3.org/2000/svg"
     width={532}
     height={2000}

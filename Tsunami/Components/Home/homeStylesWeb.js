@@ -1,15 +1,16 @@
 export const homeStylesWeb = {
     container: {
-        width: 1387,
+        width: "100%",
         height: "100%",
         overflow: 'scroll',
-        marginLeft:"14%"
       },
       tab: {
         fontWeight: 600,
         fontSize: 24,
         lineHeight: 29.4,
-        marginLeft: "33%",
+        marginLeft:'auto',
+        marginRight:'auto',
+        left:-230
       },
       categories: {
         height: 350,
@@ -20,7 +21,8 @@ export const homeStylesWeb = {
         alignContent: 'space-around',
         justifyContent: 'space-between',
         marginTop: 18,
-        marginLeft:"32.5%",
+        marginLeft:"auto",
+        marginRight:'auto'
       },
       category: {
         width: 256,
@@ -39,7 +41,9 @@ export const homeStylesWeb = {
       warning: {
         width: 531,
         marginTop: 34,
-        marginLeft: "33%",
+        marginLeft:'auto',
+        marginRight:'auto',
+        left:10,
         fontWeight: 400,
         fontSize: 14,
         lineHeight: 22,

@@ -2,7 +2,8 @@ export const stylesCardWeb = {
     card:{
         width:532,
         marginTop:18,
-        marginLeft:"33%",
+        marginLeft:"auto",
+        marginRight:'auto',
         borderRadius:10,
         borderWidth:2
     },

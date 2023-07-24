@@ -33,7 +33,7 @@ const Search = () => {
 
 
   return (
-    <ScrollView style={[styles.container, windowWidth > 1080 ? {width:1387, marginLeft:'14%'} : ""]}>
+    <ScrollView style={[styles.container, windowWidth > 1080 ? {width:"100%"} : ""]}>
       <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
       <Text
         style={[
@@ -41,7 +41,8 @@ const Search = () => {
           windowWidth > 1080 ?
           {
             marginTop: 48,
-            marginLeft: "33%",
+            marginLeft: "auto",
+            marginRight:'auto',
             fontWeight: 600,
             fontSize: 24,
             lineHeight: 29.4,
@@ -68,7 +69,8 @@ const Search = () => {
             marginTop: 16,
             borderWidth: 2,
             paddingLeft: 24,
-            marginLeft: "33%",
+            marginLeft: "auto",
+            marginRight:'auto',
           }
           :
           {
@@ -90,7 +92,8 @@ const Search = () => {
           styles.tab,
           windowWidth > 1080 ?
           {
-            marginLeft: "33%",
+            marginLeft: "auto",
+            marginRight:'auto',
             marginTop: 16,
             fontWeight: 400,
             fontSize: 16,

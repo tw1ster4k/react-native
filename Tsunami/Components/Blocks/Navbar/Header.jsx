@@ -36,7 +36,8 @@ const Header = () => {
           height: 192,
           flexDirection: 'column',
           alignItems: 'center',
-          marginLeft:"37.5%"
+          marginLeft:"auto",
+          marginRight:'auto'
         },
       ] :[
         styles.container,
