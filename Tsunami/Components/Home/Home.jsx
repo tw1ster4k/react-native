@@ -25,7 +25,7 @@ const Home = ({navigation}) => {
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
-  const styles2 = StyleSheet.create(windowWidth > 1440 ? homeStylesWeb : homeStyles);
+  const styles2 = StyleSheet.create(windowWidth > 1080 ? homeStylesWeb : homeStyles);
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <Header />

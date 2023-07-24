@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <View
-      style={windowWidth > 1440 ? [
+      style={windowWidth > 1080 ? [
         styles.container,
         {
           width: 393,

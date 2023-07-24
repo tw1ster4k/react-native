@@ -43,7 +43,7 @@ const Card = ({data, index, quantity}) => {
   };
 
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
-  const styles2 = StyleSheet.create(windowWidth > 1440 ? stylesCardWeb :stylesCard);
+  const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCardWeb :stylesCard);
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
@@ -98,10 +98,10 @@ const Card = ({data, index, quantity}) => {
         data.img
           ? more === index
             ? bigImg === index
-              ? [styles.card, styles2.card, windowWidth > 1440 ? {height:532}  : {height: 368}]
+              ? [styles.card, styles2.card, windowWidth > 1080 ? {height:532}  : {height: 368}]
               : [styles.card, {height: 'auto'}, styles2.card]
             : bigImg === index
-            ? [styles.card, windowWidth > 1440 ? {height:532} : {height: 368}, styles2.card]
+            ? [styles.card, windowWidth > 1080 ? {height:532} : {height: 368}, styles2.card]
             : [styles.card, {height: 144}, styles2.card]
           : more === index
           ? [styles.card, {height: 'auto'}, styles2.card]
@@ -152,7 +152,7 @@ const Card = ({data, index, quantity}) => {
               ? bigImg === index
                 ? [
                     styles.button,
-                    windowWidth > 1440 ?
+                    windowWidth > 1080 ?
                     {width: 143, position: 'absolute', zIndex: 3, marginTop:180}
                     :
                     {width: 143, position: 'absolute', zIndex: 3},
@@ -162,7 +162,7 @@ const Card = ({data, index, quantity}) => {
               : bigImg === index
               ? [
                   styles.button,
-                  windowWidth > 1440 ?
+                  windowWidth > 1080 ?
                   {width: 114, position: 'absolute', zIndex: 3, marginTop:180}
                   :
                   {position: 'absolute', zIndex: 3, width: 114},
@@ -212,7 +212,7 @@ const Card = ({data, index, quantity}) => {
             bigImg === index
               ? [
                   styles.amount,
-                  windowWidth > 1440 ?
+                  windowWidth > 1080 ?
                   {
                     position: 'absolute',
                     zIndex: 3,
@@ -246,12 +246,12 @@ const Card = ({data, index, quantity}) => {
             style={
               bigImg === index
                 ? 
-                windowWidth > 1440 ?
+                windowWidth > 1080 ?
                 {height: 528, width: 528, borderRadius: 10, zIndex: 1}
                 :
                 {height: 364, width: 364, borderRadius: 10, zIndex: 1}
                 : 
-                windowWidth > 1440 ?
+                windowWidth > 1080 ?
                 {
                   position: 'absolute',
                   width: 140,

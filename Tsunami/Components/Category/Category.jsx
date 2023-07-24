@@ -27,7 +27,7 @@ const Category = () => {
     const salads = useSelector((state) => state.salads)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
-    const styles2 = StyleSheet.create(windowWidth > 1440 ? stylesCategoryWeb : stylesCategory)
+    const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCategoryWeb : stylesCategory)
 
      const category = route.name
 
@@ -60,7 +60,7 @@ const Category = () => {
               return(
                 loading ?
                 <Animated.View key={index}>
-                  {windowWidth > 1440 ?
+                  {windowWidth > 1080 ?
                   <CardSvgWeb  />
                   :
                     <CardSvg  />

@@ -33,11 +33,11 @@ const Search = () => {
 
 
   return (
-    <ScrollView style={[styles.container, windowWidth > 1440 ? {width:1387, marginLeft:'14%'} : ""]}>
+    <ScrollView style={[styles.container, windowWidth > 1080 ? {width:1387, marginLeft:'14%'} : ""]}>
       <Text
         style={[
           styles.tab,
-          windowWidth > 1440 ?
+          windowWidth > 1080 ?
           {
             marginTop: 48,
             marginLeft: "33%",
@@ -59,7 +59,7 @@ const Search = () => {
       <TextInput
         style={[
           styles.input,
-          windowWidth > 1440 ?
+          windowWidth > 1080 ?
           {
             width: 532,
             height: 40,
@@ -87,7 +87,7 @@ const Search = () => {
       <Text
         style={[
           styles.tab,
-          windowWidth > 1440 ?
+          windowWidth > 1080 ?
           {
             marginLeft: "33%",
             marginTop: 16,
