@@ -86,7 +86,12 @@ const Search = () => {
         placeholder="Поиск"
         onChangeText={searchFunction}
       />
-      <SearchIcon />
+      {
+        windowWidth > 1080 ?
+        ""
+        :
+        <SearchIcon />
+      }
       <Text
         style={[
           styles.tab,
