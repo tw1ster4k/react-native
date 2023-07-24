@@ -115,8 +115,8 @@ const Card = ({data, index, quantity}) => {
             bigImg === index ?
             [styles.title, {width: 192, position:'absolute',zIndex:3, color:"#fff"}, styles2.title]
             :more === index
-              ? [styles.title, {width: 192}, styles2.title]
-              : [styles.title, styles2.title, {width:192}]
+              ? [styles.title, {width: 192, zIndex:3}, styles2.title]
+              : [styles.title, styles2.title, {width:192, zIndex:3}]
             : more === index
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
@@ -247,13 +247,13 @@ const Card = ({data, index, quantity}) => {
               bigImg === index
                 ? 
                 windowWidth > 1080 ?
-                {height: 528, width: 528, borderRadius: 10, zIndex: 1}
+                {height: 528, width: 528, borderRadius: 10, zIndex:1}
                 :
-                {height: 364, width: 364, borderRadius: 10, zIndex: 1}
+                {height: 364, width: 364, borderRadius: 10, zIndex:1}
                 : 
                 windowWidth > 1080 ?
                 {
-                  position: 'absolute',
+                  position:'absolute',
                   width: 140,
                   height: 140,
                   marginLeft: 387.5,
@@ -262,7 +262,7 @@ const Card = ({data, index, quantity}) => {
                 }
                 :
                 {
-                    position: 'absolute',
+                  position:'absolute',
                     width: 140,
                     height: 140,
                     marginLeft: 224,
