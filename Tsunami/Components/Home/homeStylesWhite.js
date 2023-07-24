@@ -1,3 +1,5 @@
+
+
 export const homeStylesWhite = {
     container:{
         backgroundColor:"#fff"

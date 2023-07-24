@@ -191,7 +191,7 @@ const Card = ({data, index, quantity}) => {
             style={
               amount >= 1
                 ? [styles.cost, styles2.cost]
-                : [styles.cost, {marginLeft: 16}, styles2.cost]
+                : [styles.cost, {marginLeft: 16,}, styles2.cost]
             }>
             {data.price} руб
           </Text>

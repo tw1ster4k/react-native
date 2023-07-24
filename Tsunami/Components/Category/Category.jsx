@@ -56,10 +56,9 @@ const Category = () => {
   return (
         <ScrollView style={[styles.container, styles2.container]}>
             <Text style={[styles.tab, styles2.tab]}>{category}</Text>
-            {salads.map((elem, index) => {
-              return(
+            {
                 loading ?
-                <Animated.View key={index}>
+                <Animated.View>
                   {windowWidth > 1080 ?
                   <CardSvgWeb  />
                   :
@@ -67,11 +66,12 @@ const Category = () => {
                   }
             </Animated.View>
             :
+            salads.map((elem, index) => 
             <Animated.View key={index}> 
             <Card data={elem} index={index} />
             </Animated.View> 
-            )
-          }
+            
+          
             )}
         <True /> 
         </ScrollView>

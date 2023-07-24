@@ -40,7 +40,7 @@ export const stylesCard = {
     },
     cost:{
         fontWeight:400, 
-        fontSize:16
+        fontSize:16,
     },
     amount:{
         justifyContent:'center', 

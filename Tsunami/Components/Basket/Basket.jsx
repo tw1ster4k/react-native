@@ -52,15 +52,6 @@ const Basket = () => {
             {unique.map((elem, index) => {
               const quantity = basket.filter((el) => el.title === elem.title).length
               return(
-                loading ?
-                <Animated.View key={index}>
-                  {windowWidth > 1080 ?
-                  <CardSvgWeb  />
-                    :
-                    <CardSvg  />
-                  }
-            </Animated.View>
-            :
             <Animated.View key={index}> 
             <Card data={elem} index={index} quantity={quantity}/>
             </Animated.View> 
