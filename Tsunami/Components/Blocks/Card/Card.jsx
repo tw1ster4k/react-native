@@ -123,7 +123,7 @@ const Card = ({data, index, quantity}) => {
         }>
         {data.title}
       </Text>
-      {more === index ? (
+      {more === index && bigImg !== index ? (
         <View>
           <Text
             style={

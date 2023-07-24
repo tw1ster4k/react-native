@@ -14,14 +14,14 @@ const CardSvg = () => {
       viewBox="0 0 368 238"
       fill="none"
     >
-      <Rect x={1} y={1} width={366} height={800} rx={7} fill="#fff" />
+      <Rect x={1} y={1} width={366} height={800} rx={7} fill="#f2f2f2" />
       <Rect
         x={1}
         y={1}
         width={366}
         height={800}
         rx={7}
-        stroke="#bbb"
+        stroke="#f2f2f2"
         strokeWidth={2}
       />
     </Svg>
@@ -41,7 +41,7 @@ const CardSvg = () => {
         width={366}
         height={800}
         rx={7}
-        stroke="#555"
+        stroke="#222"
         strokeWidth={2}
       />
     </Svg>
