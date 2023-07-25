@@ -25,6 +25,8 @@ const Basket = () => {
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
     const [loading, setLoading] = useState(true)
+    const more = useSelector((state) => state.more)
+    const bigImg = useSelector((state) => state.bigImg)
 
 
     const unique = []
@@ -54,7 +56,7 @@ const Basket = () => {
               const quantity = basket.filter((el) => el.title === elem.title).length
               return(
             <Animated.View key={index}> 
-            <Card data={elem} index={index} quantity={quantity}/>
+            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg} moreCard={more}/>
             </Animated.View> 
             )
           }

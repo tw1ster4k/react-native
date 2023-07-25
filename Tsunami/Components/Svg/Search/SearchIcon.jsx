@@ -8,7 +8,7 @@ import { searchStylesWeb } from './searchStylesWeb'
 const SearchIcon = () => {
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector((state) => state.theme)
-  const styles = StyleSheet.create( windowWidth ? searchStylesWeb : searchStyles)
+  const styles = StyleSheet.create(searchStyles)
     return (
         theme ?
         <Svg style={styles.icon}

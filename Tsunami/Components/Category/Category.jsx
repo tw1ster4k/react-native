@@ -25,6 +25,8 @@ const Category = () => {
     const route = useRoute()
     const theme = useSelector((state) => state.theme)
     const salads = useSelector((state) => state.salads)
+    const more = useSelector((state) => state.more)
+    const bigImg = useSelector((state) => state.bigImg)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
     const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCategoryWeb : stylesCategory)
@@ -69,7 +71,7 @@ const Category = () => {
             :
             salads.map((elem, index) => 
             <Animated.View key={index}> 
-            <Card data={elem} index={index} />
+            <Card data={elem} index={index} bigImgCard={bigImg} moreCard={more} />
             </Animated.View> 
             
           

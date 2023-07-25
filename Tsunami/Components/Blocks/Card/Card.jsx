@@ -24,11 +24,11 @@ const {UIManager} = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
-const Card = ({data, index, quantity}) => {
+const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
   const windowWidth = Dimensions.get("window").width
   const dispatch = useDispatch();
-  const [more, setMore] = useState(null);
-  const [bigImg, setBigImg] = useState(null);
+  const more = index
+  const bigImg = index
   const theme = useSelector(state => state.theme);
   const basket = useSelector((state) => state.basket)
 
@@ -67,15 +67,15 @@ const Card = ({data, index, quantity}) => {
     quantity ? "" : setAmount(amount + 1)
   };
 
-  const moreFunction = index => {
-    if (more === index) {
-      setMore(null);
+  const moreFunction = moreCard => {
+    if (more === moreCard) {
+      dispatch({type:"ADD_MORE" , payload:null})
     } else {
-      setMore(index);
+      dispatch({type:"ADD_MORE" , payload:more})
     }
   };
 
-  const bigImgFunction = index => {
+  const bigImgFunction = bigImgCard => {
     LayoutAnimation.easeInEaseOut();
     LayoutAnimation.configureNext({
       duration: 150,
@@ -85,10 +85,10 @@ const Card = ({data, index, quantity}) => {
         opacity: 0,
       },
     });
-    if (bigImg === index) {
-      setBigImg(null);
+    if (bigImg === bigImgCard) {
+      dispatch({type:"ADD_BIGIMG", payload:null})
     } else {
-      setBigImg(index);
+      dispatch({type:"ADD_BIGIMG", payload:bigImg})
     }
   };
 
@@ -96,34 +96,34 @@ const Card = ({data, index, quantity}) => {
     <Pressable
       style={
         data.img
-          ? more === index
-            ? bigImg === index
+          ? more === moreCard
+            ? bigImg === bigImgCard
               ? [styles.card, styles2.card, windowWidth > 1080 ? {height:532}  : {height: 368}]
               : [styles.card, {height: 'auto'}, styles2.card]
-            : bigImg === index
+            : bigImg === bigImgCard
             ? [styles.card, windowWidth > 1080 ? {height:532} : {height: 368}, styles2.card]
             : [styles.card, {height: 144}, styles2.card]
-          : more === index
+          : more === moreCard
           ? [styles.card, {height: 'auto'}, styles2.card]
           : [styles.card, styles2.card]
       }
-      onPress={() => moreFunction(index)}>
+      onPress={() => moreFunction(moreCard)}>
       <Text
         style={
           data.img
             ?
-            bigImg === index ?
+            bigImg === bigImgCard ?
             [styles.title, {width: 192, position:'absolute',zIndex:3, color:"#fff"}, styles2.title]
-            :more === index
+            :more === moreCard
               ? [styles.title, {width: 192, zIndex:3}, styles2.title]
               : [styles.title, styles2.title, {width:192, zIndex:3}]
-            : more === index
+            : more === moreCard
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
         }>
         {data.title}
       </Text>
-      {more === index && bigImg !== index ? (
+      {more === moreCard && bigImg !== bigImgCard ? (
         <View>
           <Text
             style={
@@ -142,14 +142,14 @@ const Card = ({data, index, quantity}) => {
       )}
       <Animated.View
         style={
-          bigImg === index
+          bigImg === bigImgCard
             ? {position: 'absolute', zIndex: 3, marginTop: 294}
             : ''
         }>
         <View
           style={
             amount > 0
-              ? bigImg === index
+              ? bigImg === bigImgCard
                 ? [
                     styles.button,
                     windowWidth > 1080 ?
@@ -159,7 +159,7 @@ const Card = ({data, index, quantity}) => {
                     styles2.button,
                   ]
                 : [styles.button, {width: 143}, styles2.button]
-              : bigImg === index
+              : bigImg === bigImgCard
               ? [
                   styles.button,
                   windowWidth > 1080 ?
@@ -209,7 +209,7 @@ const Card = ({data, index, quantity}) => {
       {amount ? (
         <View
           style={
-            bigImg === index
+            bigImg === bigImgCard
               ? [
                   styles.amount,
                   windowWidth > 1080 ?
@@ -239,12 +239,12 @@ const Card = ({data, index, quantity}) => {
       )}
       {data.img ? (
         <Pressable
-          onPress={() => bigImgFunction(index)}
+          onPress={() => bigImgFunction(bigImgCard)}
           style={{position: 'absolute'}}>
           <Image
             source={data.img}
             style={
-              bigImg === index
+              bigImg === bigImgCard
                 ? 
                 windowWidth > 1080 ?
                 {height: 528, width: 528, borderRadius: 10, zIndex:1}

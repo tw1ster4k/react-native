@@ -18,6 +18,8 @@ const Search = () => {
   const theme = useSelector(state => state.theme);
   const salads = useSelector(state => state.salads);
   const styles = StyleSheet.create(theme ? styleSearchWhite : styleSearchDark);
+  const more = useSelector((state) => state.more)
+  const bigImg = useSelector((state) => state.bigImg)
 
 
   const searchFunction = event => {
@@ -119,7 +121,7 @@ const Search = () => {
       </Text>
       {goods.map((el, index) => {
           return(
-            <Card data={el} key={index} index={index} />
+            <Card data={el} key={index} index={index} moreCard={more} bigImgCard={bigImg} />
             )
         }
       )}
