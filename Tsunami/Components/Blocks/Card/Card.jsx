@@ -9,7 +9,8 @@ import {
   NativeModules,
   Text,
   View,
-  Dimensions
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -18,6 +19,7 @@ import {stylesCardDark} from './stylesCardDark';
 import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import { stylesCardWeb } from './stylesCardWeb';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {UIManager} = NativeModules;
 
@@ -108,6 +110,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction(moreCard)}>
+        <LinearGradient colors={["#151515", "#222222"]}>
       <Text
         style={
           data.img
@@ -238,9 +241,11 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
         ''
       )}
       {data.img ? (
+
         <Pressable
           onPress={() => bigImgFunction(bigImgCard)}
           style={{position: 'absolute'}}>
+        
           <Image
             source={data.img}
             style={
@@ -269,12 +274,14 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
                     borderBottomRightRadius: 10,
                     borderTopRightRadius: 10,
                   }
-            }
-          />
+                }
+                />
+                  
         </Pressable>
       ) : (
         ''
-      )}
+        )}
+       </LinearGradient>
     </Pressable>
   );
 };

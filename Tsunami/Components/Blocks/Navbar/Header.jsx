@@ -49,11 +49,11 @@ const Header = () => {
         },
       ]}>
       <Title />  
- {/*       {theme ?
-      <SvgUri style={{marginTop:48}} uri={uriWhite} />
+  {/*       {theme ?
+      <SvgUri uri={uriWhite} />
         :
-      <SvgUri style={{marginTop:48}} uri={uriBlack} />
-      }  */}
+      <SvgUri uri={uriBlack} />
+      }   */}
       <Text
         style={[
           styles.text,

@@ -6,7 +6,6 @@ import {homeStylesWhite} from './homeStylesWhite';
 import {homeStyles} from './homeStyles';
 import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
-import Footer from '../Blocks/Footer/Footer';
 import { homeStylesWeb } from './homeStylesWeb';
 
 const Home = ({navigation}) => {
