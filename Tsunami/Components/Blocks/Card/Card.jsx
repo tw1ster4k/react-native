@@ -190,8 +190,8 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
           <Text
             style={
               amount >= 1
-                ? [styles.cost, styles2.cost]
-                : [styles.cost, {marginLeft: 16,}, styles2.cost]
+                ? [styles.cost, styles2.cost,{flexShrink:0}]
+                : [styles.cost, {marginLeft: 16, flexShrink:0}, styles2.cost]
             }>
             {data.price} руб
           </Text>
