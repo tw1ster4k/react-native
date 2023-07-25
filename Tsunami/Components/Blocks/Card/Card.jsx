@@ -110,7 +110,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction(moreCard)}>
-        <LinearGradient colors={["#151515", "#222222"]}>
+        <LinearGradient colors={theme ? ["#f2f2f2", "#fff"] : ["#151515", "#222222"]}>
       <Text
         style={
           data.img
