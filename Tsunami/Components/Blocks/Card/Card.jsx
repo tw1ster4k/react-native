@@ -123,17 +123,17 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
         }>
         {data.title}
       </Text>
-      {more === moreCard && bigImg !== bigImgCard ? (
-        <View>
+      {more === moreCard ? (
+        <View style={bigImg === bigImgCard ?  {zIndex:3,marginTop:68} : { zIndex:3}}>
           <Text
             style={
               data.img
-                ? [styles.description, {width: 192}, styles2.description]
-                : [styles.description, styles2.description]
+                ? [styles.description, bigImg === bigImgCard ? {width:192, color:"#fff"} : {width: 192}, styles2.description]
+                : [styles.description, styles2.description,]
             }>
             {data.description}
           </Text>
-          <Text style={[styles.description, styles2.description]}>
+          <Text style={[styles.description, styles2.description, bigImg === bigImgCard ? {color:"#fff"} : ""]}>
             {data.compound}
           </Text>
         </View>
