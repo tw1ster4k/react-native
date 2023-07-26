@@ -17,7 +17,8 @@ export const stylesCard = {
         fontWeight:400, 
         fontSize:14, 
         marginTop:16, 
-        marginLeft:16
+        marginLeft:16,
+        
     },
     button:{
         height:40, 

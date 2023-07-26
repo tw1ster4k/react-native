@@ -5,7 +5,6 @@ import {
   Animated,
   LayoutAnimation,
   StyleSheet,
-  Image,
   NativeModules,
   Text,
   View,
@@ -110,7 +109,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction(moreCard)}>
-        <LinearGradient colors={theme ? ["#f2f2f2", "#fff"] : ["#151515", "#222222"]}>
+       
       <Text
         style={
           data.img
@@ -127,22 +126,25 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
         {data.title}
       </Text>
       {more === moreCard ? (
-        <View style={bigImg === bigImgCard ?  {zIndex:3,marginTop:68} : { zIndex:3}}>
+       
+
           <Text
             style={
               data.img
-                ? [styles.description, bigImg === bigImgCard ? {width:192, color:"#fff"} : {width: 192}, styles2.description]
+                ? [styles.description, bigImg === bigImgCard ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
                 : [styles.description, styles2.description,]
             }>
             {data.description}
           </Text>
-          <Text style={[styles.description, styles2.description, bigImg === bigImgCard ? {color:"#fff"} : ""]}>
+            ) : (
+              ''
+               )}
+               {more === moreCard ? 
+          <Text style={[styles.description, styles2.description, bigImg === bigImgCard ? {color:"#fff", zIndex:3, top:68} : {zIndex:3}]}>
             {data.compound}
           </Text>
-        </View>
-      ) : (
-        ''
-      )}
+                  : ""
+          }
       <Animated.View
         style={
           bigImg === bigImgCard
@@ -241,12 +243,12 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
         ''
       )}
       {data.img ? (
-
+        
         <Pressable
           onPress={() => bigImgFunction(bigImgCard)}
-          style={{position: 'absolute'}}>
+           style={{position: 'absolute'}} >
         
-          <Image
+          <ImageBackground
             source={data.img}
             style={
               bigImg === bigImgCard
@@ -258,7 +260,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
                 : 
                 windowWidth > 1080 ?
                 {
-                  position:'absolute',
+                   position:'absolute', 
                   width: 140,
                   height: 140,
                   marginLeft: 388,
@@ -268,20 +270,27 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
                 :
                 {
                   position:'absolute',
-                    width: 140,
-                    height: 140,
-                    marginLeft: 224,
-                    borderBottomRightRadius: 10,
-                    borderTopRightRadius: 10,
-                  }
+                  width: 140,
+                  height: 140,
+                  marginLeft: 224,
+                  borderBottomRightRadius: 10,
+                  borderTopRightRadius: 10,
                 }
-                />
+              }
+              imageStyle={bigImg === bigImgCard ? {borderRadius:10} : {borderBottomRightRadius: 10,borderTopRightRadius: 10,}}
+              >
+                {bigImg === bigImgCard ?
+        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%", borderRadius:10}}>
+
+              </LinearGradient>
+              : ""
+            }
+              </ImageBackground>
                   
         </Pressable>
       ) : (
         ''
         )}
-       </LinearGradient>
     </Pressable>
   );
 };
