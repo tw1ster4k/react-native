@@ -121,7 +121,7 @@ const Search = () => {
       </Text>
       {goods.map((el, index) => {
           return(
-            <Card data={el} key={index} index={index} moreCard={more} bigImgCard={bigImg} />
+            <Card data={el} key={index} index={index} moreCard={more.filter((elem) => elem.title === el.title).length} bigImgCard={bigImg.filter((elem) => elem.title === el.title).length} />
             )
         }
       )}

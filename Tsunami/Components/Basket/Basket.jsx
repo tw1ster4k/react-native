@@ -24,7 +24,6 @@ const Basket = () => {
     const theme = useSelector((state) => state.theme)
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
-    const [loading, setLoading] = useState(true)
     const more = useSelector((state) => state.more)
     const bigImg = useSelector((state) => state.bigImg)
 
@@ -39,11 +38,6 @@ const Basket = () => {
         unique.push(item);
       }
     });
-    
-    setTimeout(() => {
-      LayoutAnimation.easeInEaseOut();
-      setLoading(false)
-    }, 1000);
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
     const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesBasketWeb : stylesBasket)
@@ -56,7 +50,7 @@ const Basket = () => {
               const quantity = basket.filter((el) => el.title === elem.title).length
               return(
             <Animated.View key={index}> 
-            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg} moreCard={more}/>
+            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg.filter((el) => el.title === elem.title).length} moreCard={more.filter((el) => el.title === elem.title).length}/>
             </Animated.View> 
             )
           }

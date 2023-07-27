@@ -25,13 +25,15 @@ const {UIManager} = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
-const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
+const Card = ({data, quantity,  bigImgCard, moreCard}) => {
   const windowWidth = Dimensions.get("window").width
   const dispatch = useDispatch();
-  const more = index
-  const bigImg = index
+
   const theme = useSelector(state => state.theme);
   const basket = useSelector((state) => state.basket)
+  const [bigImg, setBigImg] = useState(bigImgCard ? true : false)
+
+  const [more, setMore] = useState(moreCard ? true : false)
 
   const [amount, setAmount] = useState(quantity ? quantity : basket.filter((el) => el.title === data.title).length)
  
@@ -68,15 +70,13 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
     quantity ? "" : setAmount(amount + 1)
   };
 
-  const moreFunction = moreCard => {
-    if (more === moreCard) {
-      dispatch({type:"ADD_MORE" , payload:null})
-    } else {
-      dispatch({type:"ADD_MORE" , payload:more})
-    }
-  };
+  const moreFunction = () => {
+    dispatch({type:"ADD_MORE", payload:data})
+    setMore(!more)
+  }
 
-  const bigImgFunction = bigImgCard => {
+
+  const bigImgFunction = () => {
     LayoutAnimation.easeInEaseOut();
     LayoutAnimation.configureNext({
       duration: 150,
@@ -86,52 +86,49 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
         opacity: 0,
       },
     });
-    if (bigImg === bigImgCard) {
-      dispatch({type:"ADD_BIGIMG", payload:null})
-    } else {
-      dispatch({type:"ADD_BIGIMG", payload:bigImg})
-    }
+    setBigImg(!bigImg)
+    dispatch({type:"ADD_BIGIMG", payload:data})
   };
 
   return (
     <Pressable
       style={
         data.img
-          ? more === moreCard
-            ? bigImg === bigImgCard
+          ? more
+            ? bigImg
               ? [styles.card, styles2.card, windowWidth > 1080 ? {height:532}  : {height: 368}]
               : [styles.card, {height: 'auto'}, styles2.card]
-            : bigImg === bigImgCard
+            : bigImg 
             ? [styles.card, windowWidth > 1080 ? {height:532} : {height: 368}, styles2.card]
             : [styles.card, {height: 144}, styles2.card]
-          : more === moreCard
+          : more
           ? [styles.card, {height: 'auto'}, styles2.card]
           : [styles.card, styles2.card]
       }
-      onPress={() => moreFunction(moreCard)}>
+      onPress={() => moreFunction()}>
        
       <Text
         style={
           data.img
             ?
-            bigImg === bigImgCard ?
+            bigImg ?
             [styles.title, {width: 192, position:'absolute',zIndex:3, color:"#fff"}, styles2.title]
-            :more === moreCard
+            :more
               ? [styles.title, {width: 192, zIndex:3}, styles2.title]
               : [styles.title, styles2.title, {width:192, zIndex:3}]
-            : more === moreCard
+            : more
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
         }>
         {data.title}
       </Text>
-      {more === moreCard ? (
+      {more ? (
        
 
           <Text
             style={
               data.img
-                ? [styles.description, bigImg === bigImgCard ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
+                ? [styles.description, bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
                 : [styles.description, styles2.description,]
             }>
             {data.description}
@@ -139,22 +136,22 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
             ) : (
               ''
                )}
-               {more === moreCard ? 
-          <Text style={[styles.description, styles2.description, bigImg === bigImgCard ? {color:"#fff", zIndex:3, top:68} : {zIndex:3}]}>
+               {more ? 
+          <Text style={[styles.description, styles2.description, bigImg ? {color:"#fff", zIndex:3, top:68} : {zIndex:3}]}>
             {data.compound}
           </Text>
                   : ""
           }
       <Animated.View
         style={
-          bigImg === bigImgCard
+          bigImg
             ? {position: 'absolute', zIndex: 3, marginTop: 294}
             : ''
         }>
         <View
           style={
             amount > 0
-              ? bigImg === bigImgCard
+              ? bigImg 
                 ? [
                     styles.button,
                     windowWidth > 1080 ?
@@ -164,7 +161,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
                     styles2.button,
                   ]
                 : [styles.button, {width: 143}, styles2.button]
-              : bigImg === bigImgCard
+              : bigImg 
               ? [
                   styles.button,
                   windowWidth > 1080 ?
@@ -214,7 +211,7 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
       {amount ? (
         <View
           style={
-            bigImg === bigImgCard
+            bigImg
               ? [
                   styles.amount,
                   windowWidth > 1080 ?
@@ -245,13 +242,13 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
       {data.img ? (
         
         <Pressable
-          onPress={() => bigImgFunction(bigImgCard)}
+          onPress={() => bigImgFunction()}
            style={{position: 'absolute'}} >
         
           <ImageBackground
             source={data.img}
             style={
-              bigImg === bigImgCard
+              bigImg
                 ? 
                 windowWidth > 1080 ?
                 {height: 528, width: 528, borderRadius: 10, zIndex:1}
@@ -277,9 +274,9 @@ const Card = ({data, index, quantity, moreCard, bigImgCard}) => {
                   borderTopRightRadius: 10,
                 }
               }
-              imageStyle={bigImg === bigImgCard ? {borderRadius:10} : {borderBottomRightRadius: 10,borderTopRightRadius: 10,}}
+              imageStyle={bigImg  ? {borderRadius:10} : {borderBottomRightRadius: 10,borderTopRightRadius: 10,}}
               >
-                {bigImg === bigImgCard ?
+                {bigImg  ?
         <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%", borderRadius:10}}>
 
               </LinearGradient>
