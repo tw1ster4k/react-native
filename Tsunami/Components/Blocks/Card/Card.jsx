@@ -128,7 +128,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
           <Text
             style={
               data.img
-                ? [styles.description ,bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
+                ? [styles.description ,bigImg ? {width:192, color:"#fff", zIndex:3, top:50.75, position:'absolute'} : {width: 192, zIndex:3}, styles2.description]
                 : [styles.description, styles2.description,]
             }>
             {data.description}
@@ -137,7 +137,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               ''
                )}
                {more ? 
-          <Text style={[styles.description, styles2.description, bigImg ? {color:"#fff", zIndex:3, top:68} : {zIndex:3}]}>
+          <Text style={[styles.description, styles2.description, bigImg ? {color:"#fff", zIndex:3, top:169.5, position:'absolute'} : {zIndex:3}]}>
             {data.compound}
           </Text>
                   : ""
