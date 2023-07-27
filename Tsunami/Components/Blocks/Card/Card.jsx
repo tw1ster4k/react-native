@@ -128,7 +128,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
           <Text
             style={
               data.img
-                ? [styles.description, bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
+                ? [styles.description, styles2.description ,bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}]
                 : [styles.description, styles2.description,]
             }>
             {data.description}
@@ -146,7 +146,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         style={
           bigImg
             ? {position: 'absolute', zIndex: 3, marginTop: 294}
-            : ''
+            : {zIndex:3}
         }>
         <View
           style={
@@ -160,7 +160,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                     {width: 143, position: 'absolute', zIndex: 3},
                     styles2.button,
                   ]
-                : [styles.button, {width: 143}, styles2.button]
+                : [styles.button, {width: 143, zIndex:3}, styles2.button]
               : bigImg 
               ? [
                   styles.button,
@@ -170,7 +170,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                   {position: 'absolute', zIndex: 3, width: 114},
                   styles2.button,
                 ]
-              : [styles.button, {width: 114}, styles2.button]
+              : [styles.button, {width: 114, zIndex:3}, styles2.button]
           }>
           {amount ?
             <Pressable
@@ -187,7 +187,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
             </Pressable>
            
            :
-           ""
+           ''
           }
           <Text
             style={
@@ -251,18 +251,15 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               bigImg
                 ? 
                 windowWidth > 1080 ?
-                {height: 528, width: 528, borderRadius: 10, zIndex:1}
+                {height: 528, width: 528, zIndex:1}
                 :
-                {height: 364, width: 364, borderRadius: 10, zIndex:1}
+                {height: 364, width: 364,  zIndex:1}
                 : 
                 windowWidth > 1080 ?
                 {
                    position:'absolute', 
                   width: 140,
                   height: 140,
-                  marginLeft: 388,
-                  borderBottomRightRadius: 10,
-                  borderTopRightRadius: 10,
                 }
                 :
                 {
@@ -270,14 +267,11 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                   width: 140,
                   height: 140,
                   marginLeft: 224,
-                  borderBottomRightRadius: 10,
-                  borderTopRightRadius: 10,
                 }
               }
-              imageStyle={bigImg  ? {borderRadius:10} : {borderBottomRightRadius: 10,borderTopRightRadius: 10,}}
               >
                 {bigImg  ?
-        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%", borderRadius:10}}>
+        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%", }}>
 
               </LinearGradient>
               : ""

@@ -5,7 +5,8 @@ export const stylesCardWeb = {
         marginLeft:"auto",
         marginRight:'auto',
         borderRadius:10,
-        borderWidth:2
+        borderWidth:2,
+        overflow:"hidden"
     },
     title:{
         fontWeight:600, 
