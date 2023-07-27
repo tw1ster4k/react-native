@@ -128,7 +128,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
           <Text
             style={
               data.img
-                ? [styles.description, styles2.description ,bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}]
+                ? [styles.description ,bigImg ? {width:192, color:"#fff", zIndex:3, top:68} : {width: 192, zIndex:3}, styles2.description]
                 : [styles.description, styles2.description,]
             }>
             {data.description}
@@ -145,8 +145,8 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
       <Animated.View
         style={
           bigImg
-            ? {position: 'absolute', zIndex: 3, marginTop: 294}
-            : {zIndex:3}
+            ? {position: 'absolute', zIndex: 3, marginTop: 294, width:143}
+            : {zIndex:3, width:143}
         }>
         <View
           style={
@@ -251,7 +251,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               bigImg
                 ? 
                 windowWidth > 1080 ?
-                {height: 528, width: 528, zIndex:1}
+                {height: 528, width: 528,  zIndex:1}
                 :
                 {height: 364, width: 364,  zIndex:1}
                 : 
@@ -260,6 +260,8 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                    position:'absolute', 
                   width: 140,
                   height: 140,
+                  marginLeft: 388,
+
                 }
                 :
                 {
@@ -267,11 +269,13 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                   width: 140,
                   height: 140,
                   marginLeft: 224,
+
                 }
               }
+             
               >
                 {bigImg  ?
-        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%", }}>
+        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%",}}>
 
               </LinearGradient>
               : ""
