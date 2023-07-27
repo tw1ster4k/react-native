@@ -2,7 +2,6 @@
 import React from 'react';
 import {ScrollView, Text, TextInput, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import {useSelector} from 'react-redux';
-import True from '../Svg/True/True';
 import Card from '../Blocks/Card/Card';
 import {styleSearchDark} from './styleSearchDark';
 import {styleSearchWhite} from './styleSearchWhite';
@@ -125,7 +124,6 @@ const Search = () => {
             )
         }
       )}
-     <True /> 
     </ScrollView>
   );
 };

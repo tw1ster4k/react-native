@@ -275,7 +275,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
              
               >
                 {bigImg  ?
-        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', '#00000000']} style={{height:'100%', width:"100%",}}>
+        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0, 0, 0, 0.1)']} style={{height:'100%', width:"100%",}}>
 
               </LinearGradient>
               : ""
