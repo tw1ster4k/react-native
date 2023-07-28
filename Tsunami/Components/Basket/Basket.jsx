@@ -27,6 +27,7 @@ const Basket = () => {
     const more = useSelector((state) => state.more)
     const bigImg = useSelector((state) => state.bigImg)
 
+    const [number, setNumber] = useState(null)
 
     const unique = []
     const seen = {}
@@ -38,6 +39,14 @@ const Basket = () => {
         unique.push(item);
       }
     });
+
+    const numberFunction = (event) => {
+      if (event >= 0 && event !== "") {
+        setNumber(event)
+      }else{
+        setNumber(null)
+      }
+    }
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
     const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesBasketWeb : stylesBasket)
@@ -55,7 +64,11 @@ const Basket = () => {
             )
           }
             )}
-            <Pressable style={[styles.call,styles2.call]} onPress={() => alert("Официант к вам скоро придёт, ожидайте")}>
+            <View style={[{width:176,height:67, marginTop:24}, windowWidth > 1080 ? {marginLeft:'auto', marginRight:'auto', right:40} : {marginLeft:15}]}>
+              <Text style={[styles.infoText,styles2.infoText,]} >Номер столика</Text>
+              <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
+            </View>
+            <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             { windowWidth > 1080 ?
