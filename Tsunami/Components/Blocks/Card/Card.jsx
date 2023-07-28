@@ -241,7 +241,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         <Pressable
           onPress={() => bigImgFunction()}
            style={{position: 'absolute',}} >
-        <View style={bigImg ? "" : {display:'flex',position:'absolute', height:140, width:140, justifyContent:'center'}}>
+        <View style={bigImg ? "" : {display:'flex',position:'absolute', height:140, width:140, justifyContent:'center', marginLeft: windowWidth > 1080 ? 388 : 224,}}>
 
           <ImageBackground
             source={data.img}
@@ -253,22 +253,10 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                 :
                 {aspectRatio:imgSize.width / imgSize.height, width: 364,  zIndex:1}
                 : 
-                windowWidth > 1080 ?
                 {
                    position:'absolute', 
                   width: 140,
                   aspectRatio:imgSize.width / imgSize.height,
-                  marginLeft: 388,
-
-                }
-                :
-                {
-                  position:'absolute',
-                  width: 140,
-                  aspectRatio:imgSize.width / imgSize.height,
-                  aspectRatio:16/9,
-                  marginLeft: 224,
-
                 }
               }
              
