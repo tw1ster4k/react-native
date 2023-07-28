@@ -20,7 +20,6 @@ const Search = () => {
   const more = useSelector((state) => state.more)
   const bigImg = useSelector((state) => state.bigImg)
 
-
   const searchFunction = event => {
     if (event === '') {
       setGoods([]);

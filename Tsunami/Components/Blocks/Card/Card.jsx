@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Pressable,
   Animated,
@@ -9,7 +9,8 @@ import {
   Text,
   View,
   Dimensions,
-  ImageBackground
+  ImageBackground,
+  Image
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -19,6 +20,7 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import { stylesCardWeb } from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
+
 
 const {UIManager} = NativeModules;
 
@@ -34,6 +36,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false)
 
   const [more, setMore] = useState(moreCard ? true : false)
+  const [imgSize, setImgSize] = useState({width:1,height:1})
 
   const [amount, setAmount] = useState(quantity ? quantity : basket.filter((el) => el.title === data.title).length)
  
@@ -47,6 +50,15 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
 
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
   const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCardWeb :stylesCard);
+  
+  data.img ? useEffect(() => {
+    Image.getSize(`${data.img}`, (width, height) => {
+      setImgSize({ width, height });
+    });
+  }, [])
+  : ""
+
+
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
@@ -96,10 +108,10 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         data.img
           ? more
             ? bigImg
-              ? [styles.card, styles2.card, windowWidth > 1080 ? {height:532}  : {height: 368}]
+              ? [styles.card, styles2.card, {aspectRatio: imgSize.width / imgSize.height} ]
               : [styles.card, {height: 'auto'}, styles2.card]
             : bigImg 
-            ? [styles.card, windowWidth > 1080 ? {height:532} : {height: 368}, styles2.card]
+            ? [styles.card, {aspectRatio:imgSize.width / imgSize.height} , styles2.card]
             : [styles.card, {height: 144}, styles2.card]
           : more
           ? [styles.card, {height: 'auto'}, styles2.card]
@@ -145,7 +157,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
       <Animated.View
         style={
           bigImg
-            ? {position: 'absolute', zIndex: 3, marginTop: 294, width:143}
+            ? {position: 'absolute', zIndex: 3, bottom:70,width:143}
             : {zIndex:3, width:143}
         }>
         <View
@@ -154,9 +166,6 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               ? bigImg 
                 ? [
                     styles.button,
-                    windowWidth > 1080 ?
-                    {width: 143, position: 'absolute', zIndex: 3, marginTop:180}
-                    :
                     {width: 143, position: 'absolute', zIndex: 3},
                     styles2.button,
                   ]
@@ -164,9 +173,6 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               : bigImg 
               ? [
                   styles.button,
-                  windowWidth > 1080 ?
-                  {width: 114, position: 'absolute', zIndex: 3, marginTop:180}
-                  :
                   {position: 'absolute', zIndex: 3, width: 114},
                   styles2.button,
                 ]
@@ -214,19 +220,10 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
             bigImg
               ? [
                   styles.amount,
-                  windowWidth > 1080 ?
                   {
                     position: 'absolute',
                     zIndex: 3,
-                    marginTop: 475,
-                    marginLeft: 167,
-                  }
-                  :
-                  {
-                    position: 'absolute',
-                    zIndex: 3,
-                    marginTop: 310,
-                    marginLeft: 167,
+                    bottom:-2,
                   },
                   styles2.amount,
                 ]
@@ -243,23 +240,24 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         
         <Pressable
           onPress={() => bigImgFunction()}
-           style={{position: 'absolute'}} >
-        
+           style={{position: 'absolute',}} >
+        <View style={bigImg ? "" : {display:'flex',position:'absolute', height:140, width:140, justifyContent:'center'}}>
+
           <ImageBackground
             source={data.img}
             style={
               bigImg
                 ? 
                 windowWidth > 1080 ?
-                {height: 528, width: 528,  zIndex:1}
+                {aspectRatio:imgSize.width / imgSize.height, width: 528,  zIndex:1}
                 :
-                {height: 364, width: 364,  zIndex:1}
+                {aspectRatio:imgSize.width / imgSize.height, width: 364,  zIndex:1}
                 : 
                 windowWidth > 1080 ?
                 {
                    position:'absolute', 
                   width: 140,
-                  height: 140,
+                  aspectRatio:imgSize.width / imgSize.height,
                   marginLeft: 388,
 
                 }
@@ -267,7 +265,8 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                 {
                   position:'absolute',
                   width: 140,
-                  height: 140,
+                  aspectRatio:imgSize.width / imgSize.height,
+                  aspectRatio:16/9,
                   marginLeft: 224,
 
                 }
@@ -282,6 +281,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
             }
               </ImageBackground>
                   
+        </View>
         </Pressable>
       ) : (
         ''
