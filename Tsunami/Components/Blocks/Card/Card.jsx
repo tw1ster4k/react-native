@@ -1,4 +1,3 @@
-
 import React, {useEffect} from 'react';
 import {
   Pressable,
@@ -10,7 +9,8 @@ import {
   View,
   Dimensions,
   ImageBackground,
-  Image
+  Image,
+  Platform,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -18,27 +18,30 @@ import {useState} from 'react';
 import {stylesCardDark} from './stylesCardDark';
 import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
-import { stylesCardWeb } from './stylesCardWeb';
+import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
-
 
 const {UIManager} = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&
-UIManager.setLayoutAnimationEnabledExperimental(true);
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 
-const Card = ({data, quantity,  bigImgCard, moreCard}) => {
-  const windowWidth = Dimensions.get("window").width
+const Card = ({data, quantity, bigImgCard, moreCard}) => {
+  const windowWidth = Dimensions.get('window').width;
   const dispatch = useDispatch();
 
   const theme = useSelector(state => state.theme);
-  const basket = useSelector((state) => state.basket)
-  const [bigImg, setBigImg] = useState(bigImgCard ? true : false)
+  const basket = useSelector(state => state.basket);
+  const [bigImg, setBigImg] = useState(bigImgCard ? true : false);
 
-  const [more, setMore] = useState(moreCard ? true : false)
+   const [sizeImg, setSizeImg] = useState(Platform.OS === "web" ? {width:1, height:1} : Image.resolveAssetSource(data.img))
 
-  const [amount, setAmount] = useState(quantity ? quantity : basket.filter((el) => el.title === data.title).length)
- 
+  const [more, setMore] = useState(moreCard ? true : false);
+
+  const [amount, setAmount] = useState(
+    quantity ? quantity : basket.filter(el => el.title === data.title).length,
+  );
+
   const maxOnPress = () => {
     LayoutAnimation.spring();
   };
@@ -48,38 +51,51 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
   };
 
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
-  const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCardWeb :stylesCard);
-  
- const {width, height} = data.img ? Image.resolveAssetSource(data.img) : ""
+  const styles2 = StyleSheet.create(
+    windowWidth > 1080 ? stylesCardWeb : stylesCard,
+  );
 
+data.img ?
+Platform.OS === "web" ?
+  useEffect(() => {
+    Image.getSize(
+      data.img,
+      (width, height) => {
+        setSizeImg({ width, height });
+      },
+    );
+  }, [])
+  :
+ ''
+  : ""
+ 
 
   const addFood = () => {
     dispatch({type: 'ADD_FOOD', payload: data});
-    quantity ? "" : setAmount(amount + 1)
+    quantity ? '' : setAmount(amount + 1);
   };
 
   const delFood = () => {
     dispatch({type: 'DEL_FOOD', payload: data});
-    quantity ? "" : setAmount(amount - 1)
+    quantity ? '' : setAmount(amount - 1);
   };
 
-  const handleMinOnPress = (type, data, ) => {
+  const handleMinOnPress = (type, data) => {
     minOnPress();
     dispatch({type: type, payload: data});
-    quantity ? "" :  setAmount(0)
+    quantity ? '' : setAmount(0);
   };
 
   const handleMaxOnPress = (type, data) => {
     maxOnPress();
     dispatch({type: type, payload: data});
-    quantity ? "" : setAmount(amount + 1)
+    quantity ? '' : setAmount(amount + 1);
   };
 
   const moreFunction = () => {
-    dispatch({type:"ADD_MORE", payload:data})
-    setMore(!more)
-  }
-
+    dispatch({type: 'ADD_MORE', payload: data});
+    setMore(!more);
+  };
 
   const bigImgFunction = () => {
     LayoutAnimation.easeInEaseOut();
@@ -91,8 +107,8 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         opacity: 0,
       },
     });
-    setBigImg(!bigImg)
-    dispatch({type:"ADD_BIGIMG", payload:data})
+    setBigImg(!bigImg);
+    dispatch({type: 'ADD_BIGIMG', payload: data});
   };
 
   return (
@@ -101,26 +117,36 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         data.img
           ? more
             ? bigImg
-              ? [styles.card, styles2.card, {aspectRatio: width / height} ]
+              ? [
+                  styles.card,
+                  styles2.card,
+                  {aspectRatio: sizeImg.width / sizeImg.height},
+                ]
               : [styles.card, {height: 'auto'}, styles2.card]
-            : bigImg 
-            ? [styles.card, {aspectRatio:width / height} , styles2.card]
+            : bigImg
+            ? [
+                styles.card,
+                {aspectRatio: sizeImg.width / sizeImg.height},
+                styles2.card,
+              ]
             : [styles.card, {height: 144}, styles2.card]
           : more
           ? [styles.card, {height: 'auto'}, styles2.card]
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction()}>
-       
       <Text
         style={
           data.img
-            ?
-            bigImg ?
-            [styles.title, {width: 192, zIndex:3, color:"#fff"}, styles2.title]
-            :more
-              ? [styles.title, {width: 192, zIndex:3}, styles2.title]
-              : [styles.title, styles2.title, {width:192, zIndex:3}]
+            ? bigImg
+              ? [
+                  styles.title,
+                  {width: 192, zIndex: 3, color: '#fff'},
+                  styles2.title,
+                ]
+              : more
+              ? [styles.title, {width: 192, zIndex: 3}, styles2.title]
+              : [styles.title, styles2.title, {width: 192, zIndex: 3}]
             : more
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
@@ -128,52 +154,62 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         {data.title}
       </Text>
       {more ? (
-       
-
-          <Text
-            style={
-              data.img
-                ? [styles.description ,bigImg ? {width:192, color:"#fff", zIndex:3,} : {width: 192, zIndex:3}, styles2.description]
-                : [styles.description, styles2.description,]
-            }>
-            {data.description}
-          </Text>
-            ) : (
-              ''
-               )}
-               {more ? 
-          <Text style={[styles.description, styles2.description, bigImg ? {color:"#fff", zIndex:3,} : {zIndex:3}]}>
-            {data.compound}
-          </Text>
-                  : ""
-          }
+        <Text
+          style={
+            data.img
+              ? [
+                  styles.description,
+                  bigImg
+                    ? {width: 192, color: '#fff', zIndex: 3}
+                    : {width: 192, zIndex: 3},
+                  styles2.description,
+                ]
+              : [styles.description, styles2.description]
+          }>
+          {data.description}
+        </Text>
+      ) : (
+        ''
+      )}
+      {more ? (
+        <Text
+          style={[
+            styles.description,
+            styles2.description,
+            bigImg ? {color: '#fff', zIndex: 3} : {zIndex: 3},
+          ]}>
+          {data.compound}
+        </Text>
+      ) : (
+        ''
+      )}
       <Animated.View
         style={
           bigImg
-            ? {position: 'absolute', zIndex: 3, bottom:70,width:143}
-            : {zIndex:3, width:143}
+            ? {position: 'absolute', zIndex: 3, bottom: 70, width: 143}
+            : {zIndex: 3, width: 143}
         }>
         <View
           style={
             amount > 0
-              ? bigImg 
+              ? bigImg
                 ? [
                     styles.button,
                     {width: 143, position: 'absolute', zIndex: 3},
                     styles2.button,
                   ]
-                : [styles.button, {width: 143, zIndex:3}, styles2.button]
-              : bigImg 
+                : [styles.button, {width: 143, zIndex: 3}, styles2.button]
+              : bigImg
               ? [
                   styles.button,
                   {position: 'absolute', zIndex: 3, width: 114},
                   styles2.button,
                 ]
-              : [styles.button, {width: 114, zIndex:3}, styles2.button]
+              : [styles.button, {width: 114, zIndex: 3}, styles2.button]
           }>
-          {amount ?
+          {amount ? (
             <Pressable
-            style={styles2.buttonContent}
+              style={styles2.buttonContent}
               onPress={() =>
                 amount === 1
                   ? handleMinOnPress('DEL_FOOD', data, quantity)
@@ -184,15 +220,14 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                 -
               </Text>
             </Pressable>
-           
-           :
-           ''
-          }
+          ) : (
+            ''
+          )}
           <Text
             style={
               amount >= 1
-                ? [styles.cost, styles2.cost,{flexShrink:0}]
-                : [styles.cost, {marginLeft: 16, flexShrink:0}, styles2.cost]
+                ? [styles.cost, styles2.cost, {flexShrink: 0}]
+                : [styles.cost, {marginLeft: 16, flexShrink: 0}, styles2.cost]
             }>
             {data.price} руб
           </Text>
@@ -216,11 +251,11 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
                   {
                     position: 'absolute',
                     zIndex: 3,
-                    bottom:-2,
+                    bottom: -2,
                   },
                   styles2.amount,
                 ]
-              : [styles.amount, styles2.amount, {marginTop:-56}]
+              : [styles.amount, styles2.amount, {marginTop: -56}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
             {quantity ? quantity : amount}
@@ -230,43 +265,56 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         ''
       )}
       {data.img ? (
-        
         <Pressable
           onPress={() => bigImgFunction()}
-           style={{position: 'absolute',}} >
-        <View style={bigImg ? "" : {display:'flex',position:'absolute', height:140, width:140, justifyContent:'center', marginLeft: windowWidth > 1080 ? 388 : 224,}}>
-
-          <ImageBackground
-            source={data.img}
+          style={{position: 'absolute'}}>
+          <View
             style={
               bigImg
-                ? 
-                windowWidth > 1080 ?
-                {aspectRatio:width / height, width: 528,  zIndex:1}
-                :
-                {aspectRatio:width / height, width: 364,  zIndex:1}
-                : 
-                {
-                   position:'absolute', 
-                  width: 140,
-                  aspectRatio:width / height,
-                }
-              }
-             
-              >
-                {bigImg  ?
-        <LinearGradient colors={['rgba(0, 0, 0, 0.5)', 'rgba(0, 0, 0, 0.1)']} style={{height:'100%', width:"100%",}}>
-
-              </LinearGradient>
-              : ""
-            }
-              </ImageBackground>
-                  
-        </View>
+                ? ''
+                : {
+                    display: 'flex',
+                    position: 'absolute',
+                    height: 140,
+                    width: 140,
+                    justifyContent: 'center',
+                    marginLeft: windowWidth > 1080 ? 388 : 224,
+                  }
+            }>
+            <ImageBackground
+              source={data.img}
+              style={
+                bigImg
+                  ? windowWidth > 1080
+                    ? {
+                        aspectRatio: sizeImg.width  / sizeImg.height,
+                        width: 528,
+                        zIndex: 1,
+                      }
+                    : {
+                        aspectRatio: sizeImg.width / sizeImg.height,
+                        width: 364,
+                        zIndex: 1,
+                      }
+                  : {
+                      position: 'absolute',
+                      width: 140,
+                      aspectRatio: sizeImg.width / sizeImg.height,
+                    }
+              }>
+              {bigImg ? (
+                <LinearGradient
+                  colors={['rgba(0, 0, 0, 0.5)', 'rgba(0, 0, 0, 0.1)']}
+                  style={{height: '100%', width: '100%'}}></LinearGradient>
+              ) : (
+                ''
+              )}
+            </ImageBackground>
+          </View>
         </Pressable>
       ) : (
         ''
-        )}
+      )}
     </Pressable>
   );
 };

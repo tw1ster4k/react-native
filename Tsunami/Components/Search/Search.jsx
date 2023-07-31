@@ -21,16 +21,18 @@ const Search = () => {
   const bigImg = useSelector((state) => state.bigImg)
 
   const searchFunction = event => {
-    if (event === '') {
-      setGoods([]);
-    } else {
-      let arr = salads.filter(el =>
-        el.title.toLowerCase().includes(event.toLowerCase()),
-      );
-      setGoods(arr);
-    }
+    const filteredSalads = event
+    ? salads.filter(el => {
+        
+        return (
+          el.title.toLowerCase().includes(event.toLowerCase()) 
+        );
+      })
+    : [];
+  setGoods(filteredSalads);
   };
 
+  
 
   return (
     <ScrollView style={[styles.container, windowWidth > 1080 ? {width:"100%"} : ""]}>
