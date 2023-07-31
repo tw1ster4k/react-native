@@ -59,16 +59,15 @@ const App = () => {
             close:config,
           },
           gestureEnabled:true,
-          gestureDirection:"vertical",
-          
-          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+          gestureDirection:'horizontal',
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
           {category.map((el, index) => 
-            <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false}} initialParams={{category:el.uri}} />
+            <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
             )
           }
         </Stack.Navigator>
