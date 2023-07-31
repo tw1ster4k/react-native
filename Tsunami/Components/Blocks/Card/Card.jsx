@@ -36,7 +36,6 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false)
 
   const [more, setMore] = useState(moreCard ? true : false)
-  const [imgSize, setImgSize] = useState({width:1,height:1})
 
   const [amount, setAmount] = useState(quantity ? quantity : basket.filter((el) => el.title === data.title).length)
  
@@ -51,13 +50,7 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
   const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCardWeb :stylesCard);
   
-  data.img ? useEffect(() => {
-    Image.getSize(`${data.img}`, (width, height) => {
-      setImgSize({ width, height });
-    });
-  }, [])
-  : ""
-
+ const {width, height} = data.img ? Image.resolveAssetSource(data.img) : ""
 
 
   const addFood = () => {
@@ -108,10 +101,10 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
         data.img
           ? more
             ? bigImg
-              ? [styles.card, styles2.card, {aspectRatio: imgSize.width / imgSize.height} ]
+              ? [styles.card, styles2.card, {aspectRatio: width / height} ]
               : [styles.card, {height: 'auto'}, styles2.card]
             : bigImg 
-            ? [styles.card, {aspectRatio:imgSize.width / imgSize.height} , styles2.card]
+            ? [styles.card, {aspectRatio:width / height} , styles2.card]
             : [styles.card, {height: 144}, styles2.card]
           : more
           ? [styles.card, {height: 'auto'}, styles2.card]
@@ -249,14 +242,14 @@ const Card = ({data, quantity,  bigImgCard, moreCard}) => {
               bigImg
                 ? 
                 windowWidth > 1080 ?
-                {aspectRatio:imgSize.width / imgSize.height, width: 528,  zIndex:1}
+                {aspectRatio:width / height, width: 528,  zIndex:1}
                 :
-                {aspectRatio:imgSize.width / imgSize.height, width: 364,  zIndex:1}
+                {aspectRatio:width / height, width: 364,  zIndex:1}
                 : 
                 {
                    position:'absolute', 
                   width: 140,
-                  aspectRatio:imgSize.width / imgSize.height,
+                  aspectRatio:width / height,
                 }
               }
              

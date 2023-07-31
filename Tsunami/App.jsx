@@ -56,8 +56,11 @@ const App = () => {
         <Stack.Navigator screenOptions={{
           transitionSpec:{
             open:config,
-            close:config
+            close:config,
           },
+          gestureEnabled:true,
+          gestureDirection:"vertical",
+          
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
