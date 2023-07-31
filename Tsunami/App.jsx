@@ -1,5 +1,5 @@
 import "react-native-gesture-handler"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +13,7 @@ import Search from "./Components/Search/Search";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 import { View, Dimensions } from "react-native";
+import { useState } from "react";
 
 
 
@@ -33,7 +34,7 @@ const App = () => {
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
 
-
+const[theme, setTheme] = useState(false)
 
   const category = [
     {title:'Салаты', uri:"salads"},
@@ -47,6 +48,12 @@ const App = () => {
     {title:'Мангал', uri:"brazier"},
     {title:'Тесто и начинка', uri:"doughAndStuffing"},
   ];
+
+  useEffect(() => {
+    const x = document.getElementsByClassName("css-view-175oi2r")
+    const elementToStyle = x[5]
+    elementToStyle.style.backgroundColor= theme ? "#fff" :"#151515"
+  }, [])
 
   return (
   <View style={windowWidth > 1080 ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>

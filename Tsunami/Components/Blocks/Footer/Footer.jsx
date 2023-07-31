@@ -11,7 +11,7 @@ import SearchButton from '../../Svg/SearchButton/SearchButton'
 import { stylesFooter } from './stylesFooter'
 import { stylesFooterWeb } from './stylesFooterWeb'
 
-const Footer = () => {
+const Footer = ({setTheme, white}) => {
   const navigation = useNavigation()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
@@ -20,6 +20,9 @@ const Footer = () => {
     const windowWidth = Dimensions.get("window").width
     const styles = StyleSheet.create(theme ? stylesFooterWhite : stylesFooterDark)
     const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesFooterWeb :stylesFooter)
+    
+ 
+
   return (
     <View style={styles2.footer}>
           <Pressable style={ {marginLeft:10}} onPress={() => navigation.navigate("Меню")}>
