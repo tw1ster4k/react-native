@@ -14,6 +14,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 import { View, Dimensions } from "react-native";
 import { useState } from "react";
+import { Platform } from "react-native";
 
 
 
@@ -49,11 +50,13 @@ const[theme, setTheme] = useState(false)
     {title:'Тесто и начинка', uri:"doughAndStuffing"},
   ];
 
-  useEffect(() => {
+  Platform.OS === "web" ?
+   useEffect(() => {
     const x = document.getElementsByClassName("css-view-175oi2r")
     const elementToStyle = x[5]
     elementToStyle.style.backgroundColor= theme ? "#fff" :"#151515"
   }, [])
+  : ''
 
   return (
   <View style={windowWidth > 1080 ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
