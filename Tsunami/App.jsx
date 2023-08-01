@@ -59,7 +59,7 @@ const[theme, setTheme] = useState(false)
   : ''
 
   return (
-  <View style={windowWidth > 1080 ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
+  <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
@@ -81,7 +81,7 @@ const[theme, setTheme] = useState(false)
             )
           }
         </Stack.Navigator>
-      <Footer />
+      <Footer setTheme={setTheme}/>
       </NavigationContainer>
     </ErrorBoundary>
     </Provider>

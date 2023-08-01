@@ -28,7 +28,7 @@ const Category = () => {
     const bigImg = useSelector((state) => state.bigImg)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
-    const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesCategoryWeb : stylesCategory)
+    const styles2 = StyleSheet.create(windowWidth >=540  ? stylesCategoryWeb : stylesCategory)
     const more = useSelector((state) => state.more)
 
      const category = route.name
@@ -62,7 +62,7 @@ const Category = () => {
             {
                 loading ?
                 <Animated.View>
-                  {windowWidth > 1080 ?
+                  {windowWidth >=540  ?
                   <CardSvgWeb  />
                   :
                     <CardSvg  />

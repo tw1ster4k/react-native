@@ -49,7 +49,7 @@ const Basket = () => {
     }
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
-    const styles2 = StyleSheet.create(windowWidth > 1080 ? stylesBasketWeb : stylesBasket)
+    const styles2 = StyleSheet.create(windowWidth >=540 ? stylesBasketWeb : stylesBasket)
   return (
         <ScrollView style={[styles.container, styles2.container]}>
           <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
@@ -64,20 +64,20 @@ const Basket = () => {
             )
           }
             )}
-            <View style={[{width:176,height:67, marginTop:24}, windowWidth > 1080 ? {marginLeft:'auto', marginRight:'auto', right:40} : {marginLeft:15}]}>
+            <View style={[{width:176,height:67, marginTop:24}, windowWidth >=540 ? {marginLeft:'auto', marginRight:'auto', right:40} : {marginLeft:15}]}>
               <Text style={[styles.infoText,styles2.infoText,]} >Номер столика</Text>
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
             </View>
             <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""}>
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
-            { windowWidth > 1080 ?
+            { windowWidth >=540  ?
             ""
             :
               <LineSvg /> 
             }
-            <Text style={[styles.tab, windowWidth > 1080 ? {fontWeight:600, fontSize:24,marginLeft:'auto',marginRight:'auto', left:-128, marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
-            <Text style={[styles.tab, windowWidth > 1080 ? {width:531, marginTop:8,marginLeft:'auto',marginRight:'auto', left:5} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
+            <Text style={[styles.tab, windowWidth >=540  ? {fontWeight:600, fontSize:24,marginLeft:'auto',marginRight:'auto', left:-128, marginTop:20} :{fontWeight:600, fontSize:24, marginLeft:15}]}>Разместить предзаказ</Text>
+            <Text style={[styles.tab, windowWidth >=540  ? {width:531, marginTop:8,marginLeft:'auto',marginRight:'auto', left:5} : {width:368, marginTop:8, marginLeft:15}]}>Заполните предложенные поля, разместите заявку и дождитесь звонка администратора, для подтверждения вашего заказа</Text>
             <View style={styles2.params}> 
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
@@ -85,7 +85,7 @@ const Basket = () => {
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth > 1080 ? {marginLeft:80} : {top:2}]}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80} : {top:2}]}>
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>

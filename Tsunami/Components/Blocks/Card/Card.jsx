@@ -43,16 +43,32 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   );
 
   const maxOnPress = () => {
-    LayoutAnimation.spring();
+    LayoutAnimation.easeInEaseOut();
+    LayoutAnimation.configureNext({
+      duration: 150,
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.opacity,
+        opacity: 0,
+      },
+    });
   };
 
   const minOnPress = () => {
-    LayoutAnimation.spring();
+    LayoutAnimation.easeInEaseOut();
+     LayoutAnimation.configureNext({
+      duration: 150,
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.opacity,
+        opacity: 0,
+      },
+    });
   };
 
   const styles = StyleSheet.create(theme ? stylesCardWhite : stylesCardDark);
   const styles2 = StyleSheet.create(
-    windowWidth > 1080 ? stylesCardWeb : stylesCard,
+    windowWidth >=540  ? stylesCardWeb : stylesCard,
   );
 
 data.img ?
@@ -187,7 +203,7 @@ Platform.OS === "web" ?
         style={
           bigImg
             ? {position: 'absolute', zIndex: 3, bottom: 70, width: 143}
-            : {zIndex: 3, width: 143}
+            : {zIndex: 3, width: 143, }
         }>
         <View
           style={
@@ -205,7 +221,7 @@ Platform.OS === "web" ?
                   {position: 'absolute', zIndex: 3, width: 114},
                   styles2.button,
                 ]
-              : [styles.button, {width: 114, zIndex: 3}, styles2.button]
+              : [styles.button, {width: 114, zIndex: 3,}, styles2.button]
           }>
           {amount ? (
             <Pressable
@@ -278,14 +294,14 @@ Platform.OS === "web" ?
                     height: 140,
                     width: 140,
                     justifyContent: 'center',
-                    marginLeft: windowWidth > 1080 ? 388 : 224,
+                    marginLeft: windowWidth >=540 ? 388 : 224,
                   }
             }>
             <ImageBackground
               source={data.img}
               style={
                 bigImg
-                  ? windowWidth > 1080
+                  ? windowWidth >=540 
                     ? {
                         aspectRatio: sizeImg.width  / sizeImg.height,
                         width: 528,

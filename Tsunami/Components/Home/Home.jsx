@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar} from 'react-native';
+import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
@@ -7,6 +7,7 @@ import {homeStyles} from './homeStyles';
 import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
 import { homeStylesWeb } from './homeStylesWeb';
+import { useEffect } from 'react';
 
 const Home = ({navigation}) => {
   const category = [
@@ -24,7 +25,9 @@ const Home = ({navigation}) => {
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
-  const styles2 = StyleSheet.create(windowWidth > 1080 ? homeStylesWeb : homeStyles);
+  const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
+
+
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />

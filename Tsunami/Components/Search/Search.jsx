@@ -35,12 +35,12 @@ const Search = () => {
   
 
   return (
-    <ScrollView style={[styles.container, windowWidth > 1080 ? {width:"100%"} : ""]}>
+    <ScrollView style={[styles.container, windowWidth >=540 ? {width:"100%"} : ""]}>
       <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
       <Text
         style={[
           styles.tab,
-          windowWidth > 1080 ?
+          windowWidth >=540  ?
           {
             marginTop: 48,
             marginLeft: "auto",
@@ -63,7 +63,7 @@ const Search = () => {
       <TextInput
         style={[
           styles.input,
-          windowWidth > 1080 ?
+          windowWidth >=540  ?
           {
             width: 532,
             height: 40,
@@ -89,7 +89,7 @@ const Search = () => {
         onChangeText={searchFunction}
       />
       {
-        windowWidth > 1080 ?
+        windowWidth >=540  ?
         ""
         :
         <SearchIcon />
@@ -97,7 +97,7 @@ const Search = () => {
       <Text
         style={[
           styles.tab,
-          windowWidth > 1080 ?
+          windowWidth >=540  ?
           {
             marginLeft: "auto",
             marginRight:'auto',
