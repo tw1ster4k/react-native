@@ -199,26 +199,20 @@ Platform.OS === "web" ?
       ) : (
         ''
       )}
-      <Animated.View
-        style={
-          bigImg
-            ? {position: 'absolute', zIndex: 3, bottom: 70, width: 143}
-            : {zIndex: 3, width: 143, }
-        }>
         <View
           style={
             amount > 0
               ? bigImg
                 ? [
                     styles.button,
-                    {width: 143, position: 'absolute', zIndex: 3},
+                    {width: 143, position: 'absolute', zIndex: 3, bottom:-2},
                     styles2.button,
                   ]
                 : [styles.button, {width: 143, zIndex: 3}, styles2.button]
               : bigImg
               ? [
                   styles.button,
-                  {position: 'absolute', zIndex: 3, width: 114},
+                  {position: 'absolute', zIndex: 3, width: 114, bottom:-2},
                   styles2.button,
                 ]
               : [styles.button, {width: 114, zIndex: 3,}, styles2.button]
@@ -257,7 +251,7 @@ Platform.OS === "web" ?
             </Text>
           </Pressable>
         </View>
-      </Animated.View>
+
       {amount ? (
         <View
           style={
@@ -271,7 +265,7 @@ Platform.OS === "web" ?
                   },
                   styles2.amount,
                 ]
-              : [styles.amount, styles2.amount, {marginTop: -56}]
+              : [styles.amount, styles2.amount, {marginTop: -56, zIndex:3}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
             {quantity ? quantity : amount}

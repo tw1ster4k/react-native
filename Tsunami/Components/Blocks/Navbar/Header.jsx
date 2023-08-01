@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Platform} from 'react-native';
 import Title from '../../Svg/Title/Title';
 import {useSelector} from 'react-redux';
 import {stylesHeaderDark} from './StylesHeaderDark';
 import {stylesHeaderWhite} from './StylesHeaderWhite';
-import { SvgXml, SvgUri } from 'react-native-svg';
+import { SvgUri } from 'react-native-svg';
 
 
 
@@ -44,14 +44,9 @@ const Header = () => {
           alignItems: 'center',
         },
       ]}>
-      <Title />  
-  {/*       {theme ?
-      <SvgUri uri={uriWhite} />
-        :
-      <SvgUri uri={uriBlack} />
-      }   */}
 
-     {/*  <SvgXml xml={xml}/> */}
+          <Title />  
+
       <Text
         style={[
           styles.text,

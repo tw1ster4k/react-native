@@ -7,7 +7,7 @@ import {styleSearchDark} from './styleSearchDark';
 import {styleSearchWhite} from './styleSearchWhite';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import {useState} from 'react';
-import Footer from '../Blocks/Footer/Footer';
+
 
 
 
