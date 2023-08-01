@@ -1,36 +1,45 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {ScrollView, Text, TextInput, StyleSheet, Dimensions, StatusBar } from 'react-native';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  StyleSheet,
+  Dimensions,
+  StatusBar,
+  Keyboard,
+} from 'react-native';
+import { useSelector } from 'react-redux';
 import Card from '../Blocks/Card/Card';
-import {styleSearchDark} from './styleSearchDark';
-import {styleSearchWhite} from './styleSearchWhite';
+import { styleSearchDark } from './styleSearchDark';
+import { styleSearchWhite } from './styleSearchWhite';
 import SearchIcon from '../Svg/Search/SearchIcon';
-import {useState} from 'react';
-
-
-
 
 const Search = () => {
-  const windowWidth = Dimensions.get("window").width
+  const windowWidth = Dimensions.get('window').width;
   const [goods, setGoods] = useState([]);
   const theme = useSelector(state => state.theme);
   const salads = useSelector(state => state.salads);
   const styles = StyleSheet.create(theme ? styleSearchWhite : styleSearchDark);
-  const more = useSelector((state) => state.more)
-  const bigImg = useSelector((state) => state.bigImg)
+  const more = useSelector(state => state.more);
+  const bigImg = useSelector(state => state.bigImg);
 
   const searchFunction = event => {
     const filteredSalads = event
-    ? salads.filter(el => {
-        
-        return (
-          el.title.toLowerCase().includes(event.toLowerCase()) 
-        );
-      })
-    : [];
-  setGoods(filteredSalads);
+      ? salads.filter(el => {
+          return el.title.toLowerCase().includes(event.toLowerCase());
+        })
+      : [];
+    setGoods(filteredSalads);
   };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', () => {
+    });
+    return () => {
+      Keyboard.removeAllListeners('keyboardDidShow');
+    };
+  }, []);
 
   
 
@@ -87,6 +96,7 @@ const Search = () => {
         ]}
         placeholder="Поиск"
         onChangeText={searchFunction}
+        autoFocus
       />
       {
         windowWidth >=540  ?
