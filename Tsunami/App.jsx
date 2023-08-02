@@ -69,8 +69,7 @@ const[theme, setTheme] = useState(false)
             close:config,
           },
           gestureEnabled:true,
-          gestureDirection:'horizontal',
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
@@ -81,7 +80,7 @@ const[theme, setTheme] = useState(false)
             )
           }
         </Stack.Navigator>
-      <Footer setTheme={setTheme}/>
+      <Footer />
       </NavigationContainer>
     </ErrorBoundary>
     </Provider>

@@ -4,12 +4,10 @@ export const stylesFooterWeb = {
         left:0, 
         right:0, 
         bottom:10, 
-        width:1387, 
         flexDirection:"row",
         justifyContent:'center',
         marginLeft: "auto",
         marginRight:'auto',
-        left:-20
     },
     price:{
         fontWeight:600, 

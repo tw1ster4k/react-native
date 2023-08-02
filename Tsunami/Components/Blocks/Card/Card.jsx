@@ -136,7 +136,8 @@ Platform.OS === "web" ?
               ? [
                   styles.card,
                   styles2.card,
-                  {aspectRatio: sizeImg.width / sizeImg.height},
+                   {aspectRatio: sizeImg.width / sizeImg.height},
+                   {height:'auto'}
                 ]
               : [styles.card, {height: 'auto'}, styles2.card]
             : bigImg
