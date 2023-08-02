@@ -269,7 +269,7 @@ Platform.OS === "web" ?
                   },
                   styles2.amount,
                 ]
-              : [styles.amount, styles2.amount, {marginTop: -54, zIndex:3}]
+              : [styles.amount, styles2.amount, {marginTop: -56, zIndex:3}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
             {quantity ? quantity : amount}
