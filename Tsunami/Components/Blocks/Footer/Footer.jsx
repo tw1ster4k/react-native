@@ -25,7 +25,7 @@ const Footer = ({setTheme, white}) => {
 
   return (
     <View style={styles2.footer}>
-          <Pressable onPress={() => navigation.navigate("Меню")}>
+          <Pressable style={ {marginLeft:10}} onPress={() => navigation.navigate("Меню")}>
                 <HomeIcon />
           </Pressable>
           <Pressable style={{marginLeft:8}} onPress={() => navigation.navigate("Поиск")}>
