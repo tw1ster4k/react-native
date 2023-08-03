@@ -161,7 +161,7 @@ Platform.OS === "web" ?
             ? bigImg
               ? [
                   styles.title,
-                  {width: 192, zIndex: 3, color: '#fff'},
+                  {width: 192, zIndex: 3, color:  '#fff'},
                   styles2.title,
                 ]
               : more

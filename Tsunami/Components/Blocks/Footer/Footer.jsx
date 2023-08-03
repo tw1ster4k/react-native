@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native'
 import SearchButton from '../../Svg/SearchButton/SearchButton'
 import { stylesFooter } from './stylesFooter'
 import { stylesFooterWeb } from './stylesFooterWeb'
+import Back from '../../Svg/Back/Back'
 
 const Footer = ({setTheme, white}) => {
   const navigation = useNavigation()
@@ -25,7 +26,7 @@ const Footer = ({setTheme, white}) => {
 
   return (
     <View style={styles2.footer}>
-          <Pressable style={ {marginLeft:10}} onPress={() => navigation.navigate("Меню")}>
+          <Pressable style={ windowWidth >= 540 ? {marginLeft:-13} : {marginLeft:15}} onPress={() => navigation.navigate("Меню")}>
                 <HomeIcon />
           </Pressable>
           <Pressable style={{marginLeft:8}} onPress={() => navigation.navigate("Поиск")}>
@@ -34,7 +35,10 @@ const Footer = ({setTheme, white}) => {
           <Pressable style={{marginLeft:8}} onPress={() =>  dispatch({type:"ADD_THEME", payload:!theme})}>
                 <Theme />
           </Pressable>
-          <Pressable style={ windowWidth >= 540 ? basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:250,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:250,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}] : basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:96,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:96,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
+          <Pressable style={{marginLeft:8}} onPress={() => navigation.goBack()} >
+              <Back />
+          </Pressable>
+          <Pressable style={ windowWidth >= 540 ? basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:194,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:194,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}] : basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:40,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:40,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
             <Text style={[styles.price, styles2.price]}>{price ? `${price} руб` : "Корзина"}</Text>
             <Text style={[styles.quantity, styles2.quantity]}>{basket.length ? `${basket.length} товаров` : "пусто"}</Text>
           </Pressable>

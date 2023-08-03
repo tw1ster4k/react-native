@@ -54,7 +54,10 @@ const[theme, setTheme] = useState(false)
    useEffect(() => {
     const x = document.getElementsByClassName("css-view-175oi2r")
     const elementToStyle = x[5]
+    const elementToHeight = x[16]
     elementToStyle.style.backgroundColor= theme ? "#fff" :"#151515"
+    elementToStyle.style.height = "auto"
+    elementToHeight.style.height = "100%"
   }, [])
   : ''
 
@@ -68,7 +71,6 @@ const[theme, setTheme] = useState(false)
             open:config,
             close:config,
           },
-          gestureEnabled:true,
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
