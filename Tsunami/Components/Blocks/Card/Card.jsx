@@ -265,7 +265,7 @@ Platform.OS === "web" ?
                   {
                     position: 'absolute',
                     zIndex: 3,
-                    bottom: -2,
+                    bottom: windowWidth >= 540 ? -2 :0,
                   },
                   styles2.amount,
                 ]
