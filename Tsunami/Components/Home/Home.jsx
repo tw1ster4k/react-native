@@ -72,9 +72,8 @@ title:
             <Pressable
               key={index}
               style={[styles.category,  styles2.category, el.img ? windowWidth >= 540 ? {height:256} : {height:178} : ""] }
-              onPress={() => navigation.navigate(el)}>
+              onPress={() => navigation.navigate(el.title)}>
                 {
-
                   el.img ?
                   <ImageBackground source={el.img} style={{height:'100%'}}>
                     <LinearGradient colors={ theme ? ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']:['rgba(34, 34, 34, 0)', 'rgba(34, 34, 34, 1)']} style={{height: '100%', width: '100%'}}>
