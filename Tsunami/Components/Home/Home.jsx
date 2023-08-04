@@ -126,7 +126,7 @@ title:
                   el.img ?
                   <ImageBackground source={el.img} style={{height:'100%'}}>
                     <LinearGradient colors={ theme ? ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']:['rgba(34, 34, 34, 0)', 'rgba(34, 34, 34, 1)']} style={{height: '100%', width: '100%'}}>
-                    <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}]}>{el.title}</Text>
+                    <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}, {fontWeight:600, fontSize:14}]}>{el.title}</Text>
                     </LinearGradient>
                   </ImageBackground>
                   :
