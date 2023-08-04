@@ -9,7 +9,6 @@ import Home from './Components/Home/Home';
 import Category from "./Components/Category/Category";
 import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
-import Search from "./Components/Search/Search";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 import { View, Dimensions } from "react-native";
@@ -76,7 +75,6 @@ const[theme, setTheme] = useState(false)
         >
           <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
-          <Stack.Screen name="Поиск" component={Search} options={{headerShown:false,}} />
           {category.map((el, index) => 
             <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
             )

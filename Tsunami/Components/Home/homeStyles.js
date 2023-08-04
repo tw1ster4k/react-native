@@ -9,6 +9,7 @@ export const homeStyles = {
     fontSize: 24,
     lineHeight: 29.4,
     marginLeft: 15,
+    marginTop:24
   },
   categories: {
     width: 393,

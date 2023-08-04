@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform, ImageBackground} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform, ImageBackground, TextInput} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 import husum from "../Image/husum.jpg"
 import boul from "../Image/boul.png"
 import LinearGradient from 'react-native-linear-gradient';
+import SearchIcon from '../Svg/Search/SearchIcon';
+import Card from '../Blocks/Card/Card';
 
 const Home = ({navigation}) => {
   const category = [{
@@ -56,16 +58,63 @@ title:
     'Тесто и начинка',
   },
   ];
+  const [goods, setGoods] = useState([])
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
+  const more = useSelector(state => state.more);
+  const bigImg = useSelector(state => state.bigImg);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
+  const salads = useSelector(state => state.salads)
+
+  const searchFunction = event => {
+    const filteredSalads = event
+      ? salads.filter(el => {
+          return el.title.toLowerCase().includes(event.toLowerCase());
+        })
+      : [];
+    setGoods(filteredSalads);
+  };
 
 
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
         <Header />
+        <TextInput style={[styles.input,  windowWidth >=540  ?
+          {
+            width: 532,
+            height: 40,
+            borderRadius: 10,
+            marginTop: 5,
+            borderWidth: 2,
+            paddingLeft: 24,
+            marginLeft: "auto",
+            marginRight:'auto',
+          }
+          :
+          {
+            width: 368,
+            height: 40,
+            borderRadius: 10,
+            marginTop: 5,
+            borderWidth: 2,
+            paddingLeft: 24,
+            marginLeft: 12.5,
+          },]} 
+          placeholder='Поиск'
+          onChangeText={searchFunction}
+          />
+                {
+        windowWidth >=540  ?
+        ""
+        :
+        <SearchIcon />
+      }
+      {
+        goods.length <= 0 ?
+        <View>
+
         <Text style={[styles.tab, styles2.tab]}>Меню</Text>
         <View style={styles2.categories}>
           {category.map((el, index) => (
@@ -87,6 +136,12 @@ title:
             </Pressable>
           ))}
         </View>
+        </View>
+        :
+              goods.map((el, index) => 
+              <Card data={el} key={index} index={index} moreCard={more.filter((elem) => elem.title === el.title).length} bigImgCard={bigImg.filter((elem) => elem.title === el.title).length} />
+              )
+        }
         <Text style={[styles.warning, styles2.warning]}>
           Уважаемые гости, если у Вас есть аллергия на какой-либо продукт,
           пожалуйста, предупредите об этом Вашего официанта. Меню является

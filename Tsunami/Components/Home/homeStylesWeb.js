@@ -10,7 +10,8 @@ export const homeStylesWeb = {
         lineHeight: 29.4,
         marginLeft:'auto',
         marginRight:'auto',
-        left:-230
+        left:-230,
+        top:24
       },
       categories: {
         height: 550,
