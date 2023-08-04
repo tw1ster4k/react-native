@@ -12,7 +12,7 @@ export const homeStyles = {
   },
   categories: {
     width: 393,
-    height: 350,
+    height: 450,
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
@@ -27,6 +27,7 @@ export const homeStyles = {
     borderRadius: 10,
     borderWidth: 2,
     marginTop: 16,
+    overflow:"hidden"
   },
   title: {
     fontWeight: 400,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform} from 'react-native';
+import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform, ImageBackground} from 'react-native';
 import {useSelector} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
@@ -8,19 +8,53 @@ import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
 import { homeStylesWeb } from './homeStylesWeb';
 import { useEffect } from 'react';
+import husum from "../Image/husum.jpg"
+import boul from "../Image/boul.png"
+import LinearGradient from 'react-native-linear-gradient';
 
 const Home = ({navigation}) => {
-  const category = [
+  const category = [{
+    title:
     'Салаты',
+    img:husum
+  },
+  {
+    title:
     'Холодные закуски',
+  },
+  {
+    title:
     'Горячие закуски',
+  },
+  {
+    title:
     'Икорный бар',
+  },
+  {
+    title:
     'Морепродукты',
+  },
+  {
+    title:
     'Супы',
+    img:boul
+  },
+  {
+    title:
     'Крупа и паста',
+  },
+  {
+    title:
     'Горячее',
+  },
+  {
+    title:
     'Мангал',
+  },
+  {
+title:
     'Тесто и начинка',
+  },
   ];
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
@@ -37,9 +71,20 @@ const Home = ({navigation}) => {
           {category.map((el, index) => (
             <Pressable
               key={index}
-              style={[styles.category, styles2.category]}
+              style={[styles.category,  styles2.category, el.img ? windowWidth >= 540 ? {height:256} : {height:178} : ""] }
               onPress={() => navigation.navigate(el)}>
-              <Text style={[styles.title, styles2.title]}>{el}</Text>
+                {
+
+                  el.img ?
+                  <ImageBackground source={el.img} style={{height:'100%'}}>
+                    <LinearGradient colors={ theme ? ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']:['rgba(34, 34, 34, 0)', 'rgba(34, 34, 34, 1)']} style={{height: '100%', width: '100%'}}>
+                    <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}]}>{el.title}</Text>
+                    </LinearGradient>
+                  </ImageBackground>
+                  :
+                  <Text style={[styles.title, styles2.title]}>{el.title}</Text>
+                }
+                
             </Pressable>
           ))}
         </View>
