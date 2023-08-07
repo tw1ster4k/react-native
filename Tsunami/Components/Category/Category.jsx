@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react'
+import React, {useEffect} from 'react'
 import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions, StatusBar } from 'react-native'
 import { stylesCategoryDark } from './stylesCategoryDark'
 import { stylesCategoryWhite } from './stylesCategoryWhite'
@@ -32,7 +32,6 @@ const Category = () => {
     const more = useSelector((state) => state.more)
 
      const category = route.name
-
     setTimeout(() => {
       LayoutAnimation.easeInEaseOut();
       setLoading(false)
@@ -54,6 +53,7 @@ const Category = () => {
           
             console.log(route.params.category)
             
+
 
   return (
         <ScrollView style={[styles.container, styles2.container]}>

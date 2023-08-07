@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules, Dimensions, StatusBar } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -8,10 +8,9 @@ import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
-import CardSvg from '../Svg/CardSvg/CardSvg'
-import Footer from '../Blocks/Footer/Footer'
 import { stylesBasketWeb } from './stylesBasketWeb'
-import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
+
+
 
 const {UIManager} = NativeModules;
 
@@ -47,6 +46,7 @@ const Basket = () => {
         setNumber(null)
       }
     }
+
 
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
     const styles2 = StyleSheet.create(windowWidth >=540 ? stylesBasketWeb : stylesBasket)

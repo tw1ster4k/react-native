@@ -15,6 +15,7 @@ import SearchIcon from '../Svg/Search/SearchIcon';
 import Card from '../Blocks/Card/Card';
 
 const Home = ({navigation}) => {
+
   const category = [{
     title:
     'Салаты',
@@ -66,6 +67,8 @@ title:
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
   const salads = useSelector(state => state.salads)
+
+
 
   const searchFunction = event => {
     const filteredSalads = event
