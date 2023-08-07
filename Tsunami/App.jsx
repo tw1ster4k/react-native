@@ -49,7 +49,7 @@ const[theme, setTheme] = useState(false)
     {title:'Тесто и начинка', uri:"doughAndStuffing"},
   ];
 
-  Platform.OS === "web" ?
+/*   Platform.OS === "web" ?
    useEffect(() => {
     const x = document.getElementsByClassName("css-view-175oi2r")
     const elementToStyle = x[5]
@@ -59,6 +59,7 @@ const[theme, setTheme] = useState(false)
     elementToHeight.style.height = "100%"
   }, [])
   : ''
+ */
 
   return (
   <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
