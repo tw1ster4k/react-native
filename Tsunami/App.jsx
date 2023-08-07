@@ -61,6 +61,21 @@ const[theme, setTheme] = useState(false)
   : ''
  */
 
+ /*  const ser = 'https://api.menu.true-false.ru/api/'
+      useEffect(() => {
+      (async () => {
+        const res = await fetch(ser + 'get', {
+          method: "GET",
+          headers: {
+            'Content-Type':'application/json'
+          }
+        });
+        const data = await res.json()
+        console.log(data)
+          
+       })()
+            }, [])  */
+
   return (
   <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
     <Provider store={store}>
