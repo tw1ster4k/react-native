@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {
   Pressable,
-  Animated,
   LayoutAnimation,
   StyleSheet,
   NativeModules,
@@ -12,6 +11,7 @@ import {
   Image,
   Platform,
 } from 'react-native';
+import ButtonSvg from '../../Svg/ButtonSvg/ButtonSvg';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
@@ -20,6 +20,7 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
+import ButtonBigSvg from '../../Svg/ButtonBigSvg/ButtonBigSvg';
 
 const {UIManager} = NativeModules;
 
@@ -208,19 +209,25 @@ Platform.OS === "web" ?
             amount > 0
               ? bigImg
                 ? [
-                    styles.button,
+                    
                     sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3,} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:-2},
                     styles2.button,
                   ]
-                : [styles.button, {width: 143, zIndex: 3}, styles2.button]
+                : [ {width: 143, zIndex: 3}, styles2.button]
               : bigImg
               ? [
-                  styles.button,
+                  
                   sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3} : {position: 'absolute', zIndex: 3, width: 114, bottom:-2},
                   styles2.button,
                 ]
-              : [styles.button, {width: 114, zIndex: 3,}, styles2.button]
+              : [ {width: 114, zIndex: 3,}, styles2.button]
           }>
+            {
+              amount ?
+              <ButtonBigSvg />
+              :
+              <ButtonSvg/>
+            }
           {amount ? (
             <Pressable
               style={styles2.buttonContent}

@@ -9,10 +9,7 @@ export const stylesCardDark = {
     description:{
         color:"#fff"
     },
-    button:{
-        color:"#fff",
-        backgroundColor:"#555555"
-    },
+
     minus:{
         color:"#fff"
     },
