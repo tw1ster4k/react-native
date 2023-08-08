@@ -20,7 +20,6 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonBigSvg from '../../Svg/ButtonBigSvg/ButtonBigSvg';
 
 const {UIManager} = NativeModules;
 
@@ -222,12 +221,9 @@ Platform.OS === "web" ?
                 ]
               : [ {width: 114, zIndex: 3,}, styles2.button]
           }>
-            {
-              amount ?
-              <ButtonBigSvg />
-              :
-              <ButtonSvg/>
-            }
+          
+              <ButtonSvg amount={amount} />
+            
           {amount ? (
             <Pressable
               style={styles2.buttonContent}
