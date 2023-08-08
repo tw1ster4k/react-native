@@ -4,6 +4,8 @@ import husum from "../Components/Image/husum.jpg"
 import losos from "../Components/Image/losos.webp"
 import gaspatcho from "../Components/Image/gaspatcho.jpg"
 import tartar from "../Components/Image/tartar.jpg"
+import Logo from "../Components/Image/Logo.svg"
+
 
 export const initState = {
 salads:[
@@ -26,8 +28,6 @@ price:0,
 theme:false,
 more:[],
 bigImg:[],
-setting:{},
-category:[],
 }
 
 export const reducers = (state = initState, actions) => {

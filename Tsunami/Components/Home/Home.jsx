@@ -13,8 +13,11 @@ import boul from "../Image/boul.png"
 import LinearGradient from 'react-native-linear-gradient';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import Card from '../Blocks/Card/Card';
+import { useRoute } from '@react-navigation/native';
 
 const Home = ({navigation}) => {
+
+  const route = useRoute()
 
   const category = [{
     title:
@@ -59,6 +62,7 @@ title:
     'Тесто и начинка',
   },
   ];
+  const salads = useSelector(state => state.salads)
   const [goods, setGoods] = useState([])
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
@@ -66,15 +70,14 @@ title:
   const bigImg = useSelector(state => state.bigImg);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
-  const salads = useSelector(state => state.salads)
 
 
 
   const searchFunction = event => {
     const filteredSalads = event
-      ? salads.filter(el => {
-          return el.title.toLowerCase().includes(event.toLowerCase());
-        })
+      ? salads.filter((el) => 
+           el.title.toLowerCase().includes(event.toLowerCase())
+        )
       : [];
     setGoods(filteredSalads);
   };
@@ -83,7 +86,7 @@ title:
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
-        <Header />
+        <Header description={route.params.description} logo={route.params.logo} />
         <TextInput style={[styles.input,  windowWidth >=540  ?
           {
             width: 532,
@@ -120,9 +123,11 @@ title:
 
         <Text style={[styles.tab, styles2.tab]}>Меню</Text>
         <View style={styles2.categories}>
+          
+
           {category.map((el, index) => (
             <Pressable
-              key={index}
+            key={index}
               style={[styles.category,  styles2.category, el.img ? windowWidth >= 540 ? {height:256} : {height:178} : ""] }
               onPress={() => navigation.navigate(el.title)}>
                 {
@@ -138,6 +143,7 @@ title:
                 
             </Pressable>
           ))}
+     
         </View>
         </View>
         :

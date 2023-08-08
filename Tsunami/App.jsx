@@ -1,5 +1,5 @@
 import "react-native-gesture-handler"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,8 +12,10 @@ import Footer from "./Components/Blocks/Footer/Footer";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 import { View, Dimensions } from "react-native";
-import { useState } from "react";
 import { Platform } from "react-native";
+import Logo from "./Components/Image/Logo.svg"
+import Icon from "./public/sosi.png"
+
 
 
 
@@ -33,10 +35,11 @@ const App = () => {
 
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
+  const [setting, setSetting ] = useState({icon:Icon, title:"Меню Tsunami",description:"Онлайн-меню японо-перуанской кухни ресторана Tsunami", logo:Logo})
+/* 
+const[theme, setTheme] = useState(false) */
 
-const[theme, setTheme] = useState(false)
-
-  const category = [
+  const [category, setCategory] = useState([
     {title:'Салаты', uri:"salads"},
     {title:'Холодные закуски', uri:"coldSnacks"},
     {title:'Горячие закуски', uri:"hotSnacks"},
@@ -47,7 +50,7 @@ const[theme, setTheme] = useState(false)
     {title:'Горячее', uri:'hotter'},
     {title:'Мангал', uri:"brazier"},
     {title:'Тесто и начинка', uri:"doughAndStuffing"},
-  ];
+  ]);
 
 /*   Platform.OS === "web" ?
    useEffect(() => {
@@ -76,8 +79,29 @@ const[theme, setTheme] = useState(false)
        })()
             }, [])  */
 
+
+            Platform.OS === "web" ?
+            useEffect(() => {
+              if (setting.icon) {
+                const link = document.createElement('link');
+                link.rel = 'icon';
+                link.type = 'image/x-icon';
+                link.href = setting.icon;
+          
+                
+                const prevFavicon = document.querySelector('link[rel="icon"]');
+                if (prevFavicon) {
+                  document.head.removeChild(prevFavicon);
+                }
+
+                document.head.appendChild(link);
+              }
+            }, [])
+            : ""
+
   return (
   <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
+   
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
@@ -89,7 +113,7 @@ const[theme, setTheme] = useState(false)
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
-          <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
+          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logo:setting.logo}}/>
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           {category.map((el, index) => 
             <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
