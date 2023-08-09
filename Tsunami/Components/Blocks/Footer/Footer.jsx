@@ -12,7 +12,7 @@ import { stylesFooter } from './stylesFooter'
 import { stylesFooterWeb } from './stylesFooterWeb'
 import Back from '../../Svg/Back/Back'
 
-const Footer = ({setTheme, white}) => {
+const Footer = ({setTheme, white, homeNavigate}) => {
   const navigation = useNavigation()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
@@ -26,7 +26,7 @@ const Footer = ({setTheme, white}) => {
 
   return (
     <View style={styles2.footer}>
-          <Pressable style={ windowWidth >= 540 ? {marginLeft:-13} : {marginLeft:15}} onPress={() => navigation.navigate("Меню")}>
+          <Pressable style={ windowWidth >= 540 ? {marginLeft:-13} : {marginLeft:15}} onPress={() => navigation.navigate(homeNavigate)}>
                 <HomeIcon />
           </Pressable>
           <Pressable style={{marginLeft:8}} onPress={() =>  dispatch({type:"ADD_THEME", payload:!theme})}>

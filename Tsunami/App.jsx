@@ -120,7 +120,7 @@ const[theme, setTheme] = useState(false) */
             )
           }
         </Stack.Navigator>
-      <Footer />
+      <Footer homeNavigate={setting.title} />
       </NavigationContainer>
     </ErrorBoundary>
     </Provider>

@@ -20,6 +20,7 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
+import BackgroundCardSvg from '../../Svg/BackgroundCardSvg/BackgroundCardSvg';
 
 const {UIManager} = NativeModules;
 
@@ -155,6 +156,7 @@ Platform.OS === "web" ?
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction()}>
+{/*         <BackgroundCardSvg /> */}
       <Text
         style={
           data.img

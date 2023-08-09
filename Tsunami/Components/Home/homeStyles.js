@@ -25,8 +25,8 @@ export const homeStyles = {
   category: {
     width: 176,
     height: 48,
-    borderRadius: 10,
-    borderWidth: 2,
+/*     borderRadius: 10,
+    borderWidth: 2, */
     marginTop: 16,
     overflow:"hidden"
   },

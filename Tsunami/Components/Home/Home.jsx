@@ -14,6 +14,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import Card from '../Blocks/Card/Card';
 import { useRoute } from '@react-navigation/native';
+import CategorySvgWeb from '../Svg/CategorySvgWeb/CategorySvgWeb';
+import CategorySvg from '../Svg/CategorySvg/CategorySvg';
 
 const Home = ({navigation}) => {
 
@@ -128,8 +130,14 @@ title:
           {category.map((el, index) => (
             <Pressable
             key={index}
-              style={[styles.category,  styles2.category, el.img ? windowWidth >= 540 ? {height:256} : {height:178} : ""] }
+              style={[el.img ? styles.category : "" , styles2.category , el.img ? windowWidth >= 540 ? {height:256,  borderRadius: 10, borderWidth: 2, } : {height:178,borderRadius: 10, borderWidth: 2,} : ""] }
               onPress={() => navigation.navigate(el.title)}>
+                {
+                  windowWidth >=540 && el.img === undefined ?
+                  <CategorySvgWeb />
+                  :
+                <CategorySvg />
+                }
                 {
                   el.img ?
                   <ImageBackground source={el.img} style={{height:'100%'}}>
@@ -138,7 +146,8 @@ title:
                     </LinearGradient>
                   </ImageBackground>
                   :
-                  <Text style={[styles.title, styles2.title]}>{el.title}</Text>
+                
+                <Text style={[styles.title, styles2.title]}>{el.title}</Text>
                 }
                 
             </Pressable>
