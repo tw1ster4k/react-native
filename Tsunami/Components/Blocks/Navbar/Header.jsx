@@ -9,10 +9,9 @@ import { SvgUri } from 'react-native-svg';
 
 
 
-
 const Header = ({logo, description}) => {
   const theme = useSelector(state => state.theme);
-  const setting = useSelector((state) => state.setting)
+
 /*   const uriBlack = "https://vk.com/doc346636180_666069486?hash=ggbwihP82kAjBTjhZ6He3nz6miZrJd2pwOd6xn7i7WL&dl=swGiTL5EDS1q2Wm7uH4WVtzKRznHLABRzQj7Znn7G20"
   const uriWhite = "https://vk.com/doc346636180_666296116?hash=MMIFoC355VKJBEEw6TOPRhs69NApZU4qWpIZ79KkS1g&dl=hIFNl0ZoTxR8B7MwDc5HaKtzoZhhB0mCft1n4gzdRvD" 
  */

@@ -235,7 +235,7 @@ Platform.OS === "web" ?
                   : delFood()
               }>
               <Text
-                style={[styles.minus, {marginLeft: -10}, styles2.buttonText]}>
+                style={[styles.minus, {marginLeft: -20}, styles2.buttonText]}>
                 -
               </Text>
             </Pressable>
@@ -245,7 +245,7 @@ Platform.OS === "web" ?
           <Text
             style={
               amount >= 1
-                ? [styles.cost, styles2.cost, {flexShrink: 0}]
+                ? [styles.cost, styles2.cost, {flexShrink: 0, marginLeft:-10}]
                 : [styles.cost, {marginLeft: 16, flexShrink: 0}, styles2.cost]
             }>
             {data.price} руб
