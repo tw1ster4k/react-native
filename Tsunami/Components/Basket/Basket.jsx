@@ -9,6 +9,8 @@ import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
 import { stylesBasketWeb } from './stylesBasketWeb'
+import ButtonSubmitSvg from '../Svg/ButtonSubmitSvg/ButtonSubmitSvg'
+import ButtonFormSubmitSvg from '../Svg/ButtonFormSubmitSvg/ButtonFormSubmitSvg'
 
 
 
@@ -69,6 +71,7 @@ const Basket = () => {
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
             </View>
             <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""}>
+            <ButtonSubmitSvg />
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             { windowWidth >=540  ?
@@ -85,7 +88,8 @@ const Basket = () => {
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80} : {top:2}]}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:-1}]}>
+                  <ButtonFormSubmitSvg />
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>

@@ -20,9 +20,6 @@ export const stylesBasketWeb = {
     call:{
         width:210, 
         height:48, 
-        borderRadius:10, 
-        borderWidth:2,
-        borderColor:"#ff7a00", 
         marginTop:24,
         marginLeft:'auto',
         marginRight:'auto',

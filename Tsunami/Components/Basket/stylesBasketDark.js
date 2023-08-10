@@ -8,9 +8,6 @@ export const stylesBasketDark = {
     sum:{
         color:"#fff"
     },
-    call:{
-        backgroundColor:"#1c1c1c"
-    },
     callText:{
         color:"#fff"
     },
@@ -21,9 +18,6 @@ export const stylesBasketDark = {
         borderColor:"#bbb",
         backgroundColor:"#1c1c1c",
         color:"#fff",        
-    },
-    submit:{
-        backgroundColor:"#1c1c1c",        
     },
     submitText:{
         color:"#fff"

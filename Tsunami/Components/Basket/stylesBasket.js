@@ -18,9 +18,6 @@ export const stylesBasket = {
     call:{
         width:210, 
         height:48, 
-        borderRadius:10, 
-        borderWidth:2,
-        borderColor:"#ff7a00", 
         marginTop:24,
         marginLeft:15,
         justifyContent:'center',
@@ -59,7 +56,6 @@ export const stylesBasket = {
         width:176,
         borderRadius:10,
         borderWidth:2,
-        borderColor:"#ff7a00",
         display:"flex",
         alignItems:"center",
         justifyContent:"center"
