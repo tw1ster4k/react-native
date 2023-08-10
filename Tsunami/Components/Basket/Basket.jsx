@@ -11,6 +11,7 @@ import { stylesBasket } from './stylesBasket'
 import { stylesBasketWeb } from './stylesBasketWeb'
 import ButtonSubmitSvg from '../Svg/ButtonSubmitSvg/ButtonSubmitSvg'
 import ButtonFormSubmitSvg from '../Svg/ButtonFormSubmitSvg/ButtonFormSubmitSvg'
+import FormInputSvg from '../Svg/FormInputSvg/FormInputSvg'
 
 
 
@@ -86,9 +87,10 @@ const Basket = () => {
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
+                    {/*   <FormInputSvg /> */}
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:-1}]}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:2}]}>
                   <ButtonFormSubmitSvg />
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>

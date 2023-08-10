@@ -297,7 +297,7 @@ Platform.OS === "web" ?
                     height: 140,
                     width: 140,
                     justifyContent: 'center',
-                    marginLeft: windowWidth >=540 ? 390 : 224,
+                    marginLeft: windowWidth >=540 ? 390 : 226,
                     marginTop:2,
                     borderBottomRightRadius:6,
                     borderTopRightRadius:6,

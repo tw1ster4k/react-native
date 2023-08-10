@@ -59,9 +59,6 @@ export const stylesBasketWeb = {
     submit:{
         height:48,
         width:256,
-        borderRadius:10,
-        borderWidth:2,
-        borderColor:"#ff7a00",
         display:"flex",
         alignItems:"center",
         justifyContent:"center"
