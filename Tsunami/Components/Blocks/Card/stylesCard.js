@@ -4,8 +4,7 @@ export const stylesCard = {
         marginTop:18,
         marginLeft:15,
         borderRadius:10,
-        borderWidth:2,
-        overflow:"hidden"
+       /*  overflow:"hidden" */
     },
     title:{
         fontWeight:600, 

@@ -87,8 +87,6 @@ const[theme, setTheme] = useState(false) */
                 link.rel = 'icon';
                 link.type = 'image/x-icon';
                 link.href = setting.icon;
-          
-                
                 const prevFavicon = document.querySelector('link[rel="icon"]');
                 if (prevFavicon) {
                   document.head.removeChild(prevFavicon);
