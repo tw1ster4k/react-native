@@ -9,7 +9,7 @@ import { SvgUri } from 'react-native-svg';
 
 
 
-const Header = ({logo, description}) => {
+const Header = ({logoWhite, description, logoDark}) => {
   const theme = useSelector(state => state.theme);
 
 /*   const uriBlack = "https://vk.com/doc346636180_666069486?hash=ggbwihP82kAjBTjhZ6He3nz6miZrJd2pwOd6xn7i7WL&dl=swGiTL5EDS1q2Wm7uH4WVtzKRznHLABRzQj7Znn7G20"
@@ -43,7 +43,7 @@ const Header = ({logo, description}) => {
         },
       ]}> 
            {Platform.OS === "web" ?
-         <img src={logo} style={{marginTop:48}} />
+         <img src={theme ? `https://api.menu.true-false.ru/storage/${logoWhite}` : `https://api.menu.true-false.ru/storage/${logoDark}`} style={{marginTop:48}} />
          :
          <SvgUri uri={logo} style={{marginTop:48}} />
         }

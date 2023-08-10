@@ -88,7 +88,7 @@ title:
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
-        <Header description={route.params.description} logo={route.params.logo} />
+        <Header description={route.params.description} logoDark={route.params.logoDark} logoWhite={route.params.logoWhite}  />
         <TextInput style={[styles.input,  windowWidth >=540  ?
           {
             width: 532,

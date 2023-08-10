@@ -15,6 +15,7 @@ import { View, Dimensions } from "react-native";
 import { Platform } from "react-native";
 import Logo from "./Components/Image/Logo.svg"
 import Icon from "./public/sosi.png"
+import axios from "axios";
 
 
 
@@ -31,13 +32,15 @@ const config = {
     restSpeedThreshold: 0.01,
   },
 };
-const App = () => {
 
+  const ser = 'https://api.menu.true-false.ru/api/get'
+
+
+  const App = () => {
+    
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
-  const [setting, setSetting ] = useState({icon:Icon, title:"Меню Tsunami",description:"Онлайн-меню японо-перуанской кухни ресторана Tsunami", logo:Logo})
-/* 
-const[theme, setTheme] = useState(false) */
+  const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"Онлайн-меню японо-перуанской кухни ресторана Tsunami", logo:Logo, logo_dark:"", logo_light:""})
 
   const [category, setCategory] = useState([
     {title:'Салаты', uri:"salads"},
@@ -52,50 +55,29 @@ const[theme, setTheme] = useState(false) */
     {title:'Тесто и начинка', uri:"doughAndStuffing"},
   ]);
 
-/*   Platform.OS === "web" ?
-   useEffect(() => {
-    const x = document.getElementsByClassName("css-view-175oi2r")
-    const elementToStyle = x[5]
-    const elementToHeight = x[16]
-    elementToStyle.style.backgroundColor= theme ? "#fff" :"#151515"
-    elementToStyle.style.height = "auto"
-    elementToHeight.style.height = "100%"
-  }, [])
-  : ''
- */
+  
 
- /*  const ser = 'https://api.menu.true-false.ru/api/'
-      useEffect(() => {
-      (async () => {
-        const res = await fetch(ser + 'get', {
-          method: "GET",
-          headers: {
-            'Content-Type':'application/json'
-          }
-        });
-        const data = await res.json()
-        console.log(data)
-          
-       })()
-            }, [])  */
+axios.get(ser).then(result => {
+if(Platform.OS === "web"){ 
+  const newIcon = `https://api.menu.true-false.ru/storage/${result.data.settings.icon}`
+  const link = document.createElement("link")
+  link.rel = 'icon';
+  link.type = 'image/x-icon';
+  link.href = newIcon;
+   const linkElement = document.querySelector("link[rel='icon']");
+   console.log(result.data)
+  if(linkElement){
+    document.head.removeChild(linkElement)
+  } 
+  document.head.appendChild(link)
+  setSetting(result.data.settings)
+}else{
+  setSetting(result.data.settings)
+}
+} 
+  ).
+  catch(error => console.log(error))
 
-
-            Platform.OS === "web" ?
-            useEffect(() => {
-              if (setting.icon) {
-                const link = document.createElement('link');
-                link.rel = 'icon';
-                link.type = 'image/x-icon';
-                link.href = setting.icon;
-                const prevFavicon = document.querySelector('link[rel="icon"]');
-                if (prevFavicon) {
-                  document.head.removeChild(prevFavicon);
-                }
-
-                document.head.appendChild(link);
-              }
-            }, [])
-            : ""
 
   return (
   <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
@@ -111,7 +93,7 @@ const[theme, setTheme] = useState(false) */
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
-          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logo:setting.logo}}/>
+          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light}}/>
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           {category.map((el, index) => 
             <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
