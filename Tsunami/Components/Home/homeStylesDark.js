@@ -16,8 +16,6 @@ export const homeStylesDark = {
         color:"#bbb"
     },
     input: {
-        backgroundColor: '#555555',
         color: '#fff',
-        borderColor: '#000000',
       },
 }

@@ -16,6 +16,11 @@ import Card from '../Blocks/Card/Card';
 import { useRoute } from '@react-navigation/native';
 import CategorySvgWeb from '../Svg/CategorySvgWeb/CategorySvgWeb';
 import CategorySvg from '../Svg/CategorySvg/CategorySvg';
+import inputImg from "../Image/Input.png"
+import inputWhite from "../Image/InputWhite.png"
+import searchInputPhone from "../Image/SearchInputPhone.png"
+import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
+
 
 const Home = ({navigation}) => {
 
@@ -89,13 +94,13 @@ title:
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
         <Header description={route.params.description} logoDark={route.params.logoDark} logoWhite={route.params.logoWhite}  />
+        <ImageBackground source={windowWidth >= 540 ? theme ? inputWhite : inputImg : theme ? SearchInputPhoneWhite : searchInputPhone} style={windowWidth >= 540 ? {width:348, height:40, marginLeft:'auto', marginRight:'auto'} : { width: 368,height: 40,marginLeft: 12.5,}} >
+
         <TextInput style={[styles.input,  windowWidth >=540  ?
           {
-            width: 532,
+            width: 348,
             height: 40,
             borderRadius: 10,
-            marginTop: 5,
-            borderWidth: 2,
             paddingLeft: 24,
             marginLeft: "auto",
             marginRight:'auto',
@@ -104,11 +109,7 @@ title:
           {
             width: 368,
             height: 40,
-            borderRadius: 10,
-            marginTop: 5,
-            borderWidth: 2,
             paddingLeft: 24,
-            marginLeft: 12.5,
           },]} 
           placeholder='Поиск'
           onChangeText={searchFunction}
@@ -119,6 +120,7 @@ title:
         :
         <SearchIcon />
       }
+        </ImageBackground>
       {
         goods.length <= 0 ?
         <View>
