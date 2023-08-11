@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
+import { View, Dimensions } from "react-native";
+import { Platform } from "react-native";
+import axios from "axios";
 // import components navigation
 import Home from './Components/Home/Home';
 import Category from "./Components/Category/Category";
@@ -11,11 +14,6 @@ import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
-import { View, Dimensions } from "react-native";
-import { Platform } from "react-native";
-import Logo from "./Components/Image/Logo.svg"
-import Icon from "./public/sosi.png"
-import axios from "axios";
 
 
 
@@ -40,43 +38,46 @@ const config = {
     
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
-  const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"Онлайн-меню японо-перуанской кухни ресторана Tsunami", logo:Logo, logo_dark:"", logo_light:""})
+  const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"", logo:"", logo_dark:"", logo_light:""})
 
   const [category, setCategory] = useState([
-    {title:'Салаты', uri:"salads"},
-    {title:'Холодные закуски', uri:"coldSnacks"},
-    {title:'Горячие закуски', uri:"hotSnacks"},
-    {title:'Икорный бар', uri:"caviarBar"},
-    {title:'Морепродукты', uri:"seafood"},
-    {title:'Супы', uri:"soups"},
-    {title:'Крупа и паста', uri:"cerealsAndPasta"},
-    {title:'Горячее', uri:'hotter'},
-    {title:'Мангал', uri:"brazier"},
-    {title:'Тесто и начинка', uri:"doughAndStuffing"},
+    {name:'Салаты', uri:"salads"},
+    {name:'Холодные закуски', slug:"coldSnacks"},
+    {name:'Горячие закуски', slug:"hotSnacks"},
+    {name:'Икорный бар', slug:"caviarBar"},
+    {name:'Морепродукты', slug:"seafood"},
+    {name:'Супы', slug:"soups"},
+    {name:'Крупа и паста', slug:"cerealsAndPasta"},
+    {name:'Горячее', slug:'hotter'},
+    {name:'Мангал', slug:"brazier"},
+    {name:'Тесто и начинка', slug:"doughAndStuffing"},
   ]);
 
   
+useEffect(() => {
 
-axios.get(ser).then(result => {
-if(Platform.OS === "web"){ 
+  axios.get(ser).then(result => {
+    if (Platform.OS === "web"){ 
   const newIcon = `https://api.menu.true-false.ru/storage/${result.data.settings.icon}`
   const link = document.createElement("link")
   link.rel = 'icon';
   link.type = 'image/x-icon';
   link.href = newIcon;
    const linkElement = document.querySelector("link[rel='icon']");
-   console.log(result.data)
   if(linkElement){
     document.head.removeChild(linkElement)
   } 
   document.head.appendChild(link)
   setSetting(result.data.settings)
+  setCategory(result.data.catalog)
 }else{
   setSetting(result.data.settings)
+  setCategory(result.data.catalog)
 }
 } 
   ).
   catch(error => console.log(error))
+}, [])
 
 
   return (
@@ -93,10 +94,10 @@ if(Platform.OS === "web"){
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
-          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light}}/>
+          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
           <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
           {category.map((el, index) => 
-            <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
+            <Stack.Screen name={el.name} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.slug}} />
             )
           }
         </Stack.Navigator>

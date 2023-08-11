@@ -12,9 +12,11 @@ import { SvgUri } from 'react-native-svg';
 const Header = ({logoWhite, description, logoDark}) => {
   const theme = useSelector(state => state.theme);
 
-/*   const uriBlack = "https://vk.com/doc346636180_666069486?hash=ggbwihP82kAjBTjhZ6He3nz6miZrJd2pwOd6xn7i7WL&dl=swGiTL5EDS1q2Wm7uH4WVtzKRznHLABRzQj7Znn7G20"
-  const uriWhite = "https://vk.com/doc346636180_666296116?hash=MMIFoC355VKJBEEw6TOPRhs69NApZU4qWpIZ79KkS1g&dl=hIFNl0ZoTxR8B7MwDc5HaKtzoZhhB0mCft1n4gzdRvD" 
- */
+   const uriBlack = `https://api.menu.true-false.ru/storage/${logoDark}`
+  const uriWhite = `https://api.menu.true-false.ru/storage/${logoWhite}` 
+
+  
+ 
   const windowWidth = Dimensions.get("window").width
 
   const styles = StyleSheet.create(
@@ -43,9 +45,9 @@ const Header = ({logoWhite, description, logoDark}) => {
         },
       ]}> 
            {Platform.OS === "web" ?
-         <img src={theme ? `https://api.menu.true-false.ru/storage/${logoWhite}` : `https://api.menu.true-false.ru/storage/${logoDark}`} style={{marginTop:48}} />
+         <img src={theme ? uriWhite : uriBlack} style={{marginTop:48}} />
          :
-         <SvgUri uri={theme ?  `https://api.menu.true-false.ru/storage/${logoWhite}` : `https://api.menu.true-false.ru/storage/${logoDark}`} style={{marginTop:48}} />
+         <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48}} />
         }
 
       <Text

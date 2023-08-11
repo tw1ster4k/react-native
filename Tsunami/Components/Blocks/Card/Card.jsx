@@ -72,11 +72,11 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
     windowWidth >=540  ? stylesCardWeb : stylesCard,
   );
 
-data.img ?
+  data.preview ?
 Platform.OS === "web" ?
   useEffect(() => {
     Image.getSize(
-      data.img,
+      data.preview,
       (width, height) => {
         setSizeImg({ width, height });
       },
@@ -132,7 +132,7 @@ Platform.OS === "web" ?
   return (
     <Pressable
       style={
-        data.img
+        data.preview
           ? more
             ? bigImg
               ? [
@@ -159,7 +159,7 @@ Platform.OS === "web" ?
          <BackgroundCardSvg /> 
       <Text
         style={
-          data.img
+          data.preview
             ? bigImg
               ? [
                   styles.title,
@@ -173,12 +173,12 @@ Platform.OS === "web" ?
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
         }>
-        {data.title}
+        {data.name}
       </Text>
       {more ? (
         <Text
           style={
-            data.img
+            data.preview
               ? [
                   styles.description,
                   bigImg
@@ -188,7 +188,7 @@ Platform.OS === "web" ?
                 ]
               : [styles.description, styles2.description]
           }>
-          {data.description}
+          {data.content}
         </Text>
       ) : (
         ''
@@ -200,7 +200,7 @@ Platform.OS === "web" ?
             styles2.description,
             bigImg ? {color: '#fff', zIndex: 3} : {zIndex: 3},
           ]}>
-          {data.compound}
+          {data.content}
         </Text>
       ) : (
         ''
@@ -283,7 +283,7 @@ Platform.OS === "web" ?
       ) : (
         ''
       )}
-      {data.img ? (
+      {data.preview ? (
         <Pressable
           onPress={() => bigImgFunction()}
           style={{position: 'absolute', height:'100%'}}>
@@ -305,7 +305,7 @@ Platform.OS === "web" ?
                   }
             }>
             <ImageBackground
-              source={data.img}
+              source={data.preview}
               style={
                 bigImg
                   ? windowWidth >=540 

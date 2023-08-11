@@ -10,9 +10,9 @@ import { stylesCategory } from './stylesCategory'
 import { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import CardSvg from '../Svg/CardSvg/CardSvg'
-import Footer from '../Blocks/Footer/Footer'
 import { stylesCategoryWeb } from './stylesCategoryWeb'
 import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
+import axios from 'axios'
 
 const {UIManager} = NativeModules;
 
@@ -24,35 +24,23 @@ const Category = () => {
   const windowWidth = Dimensions.get('window').width
     const route = useRoute()
     const theme = useSelector((state) => state.theme)
-    const salads = useSelector((state) => state.salads)
     const bigImg = useSelector((state) => state.bigImg)
     const [loading, setLoading] = useState(true)
     const styles = StyleSheet.create(theme ? stylesCategoryWhite : stylesCategoryDark)
     const styles2 = StyleSheet.create(windowWidth >=540  ? stylesCategoryWeb : stylesCategory)
     const more = useSelector((state) => state.more)
 
-     const category = route.name
-    setTimeout(() => {
-      LayoutAnimation.easeInEaseOut();
-      setLoading(false)
-    }, 1000);
+    const [goods, setGoods] = useState([{name:'',content:"",price:0,preview:null}])
 
-  /*   useEffect(() => {
-      (async () => {
-        const res = await fetch('http://localhost:3001', {
-          method: "GET",
-          headers: {
-            'Content-Type':'application/json'
-          }
-        });
-        const data = await res.json()
-          
-        setState(data)
-       })()
-            }, []) */
-          
-            console.log(route.params.category)
-            
+     const category = route.name
+  useEffect(() => {
+    axios.get(`https://api.menu.true-false.ru/api/${route.params.category}/products`).then(result => {
+      setGoods(result.data.data)
+      setLoading(false)
+    }
+    ).catch(error => console.log(error))
+    
+  },[])
 
 
   return (
@@ -69,9 +57,9 @@ const Category = () => {
                   }
             </Animated.View>
             :
-            salads.map((elem, index) => 
+            goods.map((elem, index) => 
             <Animated.View key={index}> 
-            <Card data={elem} bigImgCard={bigImg.filter((el) => el.title === elem.title).length} moreCard={more.filter((el) => el.title === elem.title).length} />
+            <Card data={elem} bigImgCard={bigImg.filter((el) => el.name === elem.name).length} moreCard={more.filter((el) => el.name === elem.name).length} />
             </Animated.View> 
             
           
