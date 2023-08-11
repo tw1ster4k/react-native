@@ -13,20 +13,21 @@ export const homeStyles = {
   },
   categories: {
     width: 393,
-    height: 450,
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexWrap: 'wrap',
-    alignContent: 'space-around',
+    alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 18,
+    paddingHorizontal: 10,
     marginLeft:2.5,
   },
   category: {
     width: 176,
     height: 48,
     marginTop: 16,
-    overflow:"hidden"
+    overflow:"hidden",
+    marginBottom:10
   },
   title: {
     fontWeight: 400,
