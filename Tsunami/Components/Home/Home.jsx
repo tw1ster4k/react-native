@@ -24,7 +24,6 @@ const Home = ({navigation}) => {
   const category = [{
     title:
     'Салаты',
-    img:husum
   },
   {
     title:
@@ -33,10 +32,12 @@ const Home = ({navigation}) => {
   {
     title:
     'Горячие закуски',
+    img:husum
   },
   {
     title:
     'Икорный бар',
+    img:boul
   },
   {
     title:
@@ -45,7 +46,6 @@ const Home = ({navigation}) => {
   {
     title:
     'Супы',
-    img:boul
   },
   {
     title:

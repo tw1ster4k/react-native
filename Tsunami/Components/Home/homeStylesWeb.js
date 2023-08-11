@@ -14,14 +14,14 @@ export const homeStylesWeb = {
         top:24
       },
       categories: {
-        height: 550,
-        width:533,
+        width:550,
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         flexWrap: 'wrap',
-        alignContent: 'space-around',
+        alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 18,
+        paddingHorizontal: 10,
         marginLeft:"auto",
         marginRight:'auto'
       },
@@ -29,7 +29,8 @@ export const homeStylesWeb = {
         width: 256,
         height: 48,
         marginTop: 16,
-        overflow:"hidden"
+        overflow:"hidden", 
+        marginBottom:10
       },
       title: {
         fontWeight: 400,
