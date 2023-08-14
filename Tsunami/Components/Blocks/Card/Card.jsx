@@ -21,6 +21,8 @@ import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
 import BackgroundCardSvg from '../../Svg/BackgroundCardSvg/BackgroundCardSvg';
+import PlusSvg from '../../Svg/PlusSvg/PlusSvg';
+import MinusSvg from '../../Svg/MinusSvg/MinusSvg';
 
 const {UIManager} = NativeModules;
 
@@ -234,10 +236,11 @@ Platform.OS === "web" ?
                   ? handleMinOnPress('DEL_FOOD', data, quantity)
                   : delFood()
               }>
-              <Text
+{/*               <Text
                 style={[styles.minus, {marginLeft: -20}, styles2.buttonText]}>
                 -
-              </Text>
+              </Text> */}
+              <MinusSvg />
             </Pressable>
           ) : (
             ''
@@ -255,9 +258,7 @@ Platform.OS === "web" ?
             onPress={() =>
               amount === 0 ? handleMaxOnPress('ADD_FOOD', data) : addFood()
             }>
-            <Text style={[styles.plus, {marginLeft: 10}, styles2.buttonText]}>
-              +
-            </Text>
+            <PlusSvg />
           </Pressable>
         </View>
 

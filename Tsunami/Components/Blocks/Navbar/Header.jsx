@@ -45,9 +45,9 @@ const Header = ({logoWhite, description, logoDark}) => {
         },
       ]}> 
            {Platform.OS === "web" ?
-         <img src={theme ? uriWhite : uriBlack} style={{marginTop:48}} />
+         <img src={theme ? uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} />
          :
-         <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48}} />
+         <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} />
         }
 
       <Text

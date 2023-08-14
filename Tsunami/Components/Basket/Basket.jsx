@@ -28,6 +28,8 @@ const Basket = () => {
     const price = useSelector((state) => state.price)
     const more = useSelector((state) => state.more)
     const bigImg = useSelector((state) => state.bigImg)
+    const [active, setActive] = useState(false)
+    const [active2, setActive2] = useState(false)
 
     const [number, setNumber] = useState(null)
 
@@ -71,8 +73,8 @@ const Basket = () => {
               <Text style={[styles.infoText,styles2.infoText,]} >Номер столика</Text>
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
             </View>
-            <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""}>
-            <ButtonSubmitSvg />
+            <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""} onPressIn={() => number !== null ? setActive(true) : ""}  onPressOut={() => setActive(false)} >
+            <ButtonSubmitSvg active={active} />
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             { windowWidth >=540  ?
@@ -90,8 +92,8 @@ const Basket = () => {
                     {/*   <FormInputSvg /> */}
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:2}]}>
-                  <ButtonFormSubmitSvg />
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:2}]} onPressIn={() => setActive2(true)} onPressOut={() => setActive2(false)}>
+                  <ButtonFormSubmitSvg active={active2} />
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>
