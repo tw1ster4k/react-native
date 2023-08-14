@@ -8,8 +8,6 @@ import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
 import { homeStylesWeb } from './homeStylesWeb';
 import { useEffect } from 'react';
-import husum from "../Image/husum.jpg"
-import boul from "../Image/boul.png"
 import LinearGradient from 'react-native-linear-gradient';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import Card from '../Blocks/Card/Card';
@@ -25,50 +23,6 @@ import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
 const Home = ({navigation}) => {
 
   const route = useRoute()
-
-  const category = [{
-    title:
-    'Салаты',
-  },
-  {
-    title:
-    'Холодные закуски',
-  },
-  {
-    title:
-    'Горячие закуски',
-    img:husum
-  },
-  {
-    title:
-    'Икорный бар',
-    img:boul
-  },
-  {
-    title:
-    'Морепродукты',
-  },
-  {
-    title:
-    'Супы',
-  },
-  {
-    title:
-    'Крупа и паста',
-  },
-  {
-    title:
-    'Горячее',
-  },
-  {
-    title:
-    'Мангал',
-  },
-  {
-title:
-    'Тесто и начинка',
-  },
-  ];
   const salads = useSelector(state => state.salads)
   const [goods, setGoods] = useState([])
   const windowWidth = Dimensions.get("window").width

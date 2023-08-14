@@ -41,16 +41,6 @@ const config = {
   const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"", logo:"", logo_dark:"", logo_light:""})
 
   const [category, setCategory] = useState([
-    {name:'Салаты', uri:"salads"},
-    {name:'Холодные закуски', slug:"coldSnacks"},
-    {name:'Горячие закуски', slug:"hotSnacks"},
-    {name:'Икорный бар', slug:"caviarBar"},
-    {name:'Морепродукты', slug:"seafood"},
-    {name:'Супы', slug:"soups"},
-    {name:'Крупа и паста', slug:"cerealsAndPasta"},
-    {name:'Горячее', slug:'hotter'},
-    {name:'Мангал', slug:"brazier"},
-    {name:'Тесто и начинка', slug:"doughAndStuffing"},
   ]);
 
   

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions, Platform} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Platform, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 import {stylesHeaderDark} from './StylesHeaderDark';
 import {stylesHeaderWhite} from './StylesHeaderWhite';
@@ -47,7 +47,8 @@ const Header = ({logoWhite, description, logoDark}) => {
            {Platform.OS === "web" ?
          <img src={theme ? uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} />
          :
-         <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} />
+         /* <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} /> */
+         <Image source={ {uri:theme ? uriWhite : uriBlack}} style={{marginTop:48, width:208, height:58}} />
         }
 
       <Text
