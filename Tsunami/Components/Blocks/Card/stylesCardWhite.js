@@ -1,4 +1,8 @@
 export const stylesCardWhite = {
+    card:{
+        borderColor:"#bbb",
+        backgroundColor:"#fff",
+    },
     title:{
         color:"#1c1c1c"
     },

@@ -20,7 +20,6 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
-import BackgroundCardSvg from '../../Svg/BackgroundCardSvg/BackgroundCardSvg';
 import PlusSvg from '../../Svg/PlusSvg/PlusSvg';
 import MinusSvg from '../../Svg/MinusSvg/MinusSvg';
 
@@ -37,7 +36,7 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   const basket = useSelector(state => state.basket);
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false);
 
-   const [sizeImg, setSizeImg] = useState(Platform.OS === "web" ? {width:1, height:1} : Image.resolveAssetSource(data.img))
+   const [sizeImg, setSizeImg] = useState({width:1, height:1})
 
   const [more, setMore] = useState(moreCard ? true : false);
 
@@ -75,10 +74,9 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   );
 
   data.preview ?
-Platform.OS === "web" ?
   useEffect(() => {
     Image.getSize(
-      data.preview,
+       `https://api.menu.true-false.ru/storage/${data.preview}`,
       (width, height) => {
         setSizeImg({ width, height });
       },
@@ -86,7 +84,6 @@ Platform.OS === "web" ?
   }, [])
   :
  ''
-  : ""
  
 
   const addFood = () => {
@@ -158,7 +155,6 @@ Platform.OS === "web" ?
           : [styles.card, styles2.card]
       }
       onPress={() => moreFunction()}>
-         <BackgroundCardSvg /> 
       <Text
         style={
           data.preview
@@ -236,10 +232,6 @@ Platform.OS === "web" ?
                   ? handleMinOnPress('DEL_FOOD', data, quantity)
                   : delFood()
               }>
-{/*               <Text
-                style={[styles.minus, {marginLeft: -20}, styles2.buttonText]}>
-                -
-              </Text> */}
               <MinusSvg />
             </Pressable>
           ) : (
@@ -291,22 +283,20 @@ Platform.OS === "web" ?
           <View
             style={
               bigImg
-                ? {justifyContent:'center', display:'flex', height:'100%', marginLeft:2, borderRadius:13, overflow:"hidden"}
+                ? {justifyContent:'center', display:'flex', height:'100%',overflow:"hidden"}
                 : {
                     display: 'flex',
                     position: 'absolute',
                     height: 140,
                     width: 140,
                     justifyContent: 'center',
-                    marginLeft: windowWidth >=540 ? 390 : 226,
+                    marginLeft: windowWidth >=540 ? 388 : 224,
                     marginTop:2,
-                    borderBottomRightRadius:6,
-                    borderTopRightRadius:6,
                     overflow:'hidden'
                   }
             }>
             <ImageBackground
-              source={data.preview}
+              source={{uri: `https://api.menu.true-false.ru/storage/${data.preview}`}}
               style={
                 bigImg
                   ? windowWidth >=540 
@@ -323,7 +313,7 @@ Platform.OS === "web" ?
                   : {
                       position: 'absolute',
                       width: 140,
-                      aspectRatio: sizeImg.width / sizeImg.height,
+                      aspectRatio:  sizeImg.width / sizeImg.height ,
                     }
               }>
               {bigImg ? (

@@ -4,6 +4,8 @@ export const stylesCardWeb = {
         marginTop:18,
         marginLeft:"auto",
         marginRight:'auto',
+        borderRadius:10,
+        borderWidth:2
 /*         overflow:"hidden" */
     },
     title:{

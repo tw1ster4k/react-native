@@ -83,10 +83,10 @@ const Home = ({navigation}) => {
         <View style={styles2.categories}>
           
 
-          {route.params.catalog.map((el, index) => (
+          {route.params.catalog.map((el, index) => 
             <Pressable
             key={index}
-              style={[el.img ? styles.category : "" , styles2.category , el.img ? windowWidth >= 540 ? {height:256,  borderRadius: 10, borderWidth: 2, } : {height:178,borderRadius: 10, borderWidth: 2,} : ""] }
+              style={[el.preview ? styles.category : "" , styles2.category , el.preview ? windowWidth >= 540 ? {height:256,  borderRadius: 10, borderWidth: 2, } : {height:178,borderRadius: 10, borderWidth: 2,} : ""] }
               onPress={() => navigation.navigate(el.name)}>
                 {
                   windowWidth >=540 ?
@@ -95,8 +95,8 @@ const Home = ({navigation}) => {
                 <CategorySvg />
                 }
                 {
-                  el.img ?
-                  <ImageBackground source={el.img} style={{height:'100%'}}>
+                  el.preview ?
+                  <ImageBackground source={{uri: `https://api.menu.true-false.ru/storage/${el.preview}`}} style={{height:'100%'}}>
                     <LinearGradient colors={ theme ? ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']:['rgba(34, 34, 34, 0)', 'rgba(34, 34, 34, 1)']} style={{height: '100%', width: '100%'}}>
                     <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}, {fontWeight:600, fontSize:14}]}>{el.name}</Text>
                     </LinearGradient>
@@ -107,7 +107,7 @@ const Home = ({navigation}) => {
                 }
                 
             </Pressable>
-          ))}
+          )}
      
         </View>
         </View>

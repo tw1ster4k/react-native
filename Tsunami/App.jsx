@@ -71,7 +71,7 @@ useEffect(() => {
 
 
   return (
-  <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:windowWidth, height:windowHeight}}>
+  <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:windowWidth, height:windowHeight,}}>
    
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
