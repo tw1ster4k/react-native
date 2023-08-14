@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -89,10 +89,10 @@ const Basket = () => {
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
-                    {/*   <FormInputSvg /> */}
+                       {/* <FormInputSvg />  */}
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:2}]} onPressIn={() => setActive2(true)} onPressOut={() => setActive2(false)}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:Platform.OS === "web" ? -1 : 2}]} onPressIn={() => setActive2(true)} onPressOut={() => setActive2(false)}>
                   <ButtonFormSubmitSvg active={active2} />
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
