@@ -5,7 +5,7 @@ export const stylesFooter = {
         right:0, 
         bottom:10, 
         width:"100%", 
-        flexDirection:"row"
+        flexDirection:"row",
     },
     price:{
         fontWeight:600, 
