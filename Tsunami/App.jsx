@@ -20,7 +20,7 @@ import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
 
 const Stack = createStackNavigator()
 const config = {
-  animation: 'spring',
+  animation:"linear",
   config: {
     stiffness: 1000,
     damping: 750,
@@ -84,10 +84,10 @@ useEffect(() => {
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
         >
-          <Stack.Screen name={setting.title} component={Home} options={{headerShown:false, }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
-          <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
+          <Stack.Screen name={setting.title} component={Home} options={{headerMode:"none" }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
+          <Stack.Screen name="Избранное" component={Basket} options={{headerMode:"none"}} />
           {category.map((el, index) => 
-            <Stack.Screen name={el.name} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.slug}} />
+            <Stack.Screen name={el.name} key={index} component={Category}  options={{headerMode:"none"}}  initialParams={{category:el.slug}} />
             )
           }
         </Stack.Navigator>

@@ -33,8 +33,8 @@ export const stylesCard = {
     buttonContent:{
         height:"100%", 
         width:55.5, 
-        alignItems:"center", 
-        marginTop:11
+        alignItems:"center",
+        justifyContent:'center' 
     },
     buttonText:{
         fontWeight:400, 

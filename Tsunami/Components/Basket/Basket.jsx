@@ -37,7 +37,7 @@ const Basket = () => {
     const seen = {}
 
     basket.forEach((item) => {
-      const key = item.title;
+      const key = item.name;
       if (!seen[key]) {
         seen[key] = true;
         unique.push(item);
@@ -61,10 +61,10 @@ const Basket = () => {
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => {
-              const quantity = basket.filter((el) => el.title === elem.title).length
+              const quantity = basket.filter((el) => el.name === elem.name).length
               return(
             <Animated.View key={index}> 
-            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg.filter((el) => el.title === elem.title).length} moreCard={more.filter((el) => el.title === elem.title).length}/>
+            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg.filter((el) => el.name === elem.name).length} moreCard={more.filter((el) => el.name === elem.name).length}/>
             </Animated.View> 
             )
           }

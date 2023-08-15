@@ -12,7 +12,7 @@ const MinusSvg = () => {
     viewBox="0 0 12 2"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{marginTop:12.5, marginLeft:-15}}
+    style={{ marginLeft:-15}}
   >
     <Path
       fillRule="evenodd"
@@ -28,7 +28,7 @@ const MinusSvg = () => {
   viewBox="0 0 12 2"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  style={{marginTop:12.5, marginLeft:-15}}
+  style={{ marginLeft:-15}}
 >
   <Path
     fillRule="evenodd"

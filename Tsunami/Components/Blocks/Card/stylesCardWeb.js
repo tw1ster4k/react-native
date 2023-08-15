@@ -4,9 +4,9 @@ export const stylesCardWeb = {
         marginTop:18,
         marginLeft:"auto",
         marginRight:'auto',
-        borderRadius:10,
-        borderWidth:2
-/*         overflow:"hidden" */
+        borderRadius:"1em",
+        borderWidth:2,
+        overflow:"hidden"
     },
     title:{
         fontWeight:600, 
@@ -34,7 +34,7 @@ export const stylesCardWeb = {
         height:"100%", 
         width:55.5, 
         alignItems:"center", 
-        marginTop:11
+        justifyContent:'center',
     },
     buttonText:{
         fontWeight:400, 
