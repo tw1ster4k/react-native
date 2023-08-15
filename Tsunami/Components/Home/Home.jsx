@@ -86,7 +86,7 @@ const Home = ({navigation}) => {
           {route.params.catalog.map((el, index) => 
             <Pressable
             key={index}
-              style={[el.preview ? styles.category : "" , styles2.category , el.preview ? windowWidth >= 540 ? {height:256,  borderRadius: 10, borderWidth: 2, } : {height:178,borderRadius: 10, borderWidth: 2,} : ""] }
+              style={[el.preview ? styles.category : "" , styles2.category , el.preview ? windowWidth >= 540 ? {height:256,  borderRadius: 24, borderWidth: 2, } : {height:178,borderRadius: 24, borderWidth: 2,} : ""] }
               onPress={() => navigation.navigate(el.name)}>
                 {
                   windowWidth >=540 ?
