@@ -31,18 +31,15 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 const Card = ({data, quantity, bigImgCard, moreCard}) => {
   const windowWidth = Dimensions.get('window').width;
   const dispatch = useDispatch();
-
-  const theme = useSelector(state => state.theme);
   const basket = useSelector(state => state.basket);
+  const theme = useSelector(state => state.theme);
+  const [sizeImg, setSizeImg] = useState({width:1, height:1})
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false);
-
-   const [sizeImg, setSizeImg] = useState({width:1, height:1})
-
   const [more, setMore] = useState(moreCard ? true : false);
-
   const [amount, setAmount] = useState(
-    quantity ? quantity : basket.filter(el => el.title === data.title).length,
-  );
+    quantity ? quantity : basket.filter(el => el.name === data.name).length,
+    );
+
 
   const maxOnPress = () => {
     LayoutAnimation.easeInEaseOut();
@@ -73,17 +70,17 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
     windowWidth >=540  ? stylesCardWeb : stylesCard,
   );
 
-  data.preview ?
   useEffect(() => {
+    data.preview ?
     Image.getSize(
        `https://api.menu.true-false.ru/storage/${data.preview}`,
       (width, height) => {
         setSizeImg({ width, height });
       },
-    );
+      )
+      :
+      ''
   }, [])
-  :
- ''
  
 
   const addFood = () => {
@@ -109,8 +106,8 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   };
 
   const moreFunction = () => {
-    dispatch({type: 'ADD_MORE', payload: data});
     setMore(!more);
+    dispatch({type: 'ADD_MORE', payload: data});
   };
 
   const bigImgFunction = () => {
