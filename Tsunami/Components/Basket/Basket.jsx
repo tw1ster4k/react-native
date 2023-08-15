@@ -74,7 +74,7 @@ const Basket = () => {
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
             </View>
             <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""} onPressIn={() => number !== null ? setActive(true) : ""}  onPressOut={() => setActive(false)} >
-            <ButtonSubmitSvg active={active} />
+            <ButtonSubmitSvg active={active} number={number} />
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             { windowWidth >=540  ?
