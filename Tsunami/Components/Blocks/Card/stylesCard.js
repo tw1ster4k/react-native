@@ -3,7 +3,7 @@ export const stylesCard = {
         width:368,
         marginTop:18,
         marginLeft:15,
-        borderRadius:10,
+        borderRadius:16,
         borderWidth:2,
         overflow:"hidden"
     },
