@@ -1,18 +1,17 @@
 /* eslint-disable */
 import React from 'react'
-import { View, Pressable, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Pressable, Text, StyleSheet, Dimensions,Platform } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import HomeIcon from '../../Svg/HomeIcon/HomeIcon'
 import Theme from '../../Svg/Theme/Theme'
 import { stylesFooterDark } from './stylesFooterDark'
 import { stylesFooterWhite } from './stylesFooterWhite'
 import { useNavigation } from '@react-navigation/native'
-import SearchButton from '../../Svg/SearchButton/SearchButton'
 import { stylesFooter } from './stylesFooter'
 import { stylesFooterWeb } from './stylesFooterWeb'
 import Back from '../../Svg/Back/Back'
 
-const Footer = ({setTheme, white, homeNavigate}) => {
+const Footer = ({homeNavigate}) => {
   const navigation = useNavigation()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
@@ -25,7 +24,7 @@ const Footer = ({setTheme, white, homeNavigate}) => {
  
 
   return (
-    <View style={styles2.footer}>
+    <View style={[styles2.footer, Platform.OS === "web" ? {position:'fixed'} : ""]}>
           <Pressable style={ windowWidth >= 540 ? {marginLeft:-13} : {marginLeft:15}} onPress={() => navigation.navigate(homeNavigate)}>
                 <HomeIcon />
           </Pressable>
