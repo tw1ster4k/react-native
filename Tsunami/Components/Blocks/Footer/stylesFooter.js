@@ -3,7 +3,7 @@ export const stylesFooter = {
         position:"absolute", 
         left:0, 
         right:0, 
-        bottom:10, 
+        bottom:20, 
         width:"100%", 
         flexDirection:"row",
     },
