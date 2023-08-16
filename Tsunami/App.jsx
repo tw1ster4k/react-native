@@ -38,8 +38,8 @@ const config = {
     
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
-  const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"", logo:"", logo_dark:"", logo_light:""})
-
+  const [setting, setSetting ] = useState({title:"",description:"", logo:"", logo_dark:"", logo_light:""})
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [category, setCategory] = useState([
   ]);
 
@@ -47,6 +47,7 @@ const config = {
 useEffect(() => {
 
   axios.get(ser).then(result => {
+    setSetting(result.data.settings)
     if (Platform.OS === "web"){ 
   const newIcon = `https://api.menu.true-false.ru/storage/${result.data.settings.icon}`
   const link = document.createElement("link")
@@ -60,9 +61,11 @@ useEffect(() => {
   document.head.appendChild(link)
   setSetting(result.data.settings)
   setCategory(result.data.catalog)
+  setIsDataLoaded(true);
 }else{
   setSetting(result.data.settings)
   setCategory(result.data.catalog)
+  setIsDataLoaded(true);
 }
 } 
   ).
@@ -76,6 +79,7 @@ useEffect(() => {
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
+        {setting.title && isDataLoaded ? (
         <Stack.Navigator screenOptions={{
           transitionSpec:{
             open:config,
@@ -85,14 +89,16 @@ useEffect(() => {
           
         }}
         >
-          <Stack.Screen name={setting.title} component={Home} options={{headerMode:"none" }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
+              <Stack.Screen name={setting.title} component={Home} options={{headerMode:"none" }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
+              
           <Stack.Screen name="Избранное" component={Basket} options={{headerMode:"none"}} />
           {category.map((el, index) => 
             <Stack.Screen name={el.name} key={index} component={Category}  options={{headerMode:"none"}}  initialParams={{category:el.slug}} />
-            )
-          }
-        </Stack.Navigator>
-      <Footer homeNavigate={setting.title} />
+          )}
+          </Stack.Navigator>
+        ) : null
+      }
+          <Footer homeNavigate={setting.title} />
       </NavigationContainer>
     </ErrorBoundary>
     </Provider>
