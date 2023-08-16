@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, LayoutAnimation, NativeModules, Dimensions, StatusBar } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector } from 'react-redux'
@@ -8,10 +8,13 @@ import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
 import { stylesBasket } from './stylesBasket'
-import CardSvg from '../Svg/CardSvg/CardSvg'
-import Footer from '../Blocks/Footer/Footer'
 import { stylesBasketWeb } from './stylesBasketWeb'
-import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
+import ButtonSubmitSvg from '../Svg/ButtonSubmitSvg/ButtonSubmitSvg'
+import ButtonFormSubmitSvg from '../Svg/ButtonFormSubmitSvg/ButtonFormSubmitSvg'
+import FormInputSvg from '../Svg/FormInputSvg/FormInputSvg'
+import SystemNavigationBar from 'react-native-system-navigation-bar'
+
+
 
 const {UIManager} = NativeModules;
 
@@ -26,14 +29,20 @@ const Basket = () => {
     const price = useSelector((state) => state.price)
     const more = useSelector((state) => state.more)
     const bigImg = useSelector((state) => state.bigImg)
+    const [active, setActive] = useState(false)
+    const [active2, setActive2] = useState(false)
 
     const [number, setNumber] = useState(null)
 
     const unique = []
     const seen = {}
 
+Platform.OS !== "web" ?
+  SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+:
+""
     basket.forEach((item) => {
-      const key = item.title;
+      const key = item.name;
       if (!seen[key]) {
         seen[key] = true;
         unique.push(item);
@@ -48,6 +57,7 @@ const Basket = () => {
       }
     }
 
+
     const styles = StyleSheet.create(theme ? stylesBasketWhite : stylesBasketDark)
     const styles2 = StyleSheet.create(windowWidth >=540 ? stylesBasketWeb : stylesBasket)
   return (
@@ -56,10 +66,10 @@ const Basket = () => {
             <Text style={[styles.tab, styles2.tab]}>Корзина</Text>
             <Text style={[styles.sum, styles2.sum]}>{price ? `Итого на ${price} руб` : "Корзина пуста" }</Text>
             {unique.map((elem, index) => {
-              const quantity = basket.filter((el) => el.title === elem.title).length
+              const quantity = basket.filter((el) => el.name === elem.name).length
               return(
             <Animated.View key={index}> 
-            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg.filter((el) => el.title === elem.title).length} moreCard={more.filter((el) => el.title === elem.title).length}/>
+            <Card data={elem} index={index} quantity={quantity} bigImgCard={bigImg.filter((el) => el.name === elem.name).length} moreCard={more.filter((el) => el.name === elem.name).length}/>
             </Animated.View> 
             )
           }
@@ -68,7 +78,8 @@ const Basket = () => {
               <Text style={[styles.infoText,styles2.infoText,]} >Номер столика</Text>
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
             </View>
-            <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""}>
+            <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""} onPressIn={() => number !== null ? setActive(true) : ""}  onPressOut={() => setActive(false)} >
+            <ButtonSubmitSvg active={active} number={number} />
                 <Text style={[styles.callText, styles2.callText]}>Вызвать официанта</Text>
             </Pressable>
             { windowWidth >=540  ?
@@ -83,9 +94,11 @@ const Basket = () => {
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
+                       {/* <FormInputSvg />  */}
                 </View>
                 )}
-                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80} : {top:2}]}>
+                <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:Platform.OS === "web" ? -1 : 2}]} onPressIn={() => setActive2(true)} onPressOut={() => setActive2(false)}>
+                  <ButtonFormSubmitSvg active={active2} />
                     <Text style={[styles.submitText, styles2.submitText]}>Разместить</Text>
                 </Pressable>
             </View>

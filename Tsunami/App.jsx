@@ -1,9 +1,12 @@
 import "react-native-gesture-handler"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
+import { View, Dimensions } from "react-native";
+import { Platform } from "react-native";
+import axios from "axios";
 // import components navigation
 import Home from './Components/Home/Home';
 import Category from "./Components/Category/Category";
@@ -11,15 +14,13 @@ import Basket from "./Components/Basket/Basket";
 import Footer from "./Components/Blocks/Footer/Footer";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorBlock from "./Components/Blocks/ErrorBlock/ErrorBlock";
-import { View, Dimensions } from "react-native";
-import { useState } from "react";
-import { Platform } from "react-native";
+
 
 
 
 const Stack = createStackNavigator()
 const config = {
-  animation: 'spring',
+  animation:"linear",
   config: {
     stiffness: 1000,
     damping: 750,
@@ -29,39 +30,49 @@ const config = {
     restSpeedThreshold: 0.01,
   },
 };
-const App = () => {
 
+  const ser = 'https://api.menu.true-false.ru/api/get'
+
+
+  const App = () => {
+    
   const windowHeight = Dimensions.get("window").height
   const windowWidth = Dimensions.get('window').width
+  const [setting, setSetting ] = useState({title:"Меню Tsunami",description:"", logo:"", logo_dark:"", logo_light:""})
 
-const[theme, setTheme] = useState(false)
+  const [category, setCategory] = useState([
+  ]);
 
-  const category = [
-    {title:'Салаты', uri:"salads"},
-    {title:'Холодные закуски', uri:"coldSnacks"},
-    {title:'Горячие закуски', uri:"hotSnacks"},
-    {title:'Икорный бар', uri:"caviarBar"},
-    {title:'Морепродукты', uri:"seafood"},
-    {title:'Супы', uri:"soups"},
-    {title:'Крупа и паста', uri:"cerealsAndPasta"},
-    {title:'Горячее', uri:'hotter'},
-    {title:'Мангал', uri:"brazier"},
-    {title:'Тесто и начинка', uri:"doughAndStuffing"},
-  ];
+  
+useEffect(() => {
 
-  Platform.OS === "web" ?
-   useEffect(() => {
-    const x = document.getElementsByClassName("css-view-175oi2r")
-    const elementToStyle = x[5]
-    const elementToHeight = x[16]
-    elementToStyle.style.backgroundColor= theme ? "#fff" :"#151515"
-    elementToStyle.style.height = "auto"
-    elementToHeight.style.height = "100%"
-  }, [])
-  : ''
+  axios.get(ser).then(result => {
+    if (Platform.OS === "web"){ 
+  const newIcon = `https://api.menu.true-false.ru/storage/${result.data.settings.icon}`
+  const link = document.createElement("link")
+  link.rel = 'icon';
+  link.type = 'image/x-icon';
+  link.href = newIcon;
+   const linkElement = document.querySelector("link[rel='icon']");
+  if(linkElement){
+    document.head.removeChild(linkElement)
+  } 
+  document.head.appendChild(link)
+  setSetting(result.data.settings)
+  setCategory(result.data.catalog)
+}else{
+  setSetting(result.data.settings)
+  setCategory(result.data.catalog)
+}
+} 
+  ).
+  catch(error => console.log(error))
+}, [])
+
 
   return (
-  <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : {width:400, height:windowHeight}}>
+  <View style={windowWidth >=540  ? {width:"99.9%", height:windowHeight} : Platform.OS === "web" ? {width:windowWidth, height:windowHeight, overflow:'scroll'} : {width:windowWidth, height:windowHeight, flex:1 }}>
+   
     <Provider store={store}>
       <ErrorBoundary FallbackComponent={ErrorBlock}>
       <NavigationContainer>
@@ -71,16 +82,17 @@ const[theme, setTheme] = useState(false)
             close:config,
           },
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+          
         }}
         >
-          <Stack.Screen name='Меню' component={Home} options={{headerShown:false, }} />
-          <Stack.Screen name="Избранное" component={Basket} options={{headerShown:false,}} />
+          <Stack.Screen name={setting.title} component={Home} options={{headerMode:"none" }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>
+          <Stack.Screen name="Избранное" component={Basket} options={{headerMode:"none"}} />
           {category.map((el, index) => 
-            <Stack.Screen name={el.title} key={index} component={Category}  options={{headerShown:false,}}  initialParams={{category:el.uri}} />
+            <Stack.Screen name={el.name} key={index} component={Category}  options={{headerMode:"none"}}  initialParams={{category:el.slug}} />
             )
           }
         </Stack.Navigator>
-      <Footer />
+      <Footer homeNavigate={setting.title} />
       </NavigationContainer>
     </ErrorBoundary>
     </Provider>

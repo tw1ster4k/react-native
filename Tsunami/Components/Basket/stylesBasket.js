@@ -1,7 +1,7 @@
 export const stylesBasket = {
     container:{
         width:"100%", 
-        height:"100%", 
+        minHeight:"100%", 
         overflow:"scroll"
     },
     tab:{
@@ -18,9 +18,7 @@ export const stylesBasket = {
     call:{
         width:210, 
         height:48, 
-        borderRadius:10, 
-        borderWidth:2,
-        borderColor:"#ff7a00", 
+
         marginTop:24,
         marginLeft:15,
         justifyContent:'center',

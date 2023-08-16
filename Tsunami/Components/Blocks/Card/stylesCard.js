@@ -3,7 +3,7 @@ export const stylesCard = {
         width:368,
         marginTop:18,
         marginLeft:15,
-        borderRadius:10,
+        borderRadius:16,
         borderWidth:2,
         overflow:"hidden"
     },
@@ -33,8 +33,8 @@ export const stylesCard = {
     buttonContent:{
         height:"100%", 
         width:55.5, 
-        alignItems:"center", 
-        marginTop:11
+        alignItems:"center",
+        justifyContent:'center' 
     },
     buttonText:{
         fontWeight:400, 

@@ -18,8 +18,6 @@ export const homeStylesWhite = {
         color:"#555555"
     },
     input:{
-        borderColor:"#bbbbbb",
         color:"#1c1c1c",
-        backgroundColor: "#fff",
       },
 }

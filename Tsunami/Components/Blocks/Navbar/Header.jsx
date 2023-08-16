@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions, Platform} from 'react-native';
-import Title from '../../Svg/Title/Title';
+import {View, Text, StyleSheet, Dimensions, Platform, Image} from 'react-native';
 import {useSelector} from 'react-redux';
 import {stylesHeaderDark} from './StylesHeaderDark';
 import {stylesHeaderWhite} from './StylesHeaderWhite';
@@ -10,13 +9,14 @@ import { SvgUri } from 'react-native-svg';
 
 
 
-
-
-const Header = () => {
+const Header = ({logoWhite, description, logoDark}) => {
   const theme = useSelector(state => state.theme);
-  const uriBlack = "https://vk.com/doc346636180_666069486?hash=ggbwihP82kAjBTjhZ6He3nz6miZrJd2pwOd6xn7i7WL&dl=swGiTL5EDS1q2Wm7uH4WVtzKRznHLABRzQj7Znn7G20"
-  const uriWhite = "https://vk.com/doc346636180_666296116?hash=MMIFoC355VKJBEEw6TOPRhs69NApZU4qWpIZ79KkS1g&dl=hIFNl0ZoTxR8B7MwDc5HaKtzoZhhB0mCft1n4gzdRvD"
 
+   const uriBlack = `https://api.menu.true-false.ru/storage/${logoDark}`
+  const uriWhite = `https://api.menu.true-false.ru/storage/${logoWhite}` 
+
+  
+ 
   const windowWidth = Dimensions.get("window").width
 
   const styles = StyleSheet.create(
@@ -43,9 +43,13 @@ const Header = () => {
           flexDirection: 'column',
           alignItems: 'center',
         },
-      ]}>
-
-          <Title />  
+      ]}> 
+           {Platform.OS === "web" ?
+         <img src={theme ? uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} />
+         :
+         /* <SvgUri uri={theme ?  uriWhite : uriBlack} style={{marginTop:48, width:208, height:58}} /> */
+         <Image source={ {uri:theme ? uriWhite : uriBlack}} style={{marginTop:48, width:208, height:58}} />
+        }
 
       <Text
         style={[
@@ -59,7 +63,7 @@ const Header = () => {
             lineHeight: 16.8,
           },
         ]}>
-        Онлайн-меню японо-перуанской кухни ресторана Tsunami
+        {description}
       </Text>
     </View>
   );

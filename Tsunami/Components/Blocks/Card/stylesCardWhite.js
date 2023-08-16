@@ -9,10 +9,7 @@ export const stylesCardWhite = {
     description:{
         color:"#1c1c1c"
     },
-    button:{
-        color:"#1c1c1c",
-        backgroundColor:"#eee"
-    },
+
     minus:{
         color:"#1c1c1c"
     },

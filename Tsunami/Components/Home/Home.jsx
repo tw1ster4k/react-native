@@ -8,56 +8,23 @@ import Header from "../Blocks/Navbar/Header"
 import True from '../Svg/True/True';
 import { homeStylesWeb } from './homeStylesWeb';
 import { useEffect } from 'react';
-import husum from "../Image/husum.jpg"
-import boul from "../Image/boul.png"
 import LinearGradient from 'react-native-linear-gradient';
 import SearchIcon from '../Svg/Search/SearchIcon';
 import Card from '../Blocks/Card/Card';
+import { useRoute } from '@react-navigation/native';
+import CategorySvgWeb from '../Svg/CategorySvgWeb/CategorySvgWeb';
+import CategorySvg from '../Svg/CategorySvg/CategorySvg';
+import inputImg from "../Image/Input.png"
+import inputWhite from "../Image/InputWhite.png"
+import searchInputPhone from "../Image/SearchInputPhone.png"
+import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
+
 
 const Home = ({navigation}) => {
-  const category = [{
-    title:
-    'Салаты',
-    img:husum
-  },
-  {
-    title:
-    'Холодные закуски',
-  },
-  {
-    title:
-    'Горячие закуски',
-  },
-  {
-    title:
-    'Икорный бар',
-  },
-  {
-    title:
-    'Морепродукты',
-  },
-  {
-    title:
-    'Супы',
-    img:boul
-  },
-  {
-    title:
-    'Крупа и паста',
-  },
-  {
-    title:
-    'Горячее',
-  },
-  {
-    title:
-    'Мангал',
-  },
-  {
-title:
-    'Тесто и начинка',
-  },
-  ];
+
+  const route = useRoute()
+  const salads = useSelector(state => state.salads)
   const [goods, setGoods] = useState([])
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
@@ -65,13 +32,19 @@ title:
   const bigImg = useSelector(state => state.bigImg);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
-  const salads = useSelector(state => state.salads)
+
+  
+Platform.OS !== "web" ?
+SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+:
+""
+
 
   const searchFunction = event => {
     const filteredSalads = event
-      ? salads.filter(el => {
-          return el.title.toLowerCase().includes(event.toLowerCase());
-        })
+      ? salads.filter((el) => 
+           el.title.toLowerCase().includes(event.toLowerCase())
+        )
       : [];
     setGoods(filteredSalads);
   };
@@ -80,14 +53,14 @@ title:
   return (
       <ScrollView style={[styles.container, styles2.container]}>
         <StatusBar backgroundColor={theme ? "#fff" : "#151515"} animated={true} />
-        <Header />
+        <Header description={route.params.description} logoDark={route.params.logoDark} logoWhite={route.params.logoWhite}  />
+        <ImageBackground source={windowWidth >= 540 ? theme ? inputWhite : inputImg : theme ? SearchInputPhoneWhite : searchInputPhone} style={windowWidth >= 540 ? {width:348, height:40, marginLeft:'auto', marginRight:'auto'} : { width: 368,height: 40,marginLeft: 12.5,}} >
+
         <TextInput style={[styles.input,  windowWidth >=540  ?
           {
-            width: 532,
+            width: 348,
             height: 40,
             borderRadius: 10,
-            marginTop: 5,
-            borderWidth: 2,
             paddingLeft: 24,
             marginLeft: "auto",
             marginRight:'auto',
@@ -96,11 +69,7 @@ title:
           {
             width: 368,
             height: 40,
-            borderRadius: 10,
-            marginTop: 5,
-            borderWidth: 2,
             paddingLeft: 24,
-            marginLeft: 12.5,
           },]} 
           placeholder='Поиск'
           onChangeText={searchFunction}
@@ -111,30 +80,41 @@ title:
         :
         <SearchIcon />
       }
+        </ImageBackground>
       {
         goods.length <= 0 ?
         <View>
 
         <Text style={[styles.tab, styles2.tab]}>Меню</Text>
         <View style={styles2.categories}>
-          {category.map((el, index) => (
+          
+
+          {route.params.catalog.map((el, index) => 
             <Pressable
-              key={index}
-              style={[styles.category,  styles2.category, el.img ? windowWidth >= 540 ? {height:256} : {height:178} : ""] }
-              onPress={() => navigation.navigate(el.title)}>
+            key={index}
+              style={[el.preview ? styles.category : "" , styles2.category , el.preview ? windowWidth >= 540 ? {height:256,  borderRadius: 24, borderWidth: 2, } : {height:178,borderRadius: 24, borderWidth: 2,} : ""] }
+              onPress={() => navigation.navigate(el.name)}>
                 {
-                  el.img ?
-                  <ImageBackground source={el.img} style={{height:'100%'}}>
+                  windowWidth >=540 ?
+                  <CategorySvgWeb />
+                  :
+                <CategorySvg />
+                }
+                {
+                  el.preview ?
+                  <ImageBackground source={{uri: `https://api.menu.true-false.ru/storage/${el.preview}`}} style={{height:'100%'}}>
                     <LinearGradient colors={ theme ? ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 1)']:['rgba(34, 34, 34, 0)', 'rgba(34, 34, 34, 1)']} style={{height: '100%', width: '100%'}}>
-                    <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}, {fontWeight:600, fontSize:14}]}>{el.title}</Text>
+                    <Text style={[styles.title, styles2.title , windowWidth >=  540 ? {top:205} : {top:130}, {fontWeight:600, fontSize:14}]}>{el.name}</Text>
                     </LinearGradient>
                   </ImageBackground>
                   :
-                  <Text style={[styles.title, styles2.title]}>{el.title}</Text>
+                
+                <Text style={[styles.title, styles2.title]}>{el.name}</Text>
                 }
                 
             </Pressable>
-          ))}
+          )}
+     
         </View>
         </View>
         :

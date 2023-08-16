@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {
   Pressable,
-  Animated,
   LayoutAnimation,
   StyleSheet,
   NativeModules,
@@ -12,6 +11,7 @@ import {
   Image,
   Platform,
 } from 'react-native';
+import ButtonSvg from '../../Svg/ButtonSvg/ButtonSvg';
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {useState} from 'react';
@@ -20,6 +20,8 @@ import {stylesCardWhite} from './stylesCardWhite';
 import {stylesCard} from './stylesCard';
 import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
+import PlusSvg from '../../Svg/PlusSvg/PlusSvg';
+import MinusSvg from '../../Svg/MinusSvg/MinusSvg';
 
 const {UIManager} = NativeModules;
 
@@ -29,18 +31,15 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 const Card = ({data, quantity, bigImgCard, moreCard}) => {
   const windowWidth = Dimensions.get('window').width;
   const dispatch = useDispatch();
-
-  const theme = useSelector(state => state.theme);
   const basket = useSelector(state => state.basket);
+  const theme = useSelector(state => state.theme);
+  const [sizeImg, setSizeImg] = useState({width:1, height:1})
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false);
-
-   const [sizeImg, setSizeImg] = useState(Platform.OS === "web" ? {width:1, height:1} : Image.resolveAssetSource(data.img))
-
   const [more, setMore] = useState(moreCard ? true : false);
-
   const [amount, setAmount] = useState(
-    quantity ? quantity : basket.filter(el => el.title === data.title).length,
-  );
+    quantity ? quantity : basket.filter(el => el.name === data.name).length,
+    );
+
 
   const maxOnPress = () => {
     LayoutAnimation.easeInEaseOut();
@@ -71,19 +70,17 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
     windowWidth >=540  ? stylesCardWeb : stylesCard,
   );
 
-data.img ?
-Platform.OS === "web" ?
   useEffect(() => {
+    data.preview ?
     Image.getSize(
-      data.img,
+       `https://api.menu.true-false.ru/storage/${data.preview}`,
       (width, height) => {
         setSizeImg({ width, height });
       },
-    );
+      )
+      :
+      ''
   }, [])
-  :
- ''
-  : ""
  
 
   const addFood = () => {
@@ -109,8 +106,8 @@ Platform.OS === "web" ?
   };
 
   const moreFunction = () => {
-    dispatch({type: 'ADD_MORE', payload: data});
     setMore(!more);
+    dispatch({type: 'ADD_MORE', payload: data});
   };
 
   const bigImgFunction = () => {
@@ -131,7 +128,7 @@ Platform.OS === "web" ?
   return (
     <Pressable
       style={
-        data.img
+        data.preview
           ? more
             ? bigImg
               ? [
@@ -157,7 +154,7 @@ Platform.OS === "web" ?
       onPress={() => moreFunction()}>
       <Text
         style={
-          data.img
+          data.preview
             ? bigImg
               ? [
                   styles.title,
@@ -171,12 +168,12 @@ Platform.OS === "web" ?
             ? [styles.title, styles2.title]
             : [styles.title, styles2.title]
         }>
-        {data.title}
+        {data.name}
       </Text>
       {more ? (
         <Text
           style={
-            data.img
+            data.preview
               ? [
                   styles.description,
                   bigImg
@@ -186,7 +183,7 @@ Platform.OS === "web" ?
                 ]
               : [styles.description, styles2.description]
           }>
-          {data.description}
+          {data.content}
         </Text>
       ) : (
         ''
@@ -198,7 +195,7 @@ Platform.OS === "web" ?
             styles2.description,
             bigImg ? {color: '#fff', zIndex: 3} : {zIndex: 3},
           ]}>
-          {data.compound}
+          {data.content}
         </Text>
       ) : (
         ''
@@ -208,19 +205,22 @@ Platform.OS === "web" ?
             amount > 0
               ? bigImg
                 ? [
-                    styles.button,
+                    
                     sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3,} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:-2},
                     styles2.button,
                   ]
-                : [styles.button, {width: 143, zIndex: 3}, styles2.button]
+                : [ {width: 143, zIndex: 3}, styles2.button]
               : bigImg
               ? [
-                  styles.button,
+                  
                   sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3} : {position: 'absolute', zIndex: 3, width: 114, bottom:-2},
                   styles2.button,
                 ]
-              : [styles.button, {width: 114, zIndex: 3,}, styles2.button]
+              : [ {width: 114, zIndex: 3,}, styles2.button]
           }>
+          
+              <ButtonSvg amount={amount} />
+            
           {amount ? (
             <Pressable
               style={styles2.buttonContent}
@@ -229,10 +229,7 @@ Platform.OS === "web" ?
                   ? handleMinOnPress('DEL_FOOD', data, quantity)
                   : delFood()
               }>
-              <Text
-                style={[styles.minus, {marginLeft: -10}, styles2.buttonText]}>
-                -
-              </Text>
+              <MinusSvg />
             </Pressable>
           ) : (
             ''
@@ -240,7 +237,7 @@ Platform.OS === "web" ?
           <Text
             style={
               amount >= 1
-                ? [styles.cost, styles2.cost, {flexShrink: 0}]
+                ? [styles.cost, styles2.cost, {flexShrink: 0, marginLeft:-10}]
                 : [styles.cost, {marginLeft: 16, flexShrink: 0}, styles2.cost]
             }>
             {data.price} руб
@@ -250,9 +247,7 @@ Platform.OS === "web" ?
             onPress={() =>
               amount === 0 ? handleMaxOnPress('ADD_FOOD', data) : addFood()
             }>
-            <Text style={[styles.plus, {marginLeft: 10}, styles2.buttonText]}>
-              +
-            </Text>
+            <PlusSvg />
           </Pressable>
         </View>
 
@@ -278,14 +273,14 @@ Platform.OS === "web" ?
       ) : (
         ''
       )}
-      {data.img ? (
+      {data.preview ? (
         <Pressable
           onPress={() => bigImgFunction()}
           style={{position: 'absolute', height:'100%'}}>
           <View
             style={
               bigImg
-                ? {justifyContent:'center', display:'flex', height:'100%'}
+                ? {justifyContent:'center', display:'flex', height:'100%',overflow:"hidden"}
                 : {
                     display: 'flex',
                     position: 'absolute',
@@ -293,10 +288,12 @@ Platform.OS === "web" ?
                     width: 140,
                     justifyContent: 'center',
                     marginLeft: windowWidth >=540 ? 388 : 224,
+                    marginTop:2,
+                    overflow:'hidden'
                   }
             }>
             <ImageBackground
-              source={data.img}
+              source={{uri: `https://api.menu.true-false.ru/storage/${data.preview}`}}
               style={
                 bigImg
                   ? windowWidth >=540 
@@ -313,7 +310,7 @@ Platform.OS === "web" ?
                   : {
                       position: 'absolute',
                       width: 140,
-                      aspectRatio: sizeImg.width / sizeImg.height,
+                      aspectRatio:  sizeImg.width / sizeImg.height ,
                     }
               }>
               {bigImg ? (

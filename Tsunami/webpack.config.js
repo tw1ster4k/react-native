@@ -5,7 +5,7 @@ module.exports = {
   entry: './index.web.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.bundle.js',
+    filename: 'bundle.js',
   },
   resolve: {
     alias: {
