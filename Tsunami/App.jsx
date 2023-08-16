@@ -82,6 +82,7 @@ useEffect(() => {
             close:config,
           },
           cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+          
         }}
         >
           <Stack.Screen name={setting.title} component={Home} options={{headerMode:"none" }}  initialParams={{description:setting.description, logoDark:setting.logo_dark, logoWhite:setting.logo_light, catalog:category}}/>

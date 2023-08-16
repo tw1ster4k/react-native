@@ -12,6 +12,7 @@ import { stylesBasketWeb } from './stylesBasketWeb'
 import ButtonSubmitSvg from '../Svg/ButtonSubmitSvg/ButtonSubmitSvg'
 import ButtonFormSubmitSvg from '../Svg/ButtonFormSubmitSvg/ButtonFormSubmitSvg'
 import FormInputSvg from '../Svg/FormInputSvg/FormInputSvg'
+import SystemNavigationBar from 'react-native-system-navigation-bar'
 
 
 
@@ -36,6 +37,10 @@ const Basket = () => {
     const unique = []
     const seen = {}
 
+Platform.OS !== "web" ?
+  SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+:
+""
     basket.forEach((item) => {
       const key = item.name;
       if (!seen[key]) {

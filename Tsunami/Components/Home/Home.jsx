@@ -18,6 +18,7 @@ import inputImg from "../Image/Input.png"
 import inputWhite from "../Image/InputWhite.png"
 import searchInputPhone from "../Image/SearchInputPhone.png"
 import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 
 const Home = ({navigation}) => {
@@ -32,6 +33,11 @@ const Home = ({navigation}) => {
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
 
+  
+Platform.OS !== "web" ?
+SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+:
+""
 
 
   const searchFunction = event => {

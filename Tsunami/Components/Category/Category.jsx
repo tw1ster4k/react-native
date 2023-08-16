@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, {useEffect} from 'react'
-import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions, StatusBar } from 'react-native'
+import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesCategoryDark } from './stylesCategoryDark'
 import { stylesCategoryWhite } from './stylesCategoryWhite'
 import { useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import CardSvg from '../Svg/CardSvg/CardSvg'
 import { stylesCategoryWeb } from './stylesCategoryWeb'
 import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
 import axios from 'axios'
+import SystemNavigationBar from 'react-native-system-navigation-bar'
 
 const {UIManager} = NativeModules;
 
@@ -31,6 +32,13 @@ const Category = () => {
     const more = useSelector((state) => state.more)
 
     const [goods, setGoods] = useState([{name:'',content:"",price:0,preview:null}])
+
+
+  
+Platform.OS !== "web" ?
+SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+:
+""
 
      const category = route.name
   useEffect(() => {
