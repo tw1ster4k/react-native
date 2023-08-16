@@ -18,14 +18,14 @@ export const reducers = (state = initState, actions) => {
                 return {...state, theme: actions.payload}
             case "DEL_FOOD":
                 const arr = state.basket
-                const z = state.basket.findIndex((el) => el.title === actions.payload.title)
+                const z = state.basket.findIndex((el) => el.name === actions.payload.name)
                 if(z >= 0) {
                     arr.splice(z, 1)
                 } 
                  return {...state, basket: arr, price: state.price > 0 ? state.price -= actions.payload.price : 0} 
               case "ADD_MORE":
                 const arr2 = state.more
-                const y = arr2.findIndex((el) => el.title === actions.payload.title)
+                const y = arr2.findIndex((el) => el.name === actions.payload.name)
                     if(y === -1) {
                       const  newMore = [...state.more, actions.payload]
                       return {...state, more: newMore}
@@ -35,7 +35,7 @@ export const reducers = (state = initState, actions) => {
                 return {...state, more: arr2}
               case "ADD_BIGIMG" :
                 const arr3 = state.bigImg
-                const x = arr3.findIndex((el) => el.title === actions.payload.title)
+                const x = arr3.findIndex((el) => el.name === actions.payload.name)
                 if(x === -1 ) {
                     const newBigImg = [...state.bigImg, actions.payload]
                     return {...state, bigImg: newBigImg}
