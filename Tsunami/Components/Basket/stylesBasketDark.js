@@ -15,8 +15,6 @@ export const stylesBasketDark = {
         color:"#fff"        
     },
     infoInput:{
-        borderColor:"#bbb",
-        backgroundColor:"#1c1c1c",
         color:"#fff",        
     },
     submitText:{

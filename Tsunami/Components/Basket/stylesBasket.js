@@ -46,10 +46,8 @@ export const stylesBasket = {
     },
     infoInput:{
         width:176,
-        marginTop:2,
         height:48,
         borderRadius:10,
-        borderWidth:2,
         paddingLeft:16
     },
     submit:{

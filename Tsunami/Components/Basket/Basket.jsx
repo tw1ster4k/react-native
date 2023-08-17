@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
+import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform, ImageBackground } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,9 +11,11 @@ import { stylesBasket } from './stylesBasket'
 import { stylesBasketWeb } from './stylesBasketWeb'
 import ButtonSubmitSvg from '../Svg/ButtonSubmitSvg/ButtonSubmitSvg'
 import ButtonFormSubmitSvg from '../Svg/ButtonFormSubmitSvg/ButtonFormSubmitSvg'
-import FormInputSvg from '../Svg/FormInputSvg/FormInputSvg'
 import SystemNavigationBar from 'react-native-system-navigation-bar'
-
+import FormInput from "../Image/BackgroundInputSubmit.png"
+import FormInputDark from "../Image/BackgroundInputSubmitDark.png"
+import FormInputWebDark from "../Image/FormInputWebDark.png"
+import FormInputWeb from "../Image/InputForm.png"
 
 
 const {UIManager} = NativeModules;
@@ -103,7 +105,9 @@ const Basket = () => {
             )}
             <View style={[{width:176,height:67, marginTop:24}, windowWidth >=540 ? {marginLeft:'auto', marginRight:'auto', right:40} : {marginLeft:15}]}>
               <Text style={[styles.infoText,styles2.infoText,]} >Номер столика</Text>
+              <ImageBackground source={windowWidth >= 540 ? theme ? FormInputWeb : FormInputWebDark : theme ? FormInput : FormInputDark} style={windowWidth >= 540 ? {width:256, height:48, marginLeft:'auto', marginRight:'auto', marginTop:2} : {marginTop:2}} >
               <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType="numeric" onChangeText={numberFunction} />
+              </ImageBackground>
             </View>
             <Pressable style={[styles.call,styles2.call]} onPress={() => number !== null ? alert("Официант к вам скоро придёт, ожидайте") : ""} onPressIn={() => number !== null ? setActive(true) : ""}  onPressOut={() => setActive(false)} >
             <ButtonSubmitSvg active={active} number={number} />
@@ -120,8 +124,9 @@ const Basket = () => {
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
+                    <ImageBackground source={windowWidth >= 540 ? theme ? FormInputWeb : FormInputWebDark : theme ? FormInput : FormInputDark} style={windowWidth >= 540 ? {width:256, height:48, marginLeft:'auto', marginRight:'auto', marginTop:2} : {marginTop:2}} >
                       <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} onChangeText={(text) => formFunction(text ,el.name)} /> 
-                       {/* <FormInputSvg />  */}
+                    </ImageBackground>
                 </View>
                 )}
                 <Pressable style={[styles.submit, styles2.submit,windowWidth >=540  ? {marginLeft:80, top:-1} : {top:Platform.OS === "web" ? -1 : 2}]} onPressIn={() => setActive2(true)} onPressOut={() => setActive2(false)}>

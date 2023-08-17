@@ -15,8 +15,6 @@ export const stylesBasketWhite = {
         color:"#1c1c1c"        
     },
     infoInput:{
-        borderColor:"#bbb",
-        backgroundColor:"#fff",
         color:"#1c1c1c"        
     },
     submitText:{
