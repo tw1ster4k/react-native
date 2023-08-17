@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Card from '../Blocks/Card/Card'
 import LineSvg from '../Svg/Line/LineSvg'
 import True from '../Svg/True/True'
@@ -23,6 +23,7 @@ UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Basket = () => {
   const windowWidth = Dimensions.get('window').width
+  const dispatch = useDispatch()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
     const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
@@ -36,6 +37,8 @@ const Basket = () => {
 
     const unique = []
     const seen = {}
+    
+    dispatch({type:"ADD_BACK", payload:true})
 
 Platform.OS !== "web" ?
   SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")

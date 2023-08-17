@@ -6,6 +6,7 @@ price:0,
 theme:false,
 more:[],
 bigImg:[],
+back:false
 }
 
 export const reducers = (state = initState, actions) => {
@@ -42,7 +43,9 @@ export const reducers = (state = initState, actions) => {
                 }else{
                     arr3.splice(x, 1)
                 }
-                return {...state, bigImg: arr3}                         
+                return {...state, bigImg: arr3}
+                case "ADD_BACK" :
+                    return {...state , back: actions.payload}                         
             default :
                 return state
     }

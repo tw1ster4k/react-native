@@ -3,7 +3,7 @@ import React, {useEffect} from 'react'
 import { ScrollView,  StyleSheet, Text, LayoutAnimation, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesCategoryDark } from './stylesCategoryDark'
 import { stylesCategoryWhite } from './stylesCategoryWhite'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import True from '../Svg/True/True'
 import Card from '../Blocks/Card/Card'
 import { stylesCategory } from './stylesCategory'
@@ -23,6 +23,7 @@ UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Category = () => {
   const windowWidth = Dimensions.get('window').width
+  const dispatch = useDispatch()
     const route = useRoute()
     const theme = useSelector((state) => state.theme)
     const bigImg = useSelector((state) => state.bigImg)
@@ -33,6 +34,7 @@ const Category = () => {
 
     const [goods, setGoods] = useState([{name:'',content:"",price:0,preview:null}])
 
+    dispatch({type:"ADD_BACK", payload: true})
 
   
 Platform.OS !== "web" ?
