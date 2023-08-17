@@ -26,18 +26,38 @@ const Basket = () => {
   const dispatch = useDispatch()
     const basket = useSelector((state) => state.basket)
     const theme = useSelector((state) => state.theme)
-    const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
     const price = useSelector((state) => state.price)
     const more = useSelector((state) => state.more)
     const bigImg = useSelector((state) => state.bigImg)
     const [active, setActive] = useState(false)
     const [active2, setActive2] = useState(false)
-
+    const params = [{name:"Имя", typeKeyboard:"default"},{name:"Количество гостей", typeKeyboard:"numeric"},{name:"Время", typeKeyboard:"phone-pad"}, {name:"Телефон", typeKeyboard:"phone-pad"}, {name:"Дата", typeKeyboard:"numeric"}]
+    
+    const [name, setName] = useState()
+    const [guests, setGuests] = useState()
+    const [time,setTime] = useState()
+    const [phone, setPhone] = useState()
+    const [date, setDate] = useState()
+    
     const [number, setNumber] = useState(null)
 
     const unique = []
     const seen = {}
     
+    const formFunction = (event, type) => {
+        if(type === "Имя") {
+          setName(event)
+        }else if(type === "Количество гостей") {
+          setGuests(event)
+        }else if(type === "Время") {
+          setTime(event)
+        }else if(type === "Телефон") {
+          setPhone(event)
+        }else if(type === "Дата"){
+          setDate(event)
+        }
+        console.log(event)
+    }
     
     Platform.OS !== "web" ?
     SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
@@ -100,7 +120,7 @@ const Basket = () => {
                 {params.map((el, index) =>
                 <View key={index} style={el.name === "Дата" ? {width:176,height:67, marginTop:-19,} : {width:176,height:67}}>
                     <Text style={[styles.infoText,styles2.infoText]}>{el.name}</Text>
-                      <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} /> 
+                      <TextInput style={[styles.infoInput, styles2.infoInput]} keyboardType={el.typeKeyboard} onChangeText={(text) => formFunction(text ,el.name)} /> 
                        {/* <FormInputSvg />  */}
                 </View>
                 )}
