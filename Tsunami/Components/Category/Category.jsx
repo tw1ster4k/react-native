@@ -15,6 +15,8 @@ import CardSvgWeb from '../Svg/CardSvgWeb/CardSvgWeb'
 import axios from 'axios'
 import SystemNavigationBar from 'react-native-system-navigation-bar'
 
+
+
 const {UIManager} = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&

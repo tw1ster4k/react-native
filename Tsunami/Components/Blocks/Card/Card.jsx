@@ -9,7 +9,6 @@ import {
   Dimensions,
   ImageBackground,
   Image,
-  Platform,
 } from 'react-native';
 import ButtonSvg from '../../Svg/ButtonSvg/ButtonSvg';
 import {useSelector} from 'react-redux';
@@ -22,6 +21,7 @@ import {stylesCardWeb} from './stylesCardWeb';
 import LinearGradient from 'react-native-linear-gradient';
 import PlusSvg from '../../Svg/PlusSvg/PlusSvg';
 import MinusSvg from '../../Svg/MinusSvg/MinusSvg';
+import { useIsFocused } from '@react-navigation/native';
 
 const {UIManager} = NativeModules;
 
@@ -36,9 +36,8 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   const [sizeImg, setSizeImg] = useState({width:1, height:1})
   const [bigImg, setBigImg] = useState(bigImgCard ? true : false);
   const [more, setMore] = useState(moreCard ? true : false);
-  const [amount, setAmount] = useState(
-    quantity ? quantity : basket.filter(el => el.name === data.name).length,
-    );
+  const [amount, setAmount] = useState();
+  const isFocused = useIsFocused()
 
 
   const maxOnPress = () => {
@@ -71,6 +70,7 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   );
 
   useEffect(() => {
+    isFocused && setAmount( quantity ? quantity : basket.filter(el => el.name === data.name).length,)
     data.preview ?
     Image.getSize(
        `https://api.menu.true-false.ru/storage/${data.preview}`,
@@ -80,7 +80,7 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
       )
       :
       ''
-  }, [])
+  }, [isFocused])
  
 
   const addFood = () => {
