@@ -34,19 +34,19 @@ const Category = () => {
 
     const [goods, setGoods] = useState([{name:'',content:"",price:0,preview:null}])
 
-    dispatch({type:"ADD_BACK", payload: true})
-
-  
-Platform.OS !== "web" ?
-SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
-:
-""
-
-     const category = route.name
-  useEffect(() => {
-    axios.get(`https://api.menu.true-false.ru/api/${route.params.category}/products`).then(result => {
-      setGoods(result.data.data)
-      setLoading(false)
+    
+    
+    Platform.OS !== "web" ?
+    SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+    :
+    ""
+    
+    const category = route.name
+    useEffect(() => {
+      axios.get(`https://api.menu.true-false.ru/api/${route.params.category}/products`).then(result => {
+        setGoods(result.data.data)
+        setLoading(false)
+        dispatch({type:"ADD_BACK", payload: true})
     }
     ).catch(error => console.log(error))
     

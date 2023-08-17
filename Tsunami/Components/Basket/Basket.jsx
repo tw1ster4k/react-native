@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, ScrollView, Text, TextInput, StyleSheet, Pressable, Animated, NativeModules, Dimensions, StatusBar, Platform } from 'react-native'
 import { stylesBasketDark } from './stylesBasketDark'
 import { stylesBasketWhite } from './stylesBasketWhite'
@@ -38,12 +38,16 @@ const Basket = () => {
     const unique = []
     const seen = {}
     
-    dispatch({type:"ADD_BACK", payload:true})
+    
+    Platform.OS !== "web" ?
+    SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
+    :
+    ""
+    useEffect(() =>{
+      
+      dispatch({type:"ADD_BACK", payload:true})
+  },[])
 
-Platform.OS !== "web" ?
-  SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
-:
-""
     basket.forEach((item) => {
       const key = item.name;
       if (!seen[key]) {
