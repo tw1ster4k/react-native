@@ -8,6 +8,7 @@ export const homeStylesWhite = {
         color:"#1c1c1c"
     },
     category:{
+        borderColor:"#bbbbbb",
         backgroundColor:"#fff"
     },
     title:{

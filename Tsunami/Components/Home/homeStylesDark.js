@@ -7,6 +7,7 @@ export const homeStylesDark = {
     },
     category:{
         backgroundColor:"#222222",
+        borderColor:"#555555"
     },
     title:{
         color:"#fff"
