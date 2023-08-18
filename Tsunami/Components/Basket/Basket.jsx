@@ -16,6 +16,7 @@ import FormInput from "../Image/BackgroundInputSubmit.png"
 import FormInputDark from "../Image/BackgroundInputSubmitDark.png"
 import FormInputWebDark from "../Image/FormInputWebDark.png"
 import FormInputWeb from "../Image/InputForm.png"
+import { useRoute } from '@react-navigation/native'
 
 
 const {UIManager} = NativeModules;
@@ -24,6 +25,7 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const Basket = () => {
+  const route = useRoute()
   const windowWidth = Dimensions.get('window').width
   const dispatch = useDispatch()
     const basket = useSelector((state) => state.basket)

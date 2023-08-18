@@ -45,7 +45,7 @@ export const reducers = (state = initState, actions) => {
                 }
                 return {...state, bigImg: arr3}
                 case "ADD_BACK" :
-                    return {...state , back: actions.payload}                         
+                    return {...state , back: actions.payload}
             default :
                 return state
     }

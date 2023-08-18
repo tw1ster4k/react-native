@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, Pressable, ScrollView, Dimensions, StatusBar, Platform, ImageBackground, TextInput} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {homeStylesDark} from './homeStylesDark';
 import {homeStylesWhite} from './homeStylesWhite';
 import {homeStyles} from './homeStyles';
@@ -20,10 +20,11 @@ import searchInputPhone from "../Image/SearchInputPhone.png"
 import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 import BorderSvg from '../Svg/BorderSvg/BorderSvg';
+import { useIsFocused } from '@react-navigation/native';
 
 
 const Home = ({navigation}) => {
-
+  const dispatch = useDispatch()
   const route = useRoute()
   const salads = useSelector(state => state.salads)
   const [goods, setGoods] = useState([])
@@ -33,7 +34,12 @@ const Home = ({navigation}) => {
   const bigImg = useSelector(state => state.bigImg);
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
+  const isFocused = useIsFocused()
 
+  useEffect(() =>{
+      
+    isFocused && dispatch({type:"ADD_BACK", payload:false})
+},[isFocused])
   
 Platform.OS !== "web" ?
 SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
@@ -62,7 +68,7 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
             width: 348,
             height: 40,
             borderRadius: 10,
-            paddingLeft: 24,
+            paddingLeft: 16,
             marginLeft: "auto",
             marginRight:'auto',
           }
@@ -70,7 +76,7 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
           {
             width: 368,
             height: 40,
-            paddingLeft: 24,
+            paddingLeft: 16,
           },]} 
           placeholder='Поиск'
           onChangeText={searchFunction}

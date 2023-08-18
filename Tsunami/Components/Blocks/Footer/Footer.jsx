@@ -21,7 +21,7 @@ const Footer = ({homeNavigate}) => {
     const windowWidth = Dimensions.get("window").width
     const styles = StyleSheet.create(theme ? stylesFooterWhite : stylesFooterDark)
     const styles2 = StyleSheet.create(windowWidth >= 540 ? stylesFooterWeb :stylesFooter)
-    
+
  
 
   return (
@@ -38,7 +38,7 @@ const Footer = ({homeNavigate}) => {
           </Pressable>
           : ""
           }
-          <Pressable style={ windowWidth >= 540 ? basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back? 250 :306,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft: back ? 250 : 306,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}] : basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back ? 96 : 152,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back ? 96 : 152,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
+          <Pressable style={ windowWidth >= 540 ? basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back ? 250 :306,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft: back ? 250 : 306,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}] : basket.length < 1 ? [styles.basket, {height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back ? 96 : 152,alignItems:'center',justifyContent:'space-evenly'}] : [styles.basket,{height:48,width:112,borderRadius:10,borderWidth:2, marginLeft:back ? 96 : 152,alignItems:'center',justifyContent:'space-evenly',borderColor:"#ff7a00"}]} onPress={() => navigation.navigate("Избранное")}>
             <Text style={[styles.price, styles2.price]}>{price ? `${price} руб` : "Корзина"}</Text>
             <Text style={[styles.quantity, styles2.quantity]}>{basket.length ? `${basket.length} товаров` : "пусто"}</Text>
           </Pressable>
