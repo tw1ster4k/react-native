@@ -19,7 +19,6 @@ import inputWhite from "../Image/InputWhite.png"
 import searchInputPhone from "../Image/SearchInputPhone.png"
 import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
-import BorderSvg from '../Svg/BorderSvg/BorderSvg';
 import { useIsFocused } from '@react-navigation/native';
 
 

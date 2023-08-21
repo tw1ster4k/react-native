@@ -41,11 +41,11 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
 
 
   const maxOnPress = () => {
-    LayoutAnimation.easeInEaseOut();
+    LayoutAnimation.linear();
     LayoutAnimation.configureNext({
       duration: 150,
       update: {
-        type: LayoutAnimation.Types.easeInEaseOut,
+        type: LayoutAnimation.Types.linear,
         property: LayoutAnimation.Properties.opacity,
         opacity: 0,
       },
@@ -53,11 +53,11 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
   };
 
   const minOnPress = () => {
-    LayoutAnimation.easeInEaseOut();
+    LayoutAnimation.linear();
      LayoutAnimation.configureNext({
       duration: 150,
       update: {
-        type: LayoutAnimation.Types.easeInEaseOut,
+        type: LayoutAnimation.Types.linear,
         property: LayoutAnimation.Properties.opacity,
         opacity: 0,
       },
@@ -219,9 +219,7 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
                 [{position:'absolute', zIndex:3, bottom:1, margin:16}, styles2.button]
               :[{width: 114, zIndex: 3, margin:16}, styles2.button]
           }>
-          
-              <ButtonSvg amount={amount} />
-            
+            <ButtonSvg amount={amount} />
           {amount ? (
             <Pressable
               style={styles2.buttonContent}
