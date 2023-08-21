@@ -28,7 +28,6 @@ export const stylesCardWeb = {
         alignItems:"center", 
         flexDirection:"row", 
         justifyContent:"space-around", 
-        margin:16,
     },
     buttonContent:{
         height:"100%", 
