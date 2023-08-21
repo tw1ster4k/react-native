@@ -21,6 +21,7 @@ const Footer = ({homeNavigate}) => {
     const windowWidth = Dimensions.get("window").width
     const styles = StyleSheet.create(theme ? stylesFooterWhite : stylesFooterDark)
     const styles2 = StyleSheet.create(windowWidth >= 540 ? stylesFooterWeb :stylesFooter)
+    const luanguages = ["ru", "en", "de"]
 
  
 

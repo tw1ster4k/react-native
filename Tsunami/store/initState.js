@@ -6,7 +6,8 @@ price:0,
 theme:false,
 more:[],
 bigImg:[],
-back:false
+back:false,
+language:"ru"
 }
 
 export const reducers = (state = initState, actions) => {
@@ -46,6 +47,8 @@ export const reducers = (state = initState, actions) => {
                 return {...state, bigImg: arr3}
                 case "ADD_BACK" :
                     return {...state , back: actions.payload}
+                case "ADD_LANGUAGE" :
+                    return {...state, language: actions.payload}
             default :
                 return state
     }
