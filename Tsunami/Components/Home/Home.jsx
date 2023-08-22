@@ -20,6 +20,8 @@ import searchInputPhone from "../Image/SearchInputPhone.png"
 import SearchInputPhoneWhite from '../Image/SearchInputPhoneWhite.png';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 import { useIsFocused } from '@react-navigation/native';
+import {debounce} from 'lodash';
+import axios from 'axios';
 
 
 const Home = ({navigation}) => {
@@ -34,7 +36,9 @@ const Home = ({navigation}) => {
   const styles = StyleSheet.create(theme ? homeStylesWhite : homeStylesDark);
   const styles2 = StyleSheet.create(windowWidth >= 540 ? homeStylesWeb : homeStyles);
   const isFocused = useIsFocused()
+  const ser = 'https://api.menu.true-false.ru/api/search/'
 
+  
   useEffect(() =>{
       
     isFocused && dispatch({type:"ADD_BACK", payload:false})
@@ -47,14 +51,16 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
 
 
   const searchFunction = event => {
-    const filteredSalads = event
-      ? salads.filter((el) => 
-           el.title.toLowerCase().includes(event.toLowerCase())
+    if(event !== "") {
+      axios.post(ser+event).then(result =>
+         setGoods(result.data.data)
         )
-      : [];
-    setGoods(filteredSalads);
-  };
-
+      }else{
+        setGoods([])
+      } 
+    };
+  
+  const tovari = debounce(searchFunction, 500)
 
   return (
       <ScrollView style={[styles.container, styles2.container]}>
@@ -78,7 +84,7 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
             paddingLeft: 16,
           },]} 
           placeholder='Поиск'
-          onChangeText={searchFunction}
+          onChangeText={tovari}
           />
                 {
         windowWidth >=540  ?
