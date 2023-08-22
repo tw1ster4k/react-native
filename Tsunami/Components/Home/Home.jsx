@@ -27,7 +27,6 @@ import axios from 'axios';
 const Home = ({navigation}) => {
   const dispatch = useDispatch()
   const route = useRoute()
-  const salads = useSelector(state => state.salads)
   const [goods, setGoods] = useState([])
   const windowWidth = Dimensions.get("window").width
   const theme = useSelector(state => state.theme);
@@ -54,7 +53,7 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
     if(event !== "") {
       axios.post(ser+event).then(result =>
          setGoods(result.data.data)
-        )
+        ).catch(setGoods((goods) => goods))
       }else{
         setGoods([])
       } 
