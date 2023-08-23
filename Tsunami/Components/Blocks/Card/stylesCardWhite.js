@@ -24,5 +24,8 @@ export const stylesCardWhite = {
     },
     amountText:{
         color:"#1c1c1c"
+    },
+    button:{
+        backgroundColor:"#fff",
     }
 }

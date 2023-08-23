@@ -205,7 +205,6 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
             amount > 0
               ? bigImg
                 ? [
-                    
                     sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3, margin:16} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:-2, margin:16},
                     styles2.button,
                   ]
@@ -216,10 +215,10 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
                   styles2.button,
                 ]
               : data.preview && !more ?
-                [{position:'absolute', zIndex:3, bottom:1, margin:16}, styles2.button]
+                [{position:'absolute', zIndex:3, bottom:1, margin:16, width:114},styles2.button]
               :[{width: 114, zIndex: 3, margin:16}, styles2.button]
           }>
-            <ButtonSvg amount={amount} />
+             <ButtonSvg amount={amount} /> 
           {amount ? (
             <Pressable
               style={styles2.buttonContent}
@@ -325,7 +324,7 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
         </Pressable>
       ) : (
         ''
-      )}
+        )}
     </Pressable>
   );
 };

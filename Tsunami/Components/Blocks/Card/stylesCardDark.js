@@ -24,5 +24,8 @@ export const stylesCardDark = {
     },
     amountText:{
         color:"#fff"
+    },
+    button:{
+        backgroundColor:"#555555"
     }
 }

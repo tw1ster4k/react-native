@@ -2,13 +2,16 @@ import React from 'react'
 import { Svg, Path } from 'react-native-svg'
 import { useSelector } from 'react-redux'
 
+
 function ButtonSvg({ amount }) {
   const theme = useSelector((state) => state.theme)
+  const height = 36
+
   return (
         <Svg
           xmlns="http://www.w3.org/2000/svg"
           width={amount ? 143 : 117}
-          height={40}
+          height={height}
           viewBox={amount ? "0 0 143 40" : "0 0 117 40"}
           fill="none"
           style={{ position: 'absolute' }}
