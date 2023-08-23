@@ -85,12 +85,9 @@ SystemNavigationBar.setNavigationColor(theme ? "#fff" : "#151515")
           placeholder='Поиск'
           onChangeText={tovari}
           />
-                {
-        windowWidth >=540  ?
-        ""
-        :
+
         <SearchIcon />
-      }
+    
         </ImageBackground>
       {
         goods.length <= 0 ?

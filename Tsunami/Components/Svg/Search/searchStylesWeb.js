@@ -1,7 +1,9 @@
 export const searchStylesWeb = {
     icon:{
-        marginTop:-31.75,
         marginLeft:'auto',
         marginRight:'auto',
+        position:'absolute',
+        left:316,
+        top:9
     }
 }
