@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 function ButtonSvg({ amount }) {
   const theme = useSelector((state) => state.theme)
-  const height = 36
+  const height = 40
 
   return (
         <Svg

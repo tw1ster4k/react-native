@@ -205,13 +205,13 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
             amount > 0
               ? bigImg
                 ? [
-                    sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3, margin:16} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:-2, margin:16},
+                    sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3, margin:16} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:0, margin:16},
                     styles2.button,
                   ]
-                : [ data.preview && !more ? {position:'absolute', zIndex:3, bottom:1, margin:16} : {width: 143, zIndex: 3, margin:16}, styles2.button]
+                : [ data.preview && !more ? {position:'absolute', zIndex:3, bottom:16, left:8, } : {width: 143, zIndex: 3, margin:16}, styles2.button]
               : bigImg
               ? [
-                  sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3, margin:16} : {position: 'absolute', zIndex: 3, width: 114, bottom:-2, margin:16},
+                  sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3, margin:16} : {position: 'absolute', zIndex: 3, width: 114, bottom:1, margin:16},
                   styles2.button,
                 ]
               : data.preview && !more ?
@@ -259,11 +259,11 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
                   {
                     position: 'absolute',
                     zIndex: 3,
-                    bottom: windowWidth >= 540 ? -2 :0,
+                    bottom:1,
                   },
                   styles2.amount,
                 ]
-              : [styles.amount, styles2.amount, data.preview && !more ? { marginTop:49.5, zIndex:3} : {marginTop: -56, zIndex:3}]
+              : [styles.amount, styles2.amount, data.preview && !more ? {position:'absolute', bottom:0, zIndex:3} : {marginTop: -56, zIndex:3}]
           }>
           <Text style={[styles.amountText, styles2.amountText]}>
             {quantity ? quantity : amount}
