@@ -208,10 +208,10 @@ const Card = ({data, quantity, bigImgCard, moreCard}) => {
                     sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:143, zIndex:3, margin:16} :{width: 143,  position: 'absolute',  zIndex: 3, bottom:0, margin:16},
                     styles2.button,
                   ]
-                : [ data.preview && !more ? {position:'absolute', zIndex:3, bottom:16, left:8, } : {width: 143, zIndex: 3, margin:16}, styles2.button]
+                : [ data.preview && !more ? {position:'absolute', zIndex:3, bottom:16, left:16, width:143} : {width: 143, zIndex: 3, margin:16}, styles2.button]
               : bigImg
               ? [
-                  sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3, margin:16} : {position: 'absolute', zIndex: 3, width: 114, bottom:1, margin:16},
+                  sizeImg.width / sizeImg.height > 1 && more && windowWidth <= 540 ? {width:114, zIndex:3, margin:16} : {position: 'absolute', zIndex: 3, width: 114, bottom:1, margin:16,},
                   styles2.button,
                 ]
               : data.preview && !more ?
